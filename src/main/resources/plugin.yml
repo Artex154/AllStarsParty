@@ -1,0 +1,4 @@
+name: AllStarsParty
+version: '1.0-SNAPSHOT'
+main: be.artex.allStarsParty.AllStarsParty
+api-version: '1.18'
