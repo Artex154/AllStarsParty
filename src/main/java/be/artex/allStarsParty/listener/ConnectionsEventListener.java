@@ -4,7 +4,6 @@ package be.artex.allStarsParty.listener;
 import be.artex.allStarsParty.AllStarsParty;
 
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.Scoreboard;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -30,9 +29,10 @@ public class ConnectionsEventListener implements Listener {
 
         FastBoard board = new FastBoard(player);
         board.updateTitle(ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + ChatColor.BOLD + "All Stars Party");
-        Scoreboard.updateScoreboard(board, player);
 
         AllStarsParty.boards.put(player.getUniqueId(), board);
+
+        PlayerUtil.updateAllPlayerScoreboards();
 
         player.teleport(new Location(AllStarsParty.world, AllStarsParty.CENTER_X, AllStarsParty.CENTER_Y + 2, AllStarsParty.CENTER_Z));
 
@@ -46,7 +46,7 @@ public class ConnectionsEventListener implements Listener {
 
         if (AllStarsParty.inGame) {
             PlayerUtil.sendMessageToAllPlayers(
-                    ChatColor.WHITE + "  La partie étant déjà lancée, il devient " + ChatColor.DARK_AQUA + "spectateur" + ChatColor.WHITE + "."
+                    ChatColor.WHITE + "  La partie ayant déjà été lancée, il devient " + ChatColor.DARK_AQUA + "spectateur" + ChatColor.WHITE + "."
             );
 
             player.setGameMode(GameMode.SPECTATOR);
