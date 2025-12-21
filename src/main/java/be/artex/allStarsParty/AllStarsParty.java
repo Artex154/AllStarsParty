@@ -1,16 +1,23 @@
 package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.listener.ConnectionsEventListener;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public final class AllStarsParty extends JavaPlugin {
     public static JavaPlugin instance;
     public static boolean inGame;
     public static int maxPlayers;
+
+    public static final Map<UUID, FastBoard> boards = new HashMap<>();
 
     public static World world;
     public static final int CENTER_X = 0;

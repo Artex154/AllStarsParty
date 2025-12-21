@@ -20,6 +20,8 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     runtimeOnly 'com.google.guava:guava:33.5.0-jre'
+
+    implementation 'fr.mrmicky:fastboard:1.2.0'
 }
 
 tasks {

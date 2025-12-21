@@ -8,4 +8,9 @@ public class PlayerUtil {
         for (Player player : Bukkit.getOnlinePlayers())
             player.sendMessage(message);
     }
+
+    public static void updateAllPlayerScoreboards() {
+        for (Player player : Bukkit.getOnlinePlayers())
+            Scoreboard.updateScoreboard(AllStarsParty.boards.get(player.getUniqueId()), player);
+    }
 }

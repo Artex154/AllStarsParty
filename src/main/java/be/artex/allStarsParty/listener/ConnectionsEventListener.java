@@ -4,6 +4,8 @@ package be.artex.allStarsParty.listener;
 import be.artex.allStarsParty.AllStarsParty;
 
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.Scoreboard;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -25,6 +27,12 @@ public class ConnectionsEventListener implements Listener {
         PlayerUtil.sendMessageToAllPlayers(
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a rejoint la partie." + ChatColor.GRAY + " (" + Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
         );
+
+        FastBoard board = new FastBoard(player);
+        board.updateTitle(ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + ChatColor.BOLD + "All Stars Party");
+        Scoreboard.updateScoreboard(board, player);
+
+        AllStarsParty.boards.put(player.getUniqueId(), board);
 
         player.teleport(new Location(AllStarsParty.world, AllStarsParty.CENTER_X, AllStarsParty.CENTER_Y + 2, AllStarsParty.CENTER_Z));
 
@@ -56,5 +64,7 @@ public class ConnectionsEventListener implements Listener {
         event.setQuitMessage(
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
         );
+
+        AllStarsParty.boards.remove(event.getPlayer().getUniqueId());
     }
 }
