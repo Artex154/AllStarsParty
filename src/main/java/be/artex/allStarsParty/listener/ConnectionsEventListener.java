@@ -1,6 +1,9 @@
 package be.artex.allStarsParty.listener;
 
 
+import be.artex.allStarsParty.AllStarsParty;
+import jdk.tools.jmod.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,8 +17,11 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setJoinMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a rejoint la partie."
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a rejoint la partie." + ChatColor.GRAY + " (" + Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
         );
+
+        if (AllStarsParty.inGame) {
+        }
     }
 
     @EventHandler
@@ -23,7 +29,7 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie."
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
         );
     }
 }
