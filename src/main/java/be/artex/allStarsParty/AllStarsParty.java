@@ -1,6 +1,10 @@
 package be.artex.allStarsParty;
 
+import be.artex.allStarsParty.command.Composition;
+import be.artex.allStarsParty.gameLogic.Role;
 import be.artex.allStarsParty.listener.ConnectionsEventListener;
+import be.artex.allStarsParty.role.Tomura;
+import be.artex.allStarsParty.side.MHA;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,9 +12,7 @@ import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public final class AllStarsParty extends JavaPlugin {
     public static JavaPlugin instance;
@@ -18,6 +20,8 @@ public final class AllStarsParty extends JavaPlugin {
     public static int maxPlayers;
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
+
+    public static final List<Role> registeredRoles = new ArrayList<>();
 
     public static World world;
     public static final int CENTER_X = 0;
@@ -35,6 +39,10 @@ public final class AllStarsParty extends JavaPlugin {
         setupWorldBorder(world.getWorldBorder());
 
         defineGameRules();
+
+        new Tomura().register();
+
+        getCommand("composition").setExecutor(new Composition());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
     }
