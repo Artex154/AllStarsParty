@@ -2,3 +2,7 @@ name: AllStarsParty
 version: '1.0-SNAPSHOT'
 main: be.artex.allStarsParty.AllStarsParty
 api-version: '1.8.8'
+commands:
+  composition:
+    usage: /compositon
+    description: "show the compostition of the game"
