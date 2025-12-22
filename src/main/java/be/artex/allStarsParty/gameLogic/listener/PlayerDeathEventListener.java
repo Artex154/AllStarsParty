@@ -37,6 +37,8 @@ public class PlayerDeathEventListener implements Listener {
 
         Side firstSide = killerRole.getSide();
 
+        PlayerUtil.updateAllPlayerScoreboards();
+
         if (!roleManager.getRolesAlive().stream().allMatch(role -> role.getSide() == firstSide))
             return;
 

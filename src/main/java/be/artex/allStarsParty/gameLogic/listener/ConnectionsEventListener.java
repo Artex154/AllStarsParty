@@ -36,14 +36,12 @@ public class ConnectionsEventListener implements Listener {
         PlayerUtil.updateAllPlayerScoreboards();
 
         player.teleport(new Location(AllStarsParty.world, AllStarsParty.CENTER_X, AllStarsParty.CENTER_Y + 2, AllStarsParty.CENTER_Z));
-
         player.getInventory().clear();
         player.setMaxHealth(20);
         player.setHealth(20);
 
-        for (PotionEffect effect : player.getActivePotionEffects()) {
+        for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());
-        }
 
         if (gameManager.isInGame()) {
             PlayerUtil.sendMessageToAllPlayers(

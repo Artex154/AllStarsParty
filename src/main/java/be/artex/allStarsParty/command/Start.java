@@ -50,9 +50,8 @@ public class Start implements CommandExecutor {
 
         World world = AllStarsParty.world;
 
-        for (Player p : onlinePlayers) {
+        for (Player p : onlinePlayers)
             setupPlayer(p, world);
-        }
 
         roleManager.clearPlayersRole();
         roleManager.resetAliveRoles();
