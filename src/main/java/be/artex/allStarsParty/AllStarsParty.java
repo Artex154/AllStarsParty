@@ -2,13 +2,10 @@ package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
 import be.artex.allStarsParty.command.Start;
-import be.artex.allStarsParty.gameLogic.listener.EntityDamageByEntityEventListener;
-import be.artex.allStarsParty.gameLogic.listener.PlayerInteractEventListener;
+import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
-import be.artex.allStarsParty.gameLogic.listener.ConnectionsEventListener;
-import be.artex.allStarsParty.gameLogic.listener.PlayerDeathEventListener;
 import be.artex.allStarsParty.role.Izuku;
 import be.artex.allStarsParty.role.Tomura;
 import fr.mrmicky.fastboard.FastBoard;
@@ -56,6 +53,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageByEntityEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerItemDamageEventListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {
