@@ -2,6 +2,7 @@ package be.artex.allStarsParty.gameLogic.listener;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.gameLogic.GameManager;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,6 +16,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 
 public class ConnectionsEventListener implements Listener {
+    private static final GameManager gameManager = AllStarsParty.gameManager;
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -22,7 +25,7 @@ public class ConnectionsEventListener implements Listener {
         event.setJoinMessage("");
 
         PlayerUtil.sendMessageToAllPlayers(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a rejoint la partie." + ChatColor.GRAY + " (" + Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a rejoint la partie." + ChatColor.GRAY + " (" + Bukkit.getOnlinePlayers().size() + "/" + gameManager.getMaxPlayerCount() + ")"
         );
 
         FastBoard board = new FastBoard(player);
@@ -42,7 +45,7 @@ public class ConnectionsEventListener implements Listener {
             player.removePotionEffect(effect.getType());
         }
 
-        if (AllStarsParty.inGame) {
+        if (gameManager.isInGame()) {
             PlayerUtil.sendMessageToAllPlayers(
                     ChatColor.WHITE + "  La partie ayant déjà été lancée, il devient " + ChatColor.DARK_AQUA + "spectateur" + ChatColor.WHITE + "."
             );
@@ -60,7 +63,7 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + AllStarsParty.maxPlayers + ")"
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + gameManager.getMaxPlayerCount() + ")"
         );
 
         AllStarsParty.boards.remove(event.getPlayer().getUniqueId());

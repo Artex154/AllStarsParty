@@ -2,6 +2,7 @@ package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
 import be.artex.allStarsParty.command.Start;
+import be.artex.allStarsParty.gameLogic.GameManager;
 import be.artex.allStarsParty.gameLogic.RoleManager;
 import be.artex.allStarsParty.gameLogic.listener.ConnectionsEventListener;
 import be.artex.allStarsParty.gameLogic.listener.PlayerDeathEventListener;
@@ -18,10 +19,9 @@ import java.util.*;
 
 public final class AllStarsParty extends JavaPlugin {
     public static JavaPlugin instance;
-    public static boolean inGame;
-    public static int maxPlayers;
 
     public static RoleManager roleManager = new RoleManager();
+    public static GameManager gameManager = new GameManager();
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
 
@@ -33,9 +33,9 @@ public final class AllStarsParty extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        inGame = false;
-        maxPlayers = 2;
         world = Bukkit.getWorlds().get(0);
+
+        gameManager.setMaxPlayerCount(2);
 
         setupSpawnArea();
         setupWorldBorder(world.getWorldBorder());

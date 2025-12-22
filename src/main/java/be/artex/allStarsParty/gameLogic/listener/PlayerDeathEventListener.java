@@ -57,7 +57,7 @@ public class PlayerDeathEventListener implements Listener {
                 p.removePotionEffect(effect.getType());
         }
 
-        AllStarsParty.inGame = false;
+        AllStarsParty.gameManager.setInGame(false);
     }
 
    @EventHandler

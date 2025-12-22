@@ -13,7 +13,7 @@ public class Scoreboard {
         board.updateLines(
                 BORDER,
                 " ",
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "Joueurs: " + ChatColor.WHITE  + Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers,
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "Joueurs: " + ChatColor.WHITE  + Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.gameManager.getMaxPlayerCount(),
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "Rôle: " + ChatColor.WHITE + getRoleNameFromPlayer(player),
                 " ",
                 BORDER,

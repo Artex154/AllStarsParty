@@ -2,6 +2,7 @@ package be.artex.allStarsParty.command;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.gameLogic.GameManager;
 import be.artex.allStarsParty.gameLogic.RoleManager;
 import be.artex.allStarsParty.itemBuilder.ItemBuilder;
 import org.bukkit.*;
@@ -20,6 +21,7 @@ import java.util.Random;
 
 public class Start implements CommandExecutor {
     private static final RoleManager roleManager = AllStarsParty.roleManager;
+    private static final GameManager gameManager = AllStarsParty.gameManager;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -34,14 +36,14 @@ public class Start implements CommandExecutor {
         }
 
         Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
-        int maxPlayers = AllStarsParty.maxPlayers;
+        int maxPlayers = gameManager.getMaxPlayerCount();
 
         if (maxPlayers != onlinePlayers.size()) {
             player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + onlinePlayers.size() + "/" + maxPlayers + ")");
             return true;
         }
 
-        if (AllStarsParty.inGame) {
+        if (gameManager.isInGame()) {
             player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Une " + ChatColor.RED + "partie" + ChatColor.WHITE + " est déjà en cours.");
             return true;
         }
@@ -60,7 +62,7 @@ public class Start implements CommandExecutor {
 
         PlayerUtil.updateAllPlayerScoreboards();
 
-        AllStarsParty.inGame = true;
+        gameManager.setInGame(true);
 
         return true;
     }
