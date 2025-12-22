@@ -7,12 +7,18 @@ import java.util.ArrayList;
 public enum Side {
     ;
 
+    private final String name;
     private final ChatColor color;
     private final ArrayList<Role> roles;
 
-    Side(ChatColor color, ArrayList<Role> roles) {
+    Side(String name, ChatColor color, ArrayList<Role> roles) {
+        this.name = name;
         this.color = color;
         this.roles = roles;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ChatColor getColor() {
