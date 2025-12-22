@@ -2,6 +2,7 @@ package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
 import be.artex.allStarsParty.command.Start;
+import be.artex.allStarsParty.gameLogic.listener.EntityDamageByEntityEventListener;
 import be.artex.allStarsParty.gameLogic.listener.PlayerInteractEventListener;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
@@ -54,6 +55,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityDamageByEntityEventListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {
