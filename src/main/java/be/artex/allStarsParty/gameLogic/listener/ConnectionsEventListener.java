@@ -2,7 +2,6 @@ package be.artex.allStarsParty.gameLogic.listener;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.gameLogic.Role;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -38,8 +37,6 @@ public class ConnectionsEventListener implements Listener {
         player.getInventory().clear();
         player.setMaxHealth(20);
         player.setHealth(20);
-
-        Role.setPlayerRole(player, null);
 
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());

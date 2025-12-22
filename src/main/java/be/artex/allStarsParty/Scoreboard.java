@@ -22,7 +22,7 @@ public class Scoreboard {
     }
 
     private static String getRoleNameFromPlayer(Player player) {
-        Role role = Role.getPlayerRole(player);
+        Role role = AllStarsParty.roleManager.getPlayerRole(player);
 
         if (role == null)
             return "Aucun";

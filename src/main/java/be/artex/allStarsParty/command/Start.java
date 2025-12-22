@@ -2,7 +2,7 @@ package be.artex.allStarsParty.command;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.gameLogic.Role;
+import be.artex.allStarsParty.gameLogic.RoleManager;
 import be.artex.allStarsParty.itemBuilder.ItemBuilder;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Start implements CommandExecutor {
-    public static List<Role> aliveRoles = new ArrayList<>(AllStarsParty.registeredRoles);
+    private static final RoleManager roleManager = AllStarsParty.roleManager;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -52,11 +52,11 @@ public class Start implements CommandExecutor {
             setupPlayer(p, world);
         }
 
-        aliveRoles = new ArrayList<>(AllStarsParty.registeredRoles);
+        roleManager.clearPlayersRole();
+        roleManager.resetAliveRoles();
 
         List<Player> players = new ArrayList<>(onlinePlayers);
-
-        Role.assignRolesRandomly(AllStarsParty.registeredRoles, players);
+        roleManager.assignRolesRandomly(players);
 
         PlayerUtil.updateAllPlayerScoreboards();
 

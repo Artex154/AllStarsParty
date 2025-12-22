@@ -21,7 +21,7 @@ public class Composition implements CommandExecutor {
                 new StringBuilder(TextUtil.BORDER + "\n" +
                         ChatColor.DARK_AQUA + ChatColor.BOLD + "COMPOSITION:");
 
-        for (Role role : AllStarsParty.registeredRoles)
+        for (Role role : AllStarsParty.roleManager.getRegisteredRoles())
             message.append("\n ").append(role.getSide().getColor()).append(role.getName());
 
         message.append("\n").append(TextUtil.BORDER);

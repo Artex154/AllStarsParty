@@ -2,7 +2,7 @@ package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
 import be.artex.allStarsParty.command.Start;
-import be.artex.allStarsParty.gameLogic.Role;
+import be.artex.allStarsParty.gameLogic.RoleManager;
 import be.artex.allStarsParty.gameLogic.listener.ConnectionsEventListener;
 import be.artex.allStarsParty.gameLogic.listener.PlayerDeathEventListener;
 import be.artex.allStarsParty.role.Izuku;
@@ -12,7 +12,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -22,9 +21,9 @@ public final class AllStarsParty extends JavaPlugin {
     public static boolean inGame;
     public static int maxPlayers;
 
-    public static final Map<UUID, FastBoard> boards = new HashMap<>();
+    public static RoleManager roleManager = new RoleManager();
 
-    public static final List<Role> registeredRoles = new ArrayList<>();
+    public static final Map<UUID, FastBoard> boards = new HashMap<>();
 
     public static World world;
     public static final int CENTER_X = 0;
@@ -43,8 +42,8 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        new Tomura().register();
-        new Izuku().register();
+        roleManager.registerRole(new Tomura());
+        roleManager.registerRole(new Izuku());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());

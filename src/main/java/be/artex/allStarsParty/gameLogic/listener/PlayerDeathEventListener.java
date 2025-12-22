@@ -2,8 +2,8 @@ package be.artex.allStarsParty.gameLogic.listener;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.command.Start;
 import be.artex.allStarsParty.gameLogic.Role;
+import be.artex.allStarsParty.gameLogic.RoleManager;
 import be.artex.allStarsParty.gameLogic.Side;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -17,13 +17,15 @@ import org.bukkit.potion.PotionEffect;
 import java.util.Collection;
 
 public class PlayerDeathEventListener implements Listener {
+    private static final RoleManager roleManager = AllStarsParty.roleManager;
+
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         Player killer = player.getKiller();
 
-        Role playerRole = Role.getPlayerRole(player);
-        Role killerRole = Role.getPlayerRole(killer);
+        Role playerRole = roleManager.getPlayerRole(player);
+        Role killerRole = roleManager.getPlayerRole(killer);
 
         event.getDrops().clear();
         event.setDeathMessage(
@@ -31,11 +33,11 @@ public class PlayerDeathEventListener implements Listener {
 
         killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 4));
 
-        Start.aliveRoles.remove(playerRole);
+        roleManager.removeAliveRole(playerRole);
 
         Side firstSide = killerRole.getSide();
 
-        if (!Start.aliveRoles.stream().allMatch(role -> role.getSide() == firstSide))
+        if (!roleManager.getRolesAlive().stream().allMatch(role -> role.getSide() == firstSide))
             return;
 
         PlayerUtil.sendMessageToAllPlayers(
@@ -50,8 +52,6 @@ public class PlayerDeathEventListener implements Listener {
             p.getInventory().clear();
             p.setMaxHealth(20);
             p.setHealth(20);
-
-            Role.setPlayerRole(p, null);
 
             for (PotionEffect effect : p.getActivePotionEffects())
                 p.removePotionEffect(effect.getType());
