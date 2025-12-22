@@ -39,6 +39,11 @@ public class Start implements CommandExecutor {
             return true;
         }
 
+        if (AllStarsParty.inGame) {
+            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Une " + ChatColor.RED + "partie" + ChatColor.WHITE + " est déjà en cours.");
+            return true;
+        }
+
         World world = AllStarsParty.world;
 
         for (Player p : onlinePlayers) {
@@ -50,6 +55,8 @@ public class Start implements CommandExecutor {
         Role.assignRolesRandomly(AllStarsParty.registeredRoles, players);
 
         PlayerUtil.updateAllPlayerScoreboards();
+
+        AllStarsParty.inGame = true;
 
         return true;
     }
