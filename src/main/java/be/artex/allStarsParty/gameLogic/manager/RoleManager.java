@@ -1,6 +1,11 @@
 package be.artex.allStarsParty.gameLogic.manager;
 
+import be.artex.allStarsParty.AllStarsParty;
+import be.artex.allStarsParty.gameLogic.ASPItem;
 import be.artex.allStarsParty.gameLogic.Role;
+import be.artex.allStarsParty.gameLogic.stats.Resistance;
+import be.artex.allStarsParty.gameLogic.stats.Speed;
+import be.artex.allStarsParty.gameLogic.stats.Strength;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -50,6 +55,9 @@ public class RoleManager {
     public void registerRole(Role role) {
         registeredRoles.add(role);
         aliveRoles.add(role);
+
+        for (ASPItem item : role.getItems())
+            AllStarsParty.itemManager.registerItem(item);
     }
 
     // Assignment
@@ -64,6 +72,11 @@ public class RoleManager {
             setPlayerRole(p, r);
 
             p.sendMessage(r.getDescription());
+            p.setMaxHealth(r.getMaxHealth());
+            p.setHealth(r.getMaxHealth());
+            Strength.setPlayerStrength(p, r.getStrength());
+            Speed.setPlayerSpeed(p, r.getSpeed());
+            Resistance.setPlayerResistance(p, r.getResistance());
         }
     }
 }

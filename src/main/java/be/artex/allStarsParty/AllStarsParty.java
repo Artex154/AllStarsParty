@@ -6,8 +6,6 @@ import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
-import be.artex.allStarsParty.role.Izuku;
-import be.artex.allStarsParty.role.Tomura;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -42,9 +40,6 @@ public final class AllStarsParty extends JavaPlugin {
         setupWorldBorder(world.getWorldBorder());
 
         defineGameRules();
-
-        roleManager.registerRole(new Tomura());
-        roleManager.registerRole(new Izuku());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
