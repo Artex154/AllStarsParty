@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.listener;
+package be.artex.allStarsParty.gameLogic.listener;
 
 
 import be.artex.allStarsParty.AllStarsParty;

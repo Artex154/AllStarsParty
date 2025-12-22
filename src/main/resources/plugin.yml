@@ -6,3 +6,6 @@ commands:
   composition:
     usage: /compositon
     description: "show the compostition of the game"
+  start:
+    usage: /start
+    description: "start the game"

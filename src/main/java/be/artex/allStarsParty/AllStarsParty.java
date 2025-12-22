@@ -1,10 +1,11 @@
 package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
+import be.artex.allStarsParty.command.Start;
 import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.listener.ConnectionsEventListener;
+import be.artex.allStarsParty.gameLogic.listener.ConnectionsEventListener;
+import be.artex.allStarsParty.role.Izuku;
 import be.artex.allStarsParty.role.Tomura;
-import be.artex.allStarsParty.side.MHA;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -32,7 +33,7 @@ public final class AllStarsParty extends JavaPlugin {
     public void onEnable() {
         instance = this;
         inGame = false;
-        maxPlayers = 4;
+        maxPlayers = 2;
         world = Bukkit.getWorlds().get(0);
 
         setupSpawnArea();
@@ -41,8 +42,10 @@ public final class AllStarsParty extends JavaPlugin {
         defineGameRules();
 
         new Tomura().register();
+        new Izuku().register();
 
         getCommand("composition").setExecutor(new Composition());
+        getCommand("start").setExecutor(new Start());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
     }
