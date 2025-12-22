@@ -4,8 +4,22 @@ import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
 
-public abstract class Side {
-    public abstract String getName();
-    public abstract ChatColor getColor();
-    public abstract ArrayList<Role> getRoles();
+public enum Side {
+    ;
+
+    private final ChatColor color;
+    private final ArrayList<Role> roles;
+
+    Side(ChatColor color, ArrayList<Role> roles) {
+        this.color = color;
+        this.roles = roles;
+    }
+
+    public ChatColor getColor() {
+        return color;
+    }
+
+    public ArrayList<Role> getRoles() {
+        return roles;
+    }
 }
