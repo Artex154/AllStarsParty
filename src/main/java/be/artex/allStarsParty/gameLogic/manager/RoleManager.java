@@ -1,5 +1,6 @@
-package be.artex.allStarsParty.gameLogic;
+package be.artex.allStarsParty.gameLogic.manager;
 
+import be.artex.allStarsParty.gameLogic.Role;
 import org.bukkit.entity.Player;
 
 import java.util.*;

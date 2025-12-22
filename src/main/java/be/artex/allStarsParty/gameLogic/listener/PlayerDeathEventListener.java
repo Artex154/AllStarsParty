@@ -3,7 +3,7 @@ package be.artex.allStarsParty.gameLogic.listener;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.RoleManager;
+import be.artex.allStarsParty.gameLogic.manager.RoleManager;
 import be.artex.allStarsParty.gameLogic.Side;
 import org.bukkit.*;
 import org.bukkit.entity.Player;

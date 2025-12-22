@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic;
+package be.artex.allStarsParty.gameLogic.manager;
 
 public class GameManager {
     private boolean inGame = false;
