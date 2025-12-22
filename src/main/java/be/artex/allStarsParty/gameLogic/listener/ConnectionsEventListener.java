@@ -1,9 +1,8 @@
 package be.artex.allStarsParty.gameLogic.listener;
 
-
 import be.artex.allStarsParty.AllStarsParty;
-
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.gameLogic.Role;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,6 +39,8 @@ public class ConnectionsEventListener implements Listener {
         player.setMaxHealth(20);
         player.setHealth(20);
 
+        Role.setPlayerRole(player, null);
+
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
@@ -62,7 +63,7 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.maxPlayers + ")"
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + player.getName() + " a quitté la partie." +  ChatColor.GRAY + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + AllStarsParty.maxPlayers + ")"
         );
 
         AllStarsParty.boards.remove(event.getPlayer().getUniqueId());

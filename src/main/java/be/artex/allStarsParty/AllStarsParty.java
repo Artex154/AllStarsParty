@@ -4,6 +4,7 @@ import be.artex.allStarsParty.command.Composition;
 import be.artex.allStarsParty.command.Start;
 import be.artex.allStarsParty.gameLogic.Role;
 import be.artex.allStarsParty.gameLogic.listener.ConnectionsEventListener;
+import be.artex.allStarsParty.gameLogic.listener.PlayerDeathEventListener;
 import be.artex.allStarsParty.role.Izuku;
 import be.artex.allStarsParty.role.Tomura;
 import fr.mrmicky.fastboard.FastBoard;
@@ -11,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -48,6 +50,7 @@ public final class AllStarsParty extends JavaPlugin {
         getCommand("start").setExecutor(new Start());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeathEventListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {

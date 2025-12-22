@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Start implements CommandExecutor {
+    public static List<Role> aliveRoles = new ArrayList<>(AllStarsParty.registeredRoles);
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!(commandSender instanceof Player))
@@ -49,6 +51,8 @@ public class Start implements CommandExecutor {
         for (Player p : onlinePlayers) {
             setupPlayer(p, world);
         }
+
+        aliveRoles = new ArrayList<>(AllStarsParty.registeredRoles);
 
         List<Player> players = new ArrayList<>(onlinePlayers);
 
