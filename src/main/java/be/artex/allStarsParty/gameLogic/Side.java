@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import java.util.ArrayList;
 
 public enum Side {
+    MHA("MHA", ChatColor.BLUE, new ArrayList<>()),
     ;
 
     private final String name;

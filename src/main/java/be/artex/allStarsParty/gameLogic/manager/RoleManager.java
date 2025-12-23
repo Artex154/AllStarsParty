@@ -71,6 +71,10 @@ public class RoleManager {
 
             setPlayerRole(p, r);
 
+            for (ASPItem item : r.getItems()) {
+                p.getInventory().addItem(item.getStack());
+            }
+
             p.sendMessage(r.getDescription());
             p.setMaxHealth(r.getMaxHealth());
             p.setHealth(r.getMaxHealth());

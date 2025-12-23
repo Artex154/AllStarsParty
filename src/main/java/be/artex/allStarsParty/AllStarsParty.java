@@ -6,6 +6,7 @@ import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
+import be.artex.allStarsParty.role.MHA.shoto.Shoto;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -41,6 +42,8 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
+        roleManager.registerRole(new Shoto());
+
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
 
@@ -49,6 +52,8 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageByEntityEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerItemDamageEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
+        getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {
