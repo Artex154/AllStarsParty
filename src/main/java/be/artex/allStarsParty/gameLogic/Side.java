@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public enum Side {
     MHA("MHA", ChatColor.BLUE, new ArrayList<>()),
     DS("Demon Slayer", ChatColor.RED, new ArrayList<>()),
+    HXH("Hunter x Hunter", ChatColor.GREEN, new ArrayList<>()),
     YORIICHI("Yoriichi", ChatColor.YELLOW, new ArrayList<>());
 
     private final String name;

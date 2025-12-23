@@ -2,6 +2,7 @@ package be.artex.allStarsParty.gameLogic.listener;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.gameLogic.ASPItem;
+import be.artex.allStarsParty.gameLogic.Role;
 import be.artex.allStarsParty.gameLogic.stats.Resistance;
 import be.artex.allStarsParty.gameLogic.stats.Strength;
 import org.bukkit.entity.Player;
@@ -29,6 +30,10 @@ public class EntityDamageByEntityEventListener implements Listener {
         event.setDamage(damage);
 
         ItemStack stack = damager.getItemInHand();
+
+        Role damagerRole = AllStarsParty.roleManager.getPlayerRole(damager);
+
+        damagerRole.onHit(player, damager, damage);
 
         ASPItem item = AllStarsParty.itemManager.getItemFromStack(stack);
 

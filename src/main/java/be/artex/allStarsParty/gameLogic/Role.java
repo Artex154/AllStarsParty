@@ -1,5 +1,6 @@
 package be.artex.allStarsParty.gameLogic;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.Collections;
@@ -11,6 +12,9 @@ public abstract class Role {
     public abstract String getDescription();
 
     public void onKill(PlayerDeathEvent event) {
+    }
+
+    public void onHit(Player player, Player damager, double damage) {
     }
 
     public List<ASPItem> getItems() {
