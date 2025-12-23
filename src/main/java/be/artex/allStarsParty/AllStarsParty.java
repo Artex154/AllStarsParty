@@ -7,6 +7,7 @@ import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
 import be.artex.allStarsParty.role.MHA.shoto.Shoto;
+import be.artex.allStarsParty.role.solo.Yoriichi;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -42,6 +43,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
+        roleManager.registerRole(new Yoriichi());
         roleManager.registerRole(new Shoto());
 
         getCommand("composition").setExecutor(new Composition());
