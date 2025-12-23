@@ -75,6 +75,8 @@ public class RoleManager {
                 p.getInventory().addItem(item.getStack());
             }
 
+            p.setPlayerListName(r.getSide().getColor() + p.getName());
+
             p.sendMessage(r.getDescription());
             p.setMaxHealth(r.getMaxHealth());
             p.setHealth(r.getMaxHealth());

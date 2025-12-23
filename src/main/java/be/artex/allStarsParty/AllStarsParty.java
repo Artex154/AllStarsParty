@@ -6,10 +6,7 @@ import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
-import be.artex.allStarsParty.role.DS.Kokushibo;
 import be.artex.allStarsParty.role.HXH.Kirua;
-import be.artex.allStarsParty.role.MHA.shoto.Shoto;
-import be.artex.allStarsParty.role.solo.Yoriichi;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -57,6 +54,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerItemDamageEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerBlockPlaceEventListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {
