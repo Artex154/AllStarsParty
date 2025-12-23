@@ -11,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.Collection;
@@ -31,13 +30,13 @@ public class PlayerDeathEventListener implements Listener {
         event.setDeathMessage(
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
-        killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 4));
-
         roleManager.removeAliveRole(playerRole);
 
         Side firstSide = killerRole.getSide();
 
         PlayerUtil.updateAllPlayerScoreboards();
+
+        killerRole.onKill(event);
 
         if (!roleManager.getRolesAlive().stream().allMatch(role -> role.getSide() == firstSide))
             return;

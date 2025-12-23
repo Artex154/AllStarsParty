@@ -6,6 +6,7 @@ import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
 import be.artex.allStarsParty.gameLogic.manager.ItemManager;
 import be.artex.allStarsParty.gameLogic.manager.RoleManager;
+import be.artex.allStarsParty.role.DS.Kokushibo;
 import be.artex.allStarsParty.role.MHA.shoto.Shoto;
 import be.artex.allStarsParty.role.solo.Yoriichi;
 import fr.mrmicky.fastboard.FastBoard;
@@ -36,15 +37,14 @@ public final class AllStarsParty extends JavaPlugin {
         instance = this;
         world = Bukkit.getWorlds().get(0);
 
-        gameManager.setMaxPlayerCount(2);
+        gameManager.setMaxPlayerCount(1);
 
         setupSpawnArea();
         setupWorldBorder(world.getWorldBorder());
 
         defineGameRules();
 
-        roleManager.registerRole(new Yoriichi());
-        roleManager.registerRole(new Shoto());
+        roleManager.registerRole(new Kokushibo());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
