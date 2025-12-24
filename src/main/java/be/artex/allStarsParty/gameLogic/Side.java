@@ -8,6 +8,7 @@ public enum Side {
     MHA("MHA", ChatColor.BLUE, new ArrayList<>()),
     DS("Demon Slayer", ChatColor.RED, new ArrayList<>()),
     HXH("Hunter x Hunter", ChatColor.GREEN, new ArrayList<>()),
+    AOT("Attaque des Titans", ChatColor.DARK_AQUA, new ArrayList<>()),
     YORIICHI("Yoriichi", ChatColor.YELLOW, new ArrayList<>());
 
     private final String name;
