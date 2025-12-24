@@ -1,10 +1,10 @@
-package be.artex.allStarsParty.gameLogic.listener;
+package be.artex.allStarsParty.logic.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.manager.RoleManager;
-import be.artex.allStarsParty.gameLogic.Side;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.logic.Side;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.Collection;
 
-public class PlayerDeathEventListener implements Listener {
+public class PlayerDeathListener implements Listener {
     private static final RoleManager roleManager = AllStarsParty.roleManager;
 
     @EventHandler

@@ -1,11 +1,11 @@
 package be.artex.allStarsParty.role.HXH.kurapika;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.Cooldown;
-import be.artex.allStarsParty.gameLogic.stats.Resistance;
-import be.artex.allStarsParty.gameLogic.stats.Strength;
-import be.artex.allStarsParty.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.Cooldown;
+import be.artex.allStarsParty.logic.stats.Resistance;
+import be.artex.allStarsParty.logic.stats.Strength;
+import be.artex.allStarsParty.item_builder.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

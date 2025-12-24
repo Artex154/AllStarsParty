@@ -1,9 +1,9 @@
 package be.artex.allStarsParty.role.DS.muichiro;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.Side;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.Side;
 import org.bukkit.ChatColor;
 
 import java.util.Collections;

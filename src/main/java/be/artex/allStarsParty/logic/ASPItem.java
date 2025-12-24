@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic;
+package be.artex.allStarsParty.logic;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;

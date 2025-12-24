@@ -1,11 +1,12 @@
-package be.artex.allStarsParty.gameLogic.manager;
+package be.artex.allStarsParty.logic.manager;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.stats.Resistance;
-import be.artex.allStarsParty.gameLogic.stats.Speed;
-import be.artex.allStarsParty.gameLogic.stats.Strength;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.Cooldown;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.stats.Resistance;
+import be.artex.allStarsParty.logic.stats.Speed;
+import be.artex.allStarsParty.logic.stats.Strength;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -75,8 +76,9 @@ public class RoleManager {
                 p.getInventory().addItem(item.getStack());
             }
 
-            p.setPlayerListName(r.getSide().getColor() + p.getName());
+            Cooldown.clearAllCooldowns(p);
 
+            p.setPlayerListName(r.getSide().getColor() + p.getName());
             p.sendMessage(r.getDescription());
             p.setMaxHealth(r.getMaxHealth());
             p.setHealth(r.getMaxHealth());

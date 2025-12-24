@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.itemBuilder;
+package be.artex.allStarsParty.item_builder;
 
 import org.bukkit.enchantments.Enchantment;
 

@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic.stats;
+package be.artex.allStarsParty.logic.stats;
 
 import org.bukkit.entity.Player;
 
@@ -13,9 +13,5 @@ public class Resistance {
 
     public static int getPlayerResistance(Player player) {
         return PLAYER_RESISTANCE.getOrDefault(player, 100);
-    }
-
-    public static void resetPlayerResistance(Player player) {
-        PLAYER_RESISTANCE.put(player, 100);
     }
 }

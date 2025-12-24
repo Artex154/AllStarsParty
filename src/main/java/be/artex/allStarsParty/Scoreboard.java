@@ -1,8 +1,8 @@
 package be.artex.allStarsParty;
 
-import be.artex.allStarsParty.gameLogic.manager.GameManager;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.manager.RoleManager;
+import be.artex.allStarsParty.logic.manager.GameManager;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.manager.RoleManager;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

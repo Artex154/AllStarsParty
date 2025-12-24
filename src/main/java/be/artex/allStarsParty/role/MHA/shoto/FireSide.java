@@ -1,8 +1,8 @@
 package be.artex.allStarsParty.role.MHA.shoto;
 
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.Cooldown;
-import be.artex.allStarsParty.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.Cooldown;
+import be.artex.allStarsParty.item_builder.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

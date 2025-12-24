@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic.stats;
+package be.artex.allStarsParty.logic.stats;
 
 import org.bukkit.entity.Player;
 
@@ -13,9 +13,5 @@ public class Strength {
 
     public static int getPlayerStrength(Player player) {
         return PLAYER_STRENGTH.getOrDefault(player, 100);
-    }
-
-    public static void resetPlayerStrength(Player player) {
-        PLAYER_STRENGTH.put(player, 100);
     }
 }

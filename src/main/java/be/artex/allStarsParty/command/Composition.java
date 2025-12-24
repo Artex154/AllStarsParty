@@ -2,7 +2,7 @@ package be.artex.allStarsParty.command;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.gameLogic.Role;
+import be.artex.allStarsParty.logic.Role;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

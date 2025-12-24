@@ -1,6 +1,6 @@
-package be.artex.allStarsParty.gameLogic.manager;
+package be.artex.allStarsParty.logic.manager;
 
-import be.artex.allStarsParty.gameLogic.ASPItem;
+import be.artex.allStarsParty.logic.ASPItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

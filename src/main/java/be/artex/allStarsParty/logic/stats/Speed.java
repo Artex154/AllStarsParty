@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic.stats;
+package be.artex.allStarsParty.logic.stats;
 
 import org.bukkit.entity.Player;
 

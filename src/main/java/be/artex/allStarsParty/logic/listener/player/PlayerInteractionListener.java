@@ -1,14 +1,14 @@
-package be.artex.allStarsParty.gameLogic.listener;
+package be.artex.allStarsParty.logic.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.manager.ItemManager;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.manager.ItemManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerInteractEventListener implements Listener {
+public class PlayerInteractionListener implements Listener {
     private static final ItemManager itemManager = AllStarsParty.itemManager;
 
     @EventHandler

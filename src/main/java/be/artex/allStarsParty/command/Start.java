@@ -2,9 +2,9 @@ package be.artex.allStarsParty.command;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.gameLogic.manager.GameManager;
-import be.artex.allStarsParty.gameLogic.manager.RoleManager;
-import be.artex.allStarsParty.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.logic.manager.GameManager;
+import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.item_builder.ItemBuilder;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

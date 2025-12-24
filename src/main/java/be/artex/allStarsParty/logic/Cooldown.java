@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.gameLogic;
+package be.artex.allStarsParty.logic;
 
 import be.artex.allStarsParty.AllStarsParty;
 import org.bukkit.Bukkit;
@@ -23,6 +23,13 @@ public class Cooldown {
 
     public static Cooldown getCooldown(String cooldownID, long cooldownTime) {
         return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime));
+    }
+
+    public static void clearAllCooldowns(Player player) {
+        for (Cooldown cooldown : cooldowns.values()) {
+            cooldown.playerCooldowns.remove(player);
+            cooldown.cooldownStartTimes.remove(player);
+        }
     }
 
     public boolean isPlayerInCooldown(Player player) {

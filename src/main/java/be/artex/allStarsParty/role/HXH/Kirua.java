@@ -1,8 +1,8 @@
 package be.artex.allStarsParty.role.HXH;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.Side;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.Side;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

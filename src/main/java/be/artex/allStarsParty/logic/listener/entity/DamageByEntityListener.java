@@ -1,17 +1,17 @@
-package be.artex.allStarsParty.gameLogic.listener;
+package be.artex.allStarsParty.logic.listener.entity;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.gameLogic.ASPItem;
-import be.artex.allStarsParty.gameLogic.Role;
-import be.artex.allStarsParty.gameLogic.stats.Resistance;
-import be.artex.allStarsParty.gameLogic.stats.Strength;
+import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.stats.Resistance;
+import be.artex.allStarsParty.logic.stats.Strength;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class EntityDamageByEntityEventListener implements Listener {
+public class DamageByEntityListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof Player || event.getDamager() instanceof Player))
