@@ -1,6 +1,7 @@
 package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.Composition;
+import be.artex.allStarsParty.command.Effect;
 import be.artex.allStarsParty.command.Start;
 import be.artex.allStarsParty.gameLogic.listener.*;
 import be.artex.allStarsParty.gameLogic.manager.GameManager;
@@ -46,6 +47,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
+        getCommand("effects").setExecutor(new Effect());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathEventListener(), this);

@@ -9,3 +9,6 @@ commands:
   start:
     usage: /start
     description: "start the game"
+  effects:
+    usage: /effects
+    description: "see your effects"
