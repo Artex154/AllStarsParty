@@ -33,7 +33,7 @@ public class Serment extends ASPItem {
         }
 
         Strength.setPlayerStrength(player, 130);
-        Resistance.setPlayerResistance(player, 90);
+        Resistance.setPlayerResistance(player, 85);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
             Strength.setPlayerStrength(player, 100);
