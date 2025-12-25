@@ -9,7 +9,10 @@ import be.artex.allStarsParty.logic.listener.player.*;
 import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.role.AOT.Livai;
 import be.artex.allStarsParty.role.AOT.reiner.Reiner;
+import be.artex.allStarsParty.role.DS.muichiro.Muichiro;
+import be.artex.allStarsParty.role.HXH.Kirua;
 import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
 import be.artex.allStarsParty.role.MHA.denki.Denki;
 import fr.mrmicky.fastboard.FastBoard;
@@ -45,7 +48,8 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Reiner());
+        roleManager.registerRole(new Muichiro());
+        roleManager.registerRole(new Kirua());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());

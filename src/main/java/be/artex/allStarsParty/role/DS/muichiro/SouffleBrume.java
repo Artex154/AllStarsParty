@@ -48,7 +48,7 @@ public class SouffleBrume extends ASPItem {
 
             number++;
 
-            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10*20, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10*20, 0));
         }
 
         if (number == 0)

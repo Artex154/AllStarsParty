@@ -28,7 +28,7 @@ public class Decharge extends ASPItem {
 
     @Override
     public void onInteraction(PlayerInteractEvent event) {
-        Cooldown cooldown = Cooldown.getCooldown("denki_decharge", 5*20);
+        Cooldown cooldown = Cooldown.getCooldown("denki_decharge", 60*20);
         Player player = event.getPlayer();
 
         if (cooldown.isPlayerInCooldown(player)) {
@@ -47,6 +47,12 @@ public class Decharge extends ASPItem {
             if (AllStarsParty.roleManager.getPlayerRole(p).getSide() == Side.MHA)
                 return;
 
+            entity.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.BLUE + "Denki" + ChatColor.WHITE + " vous " + ChatColor.DARK_AQUA + "électrocute" + ChatColor.WHITE + ".");
+
+            number++;
+
+            Speed.setPlayerSpeed(p, Speed.getPlayerSpeed(p) - 60);
+
             electrocutedPlayers.add(p);
 
             Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
@@ -57,12 +63,6 @@ public class Decharge extends ASPItem {
 
                 Speed.setPlayerSpeed(p, Speed.getPlayerSpeed(p) + 60);
             }, 7*20);
-
-            entity.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.BLUE + "Denki" + ChatColor.WHITE + " vous " + ChatColor.DARK_AQUA + "électrocute" + ChatColor.WHITE + ".");
-
-            number++;
-
-            Speed.setPlayerSpeed(p, Speed.getPlayerSpeed(p) - 60);
         }
 
         if (number == 0)

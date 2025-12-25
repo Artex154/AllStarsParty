@@ -39,6 +39,8 @@ public class TransformationReiner extends ASPItem {
         Strength.setPlayerStrength(player, 110);
         Speed.setPlayerSpeed(player, 110);
 
+        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous vous êtes " + ChatColor.DARK_AQUA + "transformez" + ChatColor.WHITE + ".");
+
         transformedPlayer.add(player);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
