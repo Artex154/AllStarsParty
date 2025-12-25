@@ -4,7 +4,6 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.logic.ASPItem;
 import be.artex.allStarsParty.logic.Cooldown;
 import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.Side;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,7 +26,7 @@ public class SouffleBrume extends ASPItem {
     public void onInteraction(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        Cooldown cooldown = Cooldown.getCooldown("souffleBrume", 5*20);
+        Cooldown cooldown = Cooldown.getCooldown("souffleBrume", 60*20);
 
         if (cooldown.isPlayerInCooldown(player)) {
             player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + ChatColor.WHITE + ".");

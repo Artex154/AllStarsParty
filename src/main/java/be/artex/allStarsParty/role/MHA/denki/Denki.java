@@ -1,9 +1,13 @@
 package be.artex.allStarsParty.role.MHA.denki;
 
 import be.artex.allStarsParty.TextUtil;
+import be.artex.allStarsParty.logic.ASPItem;
 import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.Side;
 import org.bukkit.ChatColor;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Denki extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
@@ -25,5 +29,10 @@ public class Denki extends Role {
     @Override
     public String getDescription() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public List<ASPItem> getItems() {
+        return Collections.singletonList(new Decharge());
     }
 }

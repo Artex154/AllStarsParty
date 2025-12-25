@@ -33,6 +33,11 @@ public class Kirua extends Role {
     }
 
     @Override
+    public int getSpeed() {
+        return 120;
+    }
+
+    @Override
     public void onHit(Player player, Player damager, double damage) {
         int hitNumber;
 

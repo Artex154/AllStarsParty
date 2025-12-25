@@ -13,8 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Serment extends ASPItem {
     private static final ItemStack STACK = new ItemBuilder(Material.NETHER_STAR).name(ChatColor.GOLD + "" + ChatColor.BOLD + "serment").build();
+    public static final List<Player> playersInSerment = new ArrayList<>();
 
     @Override
     public ItemStack getStack() {
@@ -35,7 +39,12 @@ public class Serment extends ASPItem {
         Strength.setPlayerStrength(player, 130);
         Resistance.setPlayerResistance(player, 85);
 
+        playersInSerment.add(player);
+
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
+            if (!playersInSerment.contains(player))
+                return;
+
             Strength.setPlayerStrength(player, 100);
             Resistance.setPlayerResistance(player, 100);
         }, 25*20L);
