@@ -5,6 +5,7 @@ import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.manager.RoleManager;
 import be.artex.allStarsParty.logic.Side;
+import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.MHA.denki.Decharge;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -33,6 +34,7 @@ public class PlayerDeathListener implements Listener {
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
         Decharge.electrocutedPlayers.remove(player);
+        TransformationReiner.transformedPlayer.remove(player);
 
         roleManager.removeAliveRole(playerRole);
 
