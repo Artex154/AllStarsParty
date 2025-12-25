@@ -10,6 +10,7 @@ import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
 import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
+import be.artex.allStarsParty.role.MHA.denki.Denki;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -43,7 +44,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Kurapika());
+        roleManager.registerRole(new Denki());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
