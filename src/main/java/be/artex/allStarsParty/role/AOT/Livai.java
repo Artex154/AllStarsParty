@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
 public class Livai extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.DARK_AQUA + "Livaï" + ChatColor.WHITE + "." +
-            "\n Vous possédez 125% de " + ChatColor.YELLOW + "speed" + ChatColor.WHITE + " ainsi que 105% de" + ChatColor.RED + " force" + ChatColor.WHITE + "." +
+            "\n Vous possédez 115% de " + ChatColor.YELLOW + "speed" + ChatColor.WHITE + " ainsi que 105% de" + ChatColor.RED + " force" + ChatColor.WHITE + "." +
             "\n" + TextUtil.BORDER;
 
     @Override
@@ -28,7 +28,7 @@ public class Livai extends Role {
 
     @Override
     public int getSpeed() {
-        return 125;
+        return 115;
     }
 
     @Override
