@@ -1,8 +1,11 @@
 package be.artex.allStarsParty.role.DS.muichiro;
 
+import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.logic.ASPItem;
 import be.artex.allStarsParty.logic.Cooldown;
 import be.artex.allStarsParty.item_builder.ItemBuilder;
+import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.Side;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -35,6 +38,11 @@ public class SouffleBrume extends ASPItem {
 
         for (Entity entity : player.getNearbyEntities(15, 15, 15)) {
             if (!(entity instanceof Player))
+                return;
+
+            Player p = (Player) entity;
+
+            if (AllStarsParty.roleManager.getPlayerRole(p).getSide() == Side.DS)
                 return;
 
             entity.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.RED + "Muichiro" + ChatColor.WHITE + " vous " + ChatColor.DARK_AQUA + "aveugle" + ChatColor.WHITE + ".");
