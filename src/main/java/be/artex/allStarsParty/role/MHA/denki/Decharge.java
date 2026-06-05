@@ -53,10 +53,11 @@ public class Decharge extends ASPItem {
 
             Speed.setPlayerSpeed(p, Speed.getPlayerSpeed(p) - 60);
 
+            electrocutedPlayers.remove(p);
             electrocutedPlayers.add(p);
 
             Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-                if (!electrocutedPlayers.contains(p))
+                if (electrocutedPlayers.contains(p))
                     return;
 
                 electrocutedPlayers.remove(p);

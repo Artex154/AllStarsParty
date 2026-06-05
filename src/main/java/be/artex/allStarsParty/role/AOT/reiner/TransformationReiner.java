@@ -41,14 +41,19 @@ public class TransformationReiner extends ASPItem {
 
         player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous vous êtes " + ChatColor.DARK_AQUA + "transformez" + ChatColor.WHITE + ".");
 
+        transformedPlayer.remove(player);
         transformedPlayer.add(player);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            if (!transformedPlayer.contains(player))
+            if (transformedPlayer.contains(player))
                 return;
+
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Votre " + ChatColor.DARK_AQUA + "transformation" + ChatColor.WHITE + " cesse.");
 
             Strength.setPlayerStrength(player, 100);
             Speed.setPlayerSpeed(player, 100);
         }, 25*20L);
+
+        cooldown.putPlayerInCooldown(player);
     }
 }

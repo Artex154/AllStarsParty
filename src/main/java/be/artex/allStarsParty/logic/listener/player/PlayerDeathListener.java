@@ -40,7 +40,7 @@ public class PlayerDeathListener implements Listener {
 
         roleManager.removeAliveRole(playerRole);
 
-        killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
+        killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 
         Side firstSide = killerRole.getSide();
 

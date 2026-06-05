@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Serment extends ASPItem {
-    private static final ItemStack STACK = new ItemBuilder(Material.NETHER_STAR).name(ChatColor.GOLD + "" + ChatColor.BOLD + "serment").build();
+    private static final ItemStack STACK = new ItemBuilder(Material.NETHER_STAR).name(ChatColor.GOLD + "" + ChatColor.BOLD + "Serment").build();
     public static final List<Player> playersInSerment = new ArrayList<>();
 
     @Override
@@ -36,14 +36,19 @@ public class Serment extends ASPItem {
             return;
         }
 
+        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous activez votre " + ChatColor.DARK_AQUA + "serment" + ChatColor.WHITE + ".");
+
         Strength.setPlayerStrength(player, 130);
         Resistance.setPlayerResistance(player, 85);
 
+        playersInSerment.remove(player);
         playersInSerment.add(player);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            if (!playersInSerment.contains(player))
+            if (playersInSerment.contains(player))
                 return;
+
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Votre " + ChatColor.DARK_AQUA + "serment" + ChatColor.WHITE + " cesse.");
 
             Strength.setPlayerStrength(player, 100);
             Resistance.setPlayerResistance(player, 100);

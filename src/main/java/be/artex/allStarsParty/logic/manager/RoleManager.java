@@ -7,6 +7,9 @@ import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.stats.Resistance;
 import be.artex.allStarsParty.logic.stats.Speed;
 import be.artex.allStarsParty.logic.stats.Strength;
+import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
+import be.artex.allStarsParty.role.HXH.kurapika.Serment;
+import be.artex.allStarsParty.role.MHA.denki.Decharge;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -77,6 +80,10 @@ public class RoleManager {
             }
 
             Cooldown.clearAllCooldowns(p);
+
+            Serment.playersInSerment.remove(p);
+            TransformationReiner.transformedPlayer.remove(p);
+            Decharge.electrocutedPlayers.remove(p);
 
             p.setPlayerListName(r.getSide().getColor() + p.getName());
             p.sendMessage(r.getDescription());
