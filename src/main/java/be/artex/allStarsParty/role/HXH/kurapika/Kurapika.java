@@ -13,7 +13,7 @@ public class Kurapika extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.GREEN + "Kurapika" + ChatColor.WHITE + "." +
             "\n Vous possédez un item, votre " + ChatColor.GOLD + ChatColor.BOLD + "serment" + ChatColor.WHITE + "." +
-            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Serment" + ChatColor.WHITE + ": Quand vous " + ChatColor.DARK_AQUA + "cliquez" + ChatColor.WHITE + ", vous recevez +30% de " + ChatColor.RED + "force" + ChatColor.WHITE + " mais vous perdez -15% de " + ChatColor.GRAY + "resistance" + ChatColor.WHITE + " pendant une 25 secondes." + ChatColor.GRAY + " (Cooldown: 2m30)" +
+            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Serment" + ChatColor.WHITE + ": Quand vous " + ChatColor.DARK_AQUA + "cliquez" + ChatColor.WHITE + ", vous recevez +30% de " + ChatColor.RED + "force" + ChatColor.WHITE + " mais vous perdez -15% de " + ChatColor.GRAY + "resistance" + ChatColor.WHITE + " pendant 25 secondes." + ChatColor.GRAY + " (Cooldown: 2m30)" +
             "\n" + TextUtil.BORDER;
 
     @Override

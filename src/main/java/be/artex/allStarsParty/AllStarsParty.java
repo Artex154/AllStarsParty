@@ -15,6 +15,7 @@ import be.artex.allStarsParty.role.AOT.reiner.Reiner;
 import be.artex.allStarsParty.role.DS.Kokushibo;
 import be.artex.allStarsParty.role.DS.muichiro.Muichiro;
 import be.artex.allStarsParty.role.HXH.Kirua;
+import be.artex.allStarsParty.role.HXH.Neferupito;
 import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
 import be.artex.allStarsParty.role.MHA.denki.Denki;
 import fr.mrmicky.fastboard.FastBoard;
@@ -50,7 +51,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Peak());
+        roleManager.registerRole(new Neferupito());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
