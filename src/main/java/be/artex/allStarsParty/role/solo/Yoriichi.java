@@ -35,7 +35,7 @@ public class Yoriichi extends Role {
     public List<ASPItem> getItems() {
         List<ASPItem> items = new ArrayList<>();
 
-        items.add(new BonusGoldenApples());
+        items.add(new BonusGoldenApples(12));
 
         return items;
     }
