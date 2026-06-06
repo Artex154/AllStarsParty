@@ -18,8 +18,8 @@ public class Hawks extends Role {
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.BLUE + "Hawks" + ChatColor.WHITE + "." +
             "\n " +
             "\n Vous possédez" + ChatColor.YELLOW + " 110% de vitesse" + ChatColor.WHITE + "." +
-            "\n Vous possédez vos " + ChatColor.YELLOW + ChatColor.BOLD + "plumes d'acier" + ChatColor.WHITE + "." +
-            "\n - " + ChatColor.YELLOW + ChatColor.BOLD + "Plumes d'Acier" + ChatColor.WHITE + ": un arc " + ChatColor.DARK_AQUA + "power 3" + ChatColor.WHITE + "." +
+            "\n Vous possédez vos " + ChatColor.GOLD + ChatColor.BOLD + "plumes d'acier" + ChatColor.WHITE + "." +
+            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Plumes d'Acier" + ChatColor.WHITE + ": un arc " + ChatColor.DARK_AQUA + "power 3" + ChatColor.WHITE + "." +
             "\n A chaque tir réussit, vous avez" + ChatColor.DARK_AQUA + " 45%" + ChatColor.WHITE + " de chance de régénerer " + ChatColor.LIGHT_PURPLE + "1 demi-coeur" + ChatColor.WHITE + "." +
             "\n " +
             "\n Lorsque vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous avez " + ChatColor.DARK_AQUA + "20%" + ChatColor.WHITE + " de chance de récupérer une flèche." +

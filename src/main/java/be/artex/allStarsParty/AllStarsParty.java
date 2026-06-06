@@ -11,6 +11,7 @@ import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
 import be.artex.allStarsParty.role.MHA.hawks.Hawks;
+import be.artex.allStarsParty.role.solo.hisoka.Hisoka;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -44,7 +45,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Hawks());
+        roleManager.registerRole(new Hisoka());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
