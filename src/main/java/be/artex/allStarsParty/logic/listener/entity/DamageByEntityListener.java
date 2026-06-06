@@ -14,14 +14,14 @@ import org.bukkit.inventory.ItemStack;
 public class DamageByEntityListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof Player || event.getDamager() instanceof Player))
+        if (event.getDamager() == null || event.getEntity() == null)
             return;
 
-        Player player = (Player) event.getEntity();
+        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player))
+            return;
+
         Player damager = (Player) event.getDamager();
-
-        if (damager == null)
-            return;
+        Player player = (Player) event.getEntity();
 
         double damage = event.getDamage();
 
