@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.logic.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.items.ASPItem;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

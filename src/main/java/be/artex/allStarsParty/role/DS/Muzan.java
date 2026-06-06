@@ -10,7 +10,7 @@ public class Muzan extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.RED + "Muzan" + ChatColor.WHITE + "." +
             "\n Vous possédez 105% de " + ChatColor.RED + "force" + ChatColor.WHITE + "." +
-            "\n Quand vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous gagnez " + ChatColor.LIGHT_PURPLE + "10% des dégats infligés " + ChatColor.WHITE + "." +
+            "\n Quand vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous régénérez " + ChatColor.LIGHT_PURPLE + "10% des dégats infligés " + ChatColor.WHITE + "." +
             "\n" + TextUtil.BORDER;
 
     @Override

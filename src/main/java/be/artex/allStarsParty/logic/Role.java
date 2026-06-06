@@ -1,5 +1,6 @@
 package be.artex.allStarsParty.logic;
 
+import be.artex.allStarsParty.logic.items.ASPItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 

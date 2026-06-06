@@ -1,6 +1,6 @@
 package be.artex.allStarsParty.role.solo;
 
-import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.items.ASPItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

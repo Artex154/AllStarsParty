@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.role.DS.muichiro;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.items.ASPItem;
 import be.artex.allStarsParty.logic.Cooldown;
 import be.artex.allStarsParty.item_builder.ItemBuilder;
 import be.artex.allStarsParty.logic.Side;

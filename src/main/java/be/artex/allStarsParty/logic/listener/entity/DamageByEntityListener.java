@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.logic.listener.entity;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.logic.ASPItem;
+import be.artex.allStarsParty.logic.items.ASPItem;
 import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.stats.Resistance;
 import be.artex.allStarsParty.logic.stats.Strength;

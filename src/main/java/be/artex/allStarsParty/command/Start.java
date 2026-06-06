@@ -96,6 +96,6 @@ public class Start implements CommandExecutor {
         inv.setItem(6, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(7, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(8, new ItemStack(Material.WATER_BUCKET));
-        inv.addItem(new ItemStack(Material.ARROW, 32));
+        inv.addItem(new ItemStack(Material.ARROW, 24));
     }
 }

@@ -6,18 +6,11 @@ import be.artex.allStarsParty.command.Start;
 import be.artex.allStarsParty.logic.listener.block.BlockBreakListener;
 import be.artex.allStarsParty.logic.listener.entity.DamageByEntityListener;
 import be.artex.allStarsParty.logic.listener.player.*;
+import be.artex.allStarsParty.logic.listener.projectile.ProjectileListeners;
 import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
-import be.artex.allStarsParty.role.AOT.Livai;
-import be.artex.allStarsParty.role.AOT.peak.Peak;
-import be.artex.allStarsParty.role.AOT.reiner.Reiner;
-import be.artex.allStarsParty.role.DS.Kokushibo;
-import be.artex.allStarsParty.role.DS.muichiro.Muichiro;
-import be.artex.allStarsParty.role.HXH.Kirua;
-import be.artex.allStarsParty.role.HXH.Neferupito;
-import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
-import be.artex.allStarsParty.role.MHA.denki.Denki;
+import be.artex.allStarsParty.role.MHA.hawks.Hawks;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -51,7 +44,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Neferupito());
+        roleManager.registerRole(new Hawks());
 
         getCommand("composition").setExecutor(new Composition());
         getCommand("start").setExecutor(new Start());
@@ -66,6 +59,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
+        getServer().getPluginManager().registerEvents(new ProjectileListeners(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {
