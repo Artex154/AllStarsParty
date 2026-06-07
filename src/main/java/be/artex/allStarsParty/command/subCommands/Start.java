@@ -1,14 +1,12 @@
-package be.artex.allStarsParty.command;
+package be.artex.allStarsParty.command.subCommands;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.command.SubCommand;
+import be.artex.allStarsParty.item_builder.ItemBuilder;
 import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
-import be.artex.allStarsParty.item_builder.ItemBuilder;
 import org.bukkit.*;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,33 +17,33 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-public class Start implements CommandExecutor {
+public class Start extends SubCommand {
     private static final RoleManager roleManager = AllStarsParty.roleManager;
     private static final GameManager gameManager = AllStarsParty.gameManager;
 
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!(commandSender instanceof Player))
-            return true;
+    public String getArgument() {
+        return "start";
+    }
 
-        Player player = (Player) commandSender;
-
-        if (!commandSender.isOp()) {
-            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous devez être " + ChatColor.RED + "opérateur" + ChatColor.WHITE + " pour exécuter cette " + ChatColor.RED + "commande" + ChatColor.WHITE + ".");
-            return true;
+    @Override
+    public void whenCalled(Player sender) {
+        if (!sender.isOp()) {
+            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous devez être " + ChatColor.RED + "opérateur" + ChatColor.WHITE + " pour exécuter cette " + ChatColor.RED + "commande" + ChatColor.WHITE + ".");
+            return;
         }
 
         Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
         int maxPlayers = gameManager.getMaxPlayerCount();
 
         if (maxPlayers != onlinePlayers.size()) {
-            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + onlinePlayers.size() + "/" + maxPlayers + ")");
-            return true;
+            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + onlinePlayers.size() + "/" + maxPlayers + ")");
+            return;
         }
 
         if (gameManager.isInGame()) {
-            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Une " + ChatColor.RED + "partie" + ChatColor.WHITE + " est déjà en cours.");
-            return true;
+            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Une " + ChatColor.RED + "partie" + ChatColor.WHITE + " est déjà en cours.");
+            return;
         }
 
         World world = AllStarsParty.world;
@@ -62,8 +60,6 @@ public class Start implements CommandExecutor {
         PlayerUtil.updateAllPlayerScoreboards();
 
         gameManager.setInGame(true);
-
-        return true;
     }
 
     private static void setupPlayer(Player player, World world) {

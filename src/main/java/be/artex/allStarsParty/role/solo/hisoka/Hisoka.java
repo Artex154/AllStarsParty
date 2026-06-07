@@ -4,8 +4,6 @@ import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.Side;
 import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.role.AOT.peak.DashPeak;
-import be.artex.allStarsParty.role.AOT.peak.TransformationPeak;
 import be.artex.allStarsParty.role.solo.BonusGoldenApples;
 import org.bukkit.ChatColor;
 

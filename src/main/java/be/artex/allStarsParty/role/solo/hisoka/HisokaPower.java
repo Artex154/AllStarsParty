@@ -32,7 +32,7 @@ public enum HisokaPower {
             player -> Resistance.setPlayerResistance(player, 120),
             player -> Resistance.setPlayerResistance(player, 100));
 
-    private static final List<Player> powerAffectedPlayers = new ArrayList<>();
+    public static final List<Player> powerAffectedPlayers = new ArrayList<>();
 
     private final String name;
     private final Consumer<Player> power;

@@ -8,6 +8,7 @@ import be.artex.allStarsParty.logic.Side;
 import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.solo.hisoka.HisokaPower;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,6 +38,7 @@ public class PlayerDeathListener implements Listener {
         Serment.playersInSerment.remove(player);
         Decharge.electrocutedPlayers.remove(player);
         TransformationReiner.transformedPlayer.remove(player);
+        HisokaPower.powerAffectedPlayers.remove(player);
 
         roleManager.removeAliveRole(playerRole);
 

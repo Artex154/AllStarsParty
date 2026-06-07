@@ -3,12 +3,7 @@ version: '1.0-SNAPSHOT'
 main: be.artex.allStarsParty.AllStarsParty
 api-version: '1.8.8'
 commands:
-  composition:
-    usage: /compositon
-    description: "show the compostition of the game"
-  start:
-    usage: /start
-    description: "start the game"
-  effects:
-    usage: /effects
-    description: "see your effects"
+  as:
+    usage: /as <sub-command>
+    description: "all All Stars Party's commands."
+    aliases: [asp, allstars, allstartsparty]

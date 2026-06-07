@@ -44,5 +44,6 @@ public class JeuDeCartes extends ASPItem {
         second.apply(player);
 
         cooldown.putPlayerInCooldown(player);
+        HisokaPower.powerAffectedPlayers.add(player);
     }
 }

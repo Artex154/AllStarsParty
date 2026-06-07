@@ -1,22 +1,20 @@
-package be.artex.allStarsParty.command;
+package be.artex.allStarsParty.command.subCommands;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.TextUtil;
+import be.artex.allStarsParty.command.SubCommand;
 import be.artex.allStarsParty.logic.Role;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Composition implements CommandExecutor {
+public class Composition extends SubCommand {
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!(commandSender instanceof Player))
-            return true;
+    public String getArgument() {
+        return "composition";
+    }
 
-        Player player = (Player) commandSender;
-
+    @Override
+    public void whenCalled(Player sender) {
         StringBuilder message =
                 new StringBuilder(TextUtil.BORDER + "\n" +
                         ChatColor.DARK_AQUA + ChatColor.BOLD + "COMPOSITION:");
@@ -26,8 +24,6 @@ public class Composition implements CommandExecutor {
 
         message.append("\n").append(TextUtil.BORDER);
 
-        player.sendMessage(String.valueOf(message));
-
-        return true;
+        sender.sendMessage(String.valueOf(message));
     }
 }

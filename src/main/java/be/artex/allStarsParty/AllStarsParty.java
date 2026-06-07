@@ -1,8 +1,10 @@
 package be.artex.allStarsParty;
 
-import be.artex.allStarsParty.command.Composition;
-import be.artex.allStarsParty.command.Effect;
-import be.artex.allStarsParty.command.Start;
+import be.artex.allStarsParty.command.ASCommand;
+import be.artex.allStarsParty.command.CommandManager;
+import be.artex.allStarsParty.command.subCommands.Composition;
+import be.artex.allStarsParty.command.subCommands.Effect;
+import be.artex.allStarsParty.command.subCommands.Start;
 import be.artex.allStarsParty.logic.listener.block.BlockBreakListener;
 import be.artex.allStarsParty.logic.listener.entity.DamageByEntityListener;
 import be.artex.allStarsParty.logic.listener.player.*;
@@ -10,7 +12,6 @@ import be.artex.allStarsParty.logic.listener.projectile.ProjectileListeners;
 import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
-import be.artex.allStarsParty.role.MHA.hawks.Hawks;
 import be.artex.allStarsParty.role.solo.hisoka.Hisoka;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
@@ -27,6 +28,7 @@ public final class AllStarsParty extends JavaPlugin {
     public static RoleManager roleManager = new RoleManager();
     public static GameManager gameManager = new GameManager();
     public static ItemManager itemManager = new ItemManager();
+    public static CommandManager commandManager = new CommandManager();
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
 
@@ -47,9 +49,11 @@ public final class AllStarsParty extends JavaPlugin {
 
         roleManager.registerRole(new Hisoka());
 
-        getCommand("composition").setExecutor(new Composition());
-        getCommand("start").setExecutor(new Start());
-        getCommand("effects").setExecutor(new Effect());
+        getCommand("as").setExecutor(new ASCommand());
+
+        commandManager.registerSubCommand(new Composition());
+        commandManager.registerSubCommand(new Start());
+        commandManager.registerSubCommand(new Effect());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
