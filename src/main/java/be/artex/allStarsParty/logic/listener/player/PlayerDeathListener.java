@@ -3,6 +3,7 @@ package be.artex.allStarsParty.logic.listener.player;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.logic.Role;
+import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
 import be.artex.allStarsParty.logic.Side;
 import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
@@ -22,6 +23,7 @@ import java.util.Collection;
 
 public class PlayerDeathListener implements Listener {
     private static final RoleManager roleManager = AllStarsParty.roleManager;
+    private static final GameManager gameManager = AllStarsParty.gameManager;
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
@@ -35,12 +37,7 @@ public class PlayerDeathListener implements Listener {
         event.setDeathMessage(
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
-        Serment.playersInSerment.remove(player);
-        Decharge.electrocutedPlayers.remove(player);
-        TransformationReiner.transformedPlayer.remove(player);
-        HisokaPower.powerAffectedPlayers.remove(player);
-
-        roleManager.removeAliveRole(playerRole);
+        gameManager.resetAllPlayerState(player);
 
         killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 
