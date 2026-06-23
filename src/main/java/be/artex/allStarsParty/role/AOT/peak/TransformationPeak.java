@@ -32,7 +32,7 @@ public class TransformationPeak extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("transformation_peak", 180*20);
 
         if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + ChatColor.WHITE + ".");
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
             return;
         }
 
@@ -40,16 +40,17 @@ public class TransformationPeak extends ASPItem {
 
         player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous vous êtes " + ChatColor.DARK_AQUA + "transformez" + ChatColor.WHITE + ".");
 
-        transformedPlayer.remove(player);
         transformedPlayer.add(player);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            if (transformedPlayer.contains(player))
+            if (!transformedPlayer.contains(player))
                 return;
 
             player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Votre " + ChatColor.DARK_AQUA + "transformation" + ChatColor.WHITE + " cesse.");
 
             Speed.setPlayerSpeed(player, 100);
+
+            transformedPlayer.remove(player);
         }, 25*20L);
 
         cooldown.putPlayerInCooldown(player);

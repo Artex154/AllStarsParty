@@ -33,7 +33,8 @@ public class DamageByEntityListener implements Listener {
 
         Role damagerRole = AllStarsParty.roleManager.getPlayerRole(damager);
 
-        damagerRole.onHit(player, damager, damage);
+        if (damagerRole != null)
+            damagerRole.onHit(player, damager, damage);
 
         ASPItem item = AllStarsParty.itemManager.getItemFromStack(stack);
 

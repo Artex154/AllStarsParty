@@ -10,7 +10,7 @@ public class Muzan extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.RED + "Muzan" + ChatColor.WHITE + "." +
             "\n Vous possédez 105% de " + ChatColor.RED + "force" + ChatColor.WHITE + "." +
-            "\n Quand vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous régénérez " + ChatColor.LIGHT_PURPLE + "10% des dégats infligés " + ChatColor.WHITE + "." +
+            "\n Quand vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous régénérez " + ChatColor.LIGHT_PURPLE + "5% des dégats infligés " + ChatColor.WHITE + "." +
             "\n" + TextUtil.BORDER;
 
     @Override
@@ -35,6 +35,6 @@ public class Muzan extends Role {
 
     @Override
     public void onHit(Player player, Player damager, double damage) {
-        damager.setHealth(damager.getHealth() + (damage / 10));
+        damager.setHealth(damager.getHealth() + (damage / 5));
     }
 }

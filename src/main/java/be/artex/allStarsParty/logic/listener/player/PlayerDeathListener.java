@@ -38,6 +38,7 @@ public class PlayerDeathListener implements Listener {
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
         gameManager.resetAllPlayerState(player);
+        roleManager.removeAliveRole(playerRole);
 
         killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 

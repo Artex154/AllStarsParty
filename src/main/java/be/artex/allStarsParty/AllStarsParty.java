@@ -13,6 +13,17 @@ import be.artex.allStarsParty.logic.listener.projectile.ProjectileListeners;
 import be.artex.allStarsParty.logic.manager.GameManager;
 import be.artex.allStarsParty.logic.manager.ItemManager;
 import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.role.AOT.Livai;
+import be.artex.allStarsParty.role.AOT.peak.Peak;
+import be.artex.allStarsParty.role.AOT.reiner.Reiner;
+import be.artex.allStarsParty.role.DS.Kokushibo;
+import be.artex.allStarsParty.role.DS.Muzan;
+import be.artex.allStarsParty.role.HXH.Kirua;
+import be.artex.allStarsParty.role.HXH.Neferupito;
+import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
+import be.artex.allStarsParty.role.MHA.hawks.Hawks;
+import be.artex.allStarsParty.role.MHA.shoto.Shoto;
+import be.artex.allStarsParty.role.solo.Yoriichi;
 import be.artex.allStarsParty.role.solo.hisoka.Hisoka;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
@@ -48,6 +59,8 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
+        roleManager.registerRole(new Muzan());
+        roleManager.registerRole(new Yoriichi());
         roleManager.registerRole(new Hisoka());
 
         getCommand("as").setExecutor(new ASCommand());

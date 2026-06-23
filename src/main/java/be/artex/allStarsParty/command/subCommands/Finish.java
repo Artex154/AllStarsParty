@@ -42,6 +42,7 @@ public class Finish extends SubCommand {
             player.setMaxHealth(20);
             player.setHealth(20);
             player.setGameMode(GameMode.ADVENTURE);
+            gameManager.resetAllPlayerState(player);
 
             for (PotionEffect effect : player.getActivePotionEffects())
                 player.removePotionEffect(effect.getType());
