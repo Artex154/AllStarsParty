@@ -19,10 +19,17 @@ public class ProjectileListeners implements Listener {
 
     @EventHandler
     public void onEntityShootBow(EntityShootBowEvent event) {
-        if ((event.getProjectile() instanceof Arrow))
+        if (!(event.getProjectile() instanceof Arrow))
             return;
 
-        arrowBows.put((Arrow) event.getProjectile(), event.getBow().clone());
+        ItemStack bow = event.getBow();
+
+        arrowBows.put((Arrow) event.getProjectile(), bow.clone());
+
+        ASPItem item = itemManager.getItemFromStack(bow);
+
+        if (item instanceof ASPBowItem)
+            ((ASPBowItem) item).onShoot(event);
     }
 
     @EventHandler

@@ -8,6 +8,7 @@ import be.artex.allStarsParty.command.subCommands.Finish;
 import be.artex.allStarsParty.command.subCommands.Start;
 import be.artex.allStarsParty.logic.listener.block.BlockBreakListener;
 import be.artex.allStarsParty.logic.listener.entity.DamageByEntityListener;
+import be.artex.allStarsParty.logic.listener.entity.EntityDamageListener;
 import be.artex.allStarsParty.logic.listener.player.*;
 import be.artex.allStarsParty.logic.listener.projectile.ProjectileListeners;
 import be.artex.allStarsParty.logic.manager.GameManager;
@@ -23,6 +24,7 @@ import be.artex.allStarsParty.role.HXH.Neferupito;
 import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
 import be.artex.allStarsParty.role.MHA.hawks.Hawks;
 import be.artex.allStarsParty.role.MHA.shoto.Shoto;
+import be.artex.allStarsParty.role.NS.Minato;
 import be.artex.allStarsParty.role.solo.Yoriichi;
 import be.artex.allStarsParty.role.solo.hisoka.Hisoka;
 import fr.mrmicky.fastboard.FastBoard;
@@ -59,9 +61,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Muzan());
-        roleManager.registerRole(new Yoriichi());
-        roleManager.registerRole(new Hisoka());
+        roleManager.registerRole(new Minato());
 
         getCommand("as").setExecutor(new ASCommand());
 
@@ -80,6 +80,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
         getServer().getPluginManager().registerEvents(new ProjectileListeners(), this);
+        getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {

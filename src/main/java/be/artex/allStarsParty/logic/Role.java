@@ -37,4 +37,8 @@ public abstract class Role {
     public int getSpeed() {
         return 100;
     }
+
+    public boolean hasNoFall() {
+        return false;
+    }
 }

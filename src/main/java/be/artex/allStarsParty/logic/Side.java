@@ -7,6 +7,7 @@ public enum Side {
     DS("Demon Slayer", ChatColor.RED),
     HXH("Hunter x Hunter", ChatColor.GREEN),
     AOT("Attaque des Titans", ChatColor.DARK_AQUA),
+    NS("Naruto", ChatColor.DARK_PURPLE),
     YORIICHI("Yoriichi", ChatColor.YELLOW),
     HISOKA("Hisoka", ChatColor.YELLOW),
     ;
