@@ -5,6 +5,7 @@ import be.artex.allStarsParty.logic.items.ASPItem;
 import be.artex.allStarsParty.logic.Role;
 import be.artex.allStarsParty.logic.stats.Resistance;
 import be.artex.allStarsParty.logic.stats.Strength;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,6 +23,11 @@ public class DamageByEntityListener implements Listener {
 
         Player damager = (Player) event.getDamager();
         Player player = (Player) event.getEntity();
+
+        if (damager.getGameMode().equals(GameMode.ADVENTURE) || player.getGameMode().equals(GameMode.ADVENTURE)) {
+            event.setCancelled(true);
+            return;
+        }
 
         double damage = event.getDamage();
 
