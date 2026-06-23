@@ -1,6 +1,7 @@
 package be.artex.allStarsParty.role.NS;
 
 import be.artex.allStarsParty.item_builder.ItemBuilder;
+import be.artex.allStarsParty.logic.Cooldown;
 import be.artex.allStarsParty.logic.items.ASPBowItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,10 +23,16 @@ public class HNJ extends ASPBowItem {
     @Override
     public void onShoot(EntityShootBowEvent event) {
         Player player = (Player) event.getEntity();
+        Cooldown cooldown = Cooldown.getCooldown("hnj", 150);
 
-        player.sendMessage("a");
+        if (cooldown.isPlayerInCooldown(player)) {
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            return;
+        }
 
         event.setProjectile(null);
         player.launchProjectile(EnderPearl.class);
+
+        cooldown.putPlayerInCooldown(player);
     }
 }
