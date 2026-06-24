@@ -61,6 +61,7 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
+        roleManager.registerRole(new Shoto());
         roleManager.registerRole(new Minato());
 
         getCommand("as").setExecutor(new ASCommand());

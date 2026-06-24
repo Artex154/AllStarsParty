@@ -5,6 +5,8 @@ import be.artex.allStarsParty.logic.Cooldown;
 import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.MHA.shoto.FireSide;
+import be.artex.allStarsParty.role.MHA.shoto.IceSide;
 import be.artex.allStarsParty.role.solo.hisoka.HisokaPower;
 import org.bukkit.entity.Player;
 
@@ -29,6 +31,8 @@ public class GameManager {
         Decharge.electrocutedPlayers.remove(player);
         TransformationReiner.transformedPlayer.remove(player);
         HisokaPower.powerAffectedPlayers.remove(player);
+        FireSide.playersInFire.remove(player);
+        IceSide.playersInIce.remove(player);
 
         Cooldown.clearAllCooldowns(player);
     }

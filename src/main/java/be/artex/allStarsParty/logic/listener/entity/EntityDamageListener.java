@@ -19,8 +19,6 @@ public class EntityDamageListener implements Listener {
         Player player = (Player) event.getEntity();
         Role role = roleManager.getPlayerRole(player);
 
-        System.out.println(role.getName());
-
         EntityDamageEvent.DamageCause cause = event.getCause();
 
         switch (cause) {
@@ -29,8 +27,6 @@ public class EntityDamageListener implements Listener {
             case FALL:
                 if (role == null)
                     return;
-
-                System.out.println("b");
 
                 if (role.hasNoFall())
                     event.setCancelled(true);

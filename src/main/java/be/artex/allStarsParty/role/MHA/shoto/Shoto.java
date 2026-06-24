@@ -13,7 +13,7 @@ public class Shoto extends Role {
     private static final String DESCRIPTION = TextUtil.BORDER +
             "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.BLUE + "Shoto" + ChatColor.WHITE + "." +
             "\n Vous possédez deux items, votre " + ChatColor.GOLD + ChatColor.BOLD + "côté gauche" + ChatColor.WHITE + " et votre " + ChatColor.AQUA + ChatColor.BOLD + "côté droit" + ChatColor.WHITE + "." +
-            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Côté gauche" + ChatColor.WHITE + ": Quand vous " + ChatColor.RED + "tappez" + ChatColor.WHITE + " un joueur, vous l'" + ChatColor.GOLD  + "enflammez" + ChatColor.WHITE + " pendant 8 secondes. " + ChatColor.GRAY + "(cooldown de 10s)" +
+            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Côté gauche" + ChatColor.WHITE + ": Lorsque vous " + ChatColor.RED + "tappez" + ChatColor.WHITE + " un joueur, vous l'" + ChatColor.GOLD  + "enflammez" + ChatColor.WHITE + ". Celui-ci ne pourra pas s'éteindre pendant" + ChatColor.YELLOW + " 4 secondes" + ChatColor.WHITE + "." + ChatColor.GRAY + " (cooldown de 40s)" +
             "\n" + ChatColor.WHITE + " - " + ChatColor.AQUA + ChatColor.BOLD + "Côté droit" + ChatColor.WHITE + ": Quand vous " + ChatColor.RED + "tappez" + ChatColor.WHITE + " un joueur, vous l'enfermez dans un " + ChatColor.AQUA + "cocon de glace" + ChatColor.WHITE + ". " + ChatColor.GRAY + "(cooldown de 60s)" +
             "\n" + TextUtil.BORDER;
 
@@ -40,5 +40,10 @@ public class Shoto extends Role {
         items.add(new IceSide());
 
         return items;
+    }
+
+    @Override
+    public int getResistance() {
+        return 110;
     }
 }
