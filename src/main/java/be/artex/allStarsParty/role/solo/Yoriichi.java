@@ -1,12 +1,13 @@
 package be.artex.allStarsParty.role.solo;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Role;
-import be.artex.allStarsParty.logic.Side;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.registry.ItemRegistry;
 import org.bukkit.ChatColor;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Yoriichi extends Role {
@@ -33,11 +34,7 @@ public class Yoriichi extends Role {
 
     @Override
     public List<ASPItem> getItems() {
-        List<ASPItem> items = new ArrayList<>();
-
-        items.add(new BonusGoldenApples(12));
-
-        return items;
+        return Collections.singletonList(ItemRegistry.BONUS_GOLDEN_APPLES);
     }
 
     @Override

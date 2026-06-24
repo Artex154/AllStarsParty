@@ -1,9 +1,10 @@
 package be.artex.allStarsParty.role.MHA.shoto;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Role;
-import be.artex.allStarsParty.logic.Side;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.registry.ItemRegistry;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class Shoto extends Role {
     public List<ASPItem> getItems() {
         List<ASPItem> items = new ArrayList<>();
 
-        items.add(new FireSide());
-        items.add(new IceSide());
+        items.add(ItemRegistry.FIRE_SIDE);
+        items.add(ItemRegistry.ICE_SIDE);
 
         return items;
     }

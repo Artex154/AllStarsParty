@@ -2,9 +2,9 @@ package be.artex.allStarsParty.command.subCommands;
 
 import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.command.SubCommand;
-import be.artex.allStarsParty.logic.stats.Resistance;
-import be.artex.allStarsParty.logic.stats.Speed;
-import be.artex.allStarsParty.logic.stats.Strength;
+import be.artex.allStarsParty.api.stats.Resistance;
+import be.artex.allStarsParty.api.stats.Speed;
+import be.artex.allStarsParty.api.stats.Strength;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

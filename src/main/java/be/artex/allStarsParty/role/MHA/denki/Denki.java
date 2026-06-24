@@ -1,9 +1,10 @@
 package be.artex.allStarsParty.role.MHA.denki;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Role;
-import be.artex.allStarsParty.logic.Side;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.registry.ItemRegistry;
 import org.bukkit.ChatColor;
 
 import java.util.Collections;
@@ -33,6 +34,6 @@ public class Denki extends Role {
 
     @Override
     public List<ASPItem> getItems() {
-        return Collections.singletonList(new Decharge());
+        return Collections.singletonList(ItemRegistry.DECHARGE);
     }
 }

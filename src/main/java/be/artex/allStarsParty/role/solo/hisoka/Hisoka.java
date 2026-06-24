@@ -1,10 +1,10 @@
 package be.artex.allStarsParty.role.solo.hisoka;
 
 import be.artex.allStarsParty.TextUtil;
-import be.artex.allStarsParty.logic.Role;
-import be.artex.allStarsParty.logic.Side;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.role.solo.BonusGoldenApples;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.registry.ItemRegistry;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -43,8 +43,8 @@ public class Hisoka extends Role {
     public List<ASPItem> getItems() {
         ArrayList<ASPItem> list = new ArrayList<>();
 
-        list.add(new JeuDeCartes());
-        list.add(new BonusGoldenApples(12));
+        list.add(ItemRegistry.JEU_DE_CARTES);
+        list.add(ItemRegistry.BONUS_GOLDEN_APPLES);
 
         return list;
     }

@@ -1,10 +1,10 @@
 package be.artex.allStarsParty.role.AOT.peak;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Cooldown;
-import be.artex.allStarsParty.logic.stats.Speed;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Cooldown;
+import be.artex.allStarsParty.api.stats.Speed;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

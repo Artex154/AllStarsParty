@@ -1,0 +1,44 @@
+package be.artex.allStarsParty.api;
+
+import be.artex.allStarsParty.api.items.ASPItem;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
+
+import java.util.Collections;
+import java.util.List;
+
+public abstract class Role {
+    public abstract String getName();
+    public abstract Side getSide();
+    public abstract String getDescription();
+
+    public void onKill(PlayerDeathEvent event) {
+    }
+
+    public void onHit(Player player, Player damager, double damage) {
+    }
+
+    public List<ASPItem> getItems() {
+        return Collections.emptyList();
+    }
+
+    public int getMaxHealth() {
+        return 20;
+    }
+
+    public int getStrength() {
+        return 100;
+    }
+
+    public int getResistance() {
+        return 100;
+    }
+
+    public int getSpeed() {
+        return 100;
+    }
+
+    public boolean hasNoFall() {
+        return false;
+    }
+}

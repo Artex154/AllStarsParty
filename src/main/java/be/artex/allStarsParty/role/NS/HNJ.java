@@ -1,8 +1,8 @@
 package be.artex.allStarsParty.role.NS;
 
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.Cooldown;
-import be.artex.allStarsParty.logic.items.ASPBowItem;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.Cooldown;
+import be.artex.allStarsParty.api.items.ASPBowItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

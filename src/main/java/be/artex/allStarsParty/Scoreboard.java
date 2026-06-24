@@ -1,8 +1,9 @@
 package be.artex.allStarsParty;
 
-import be.artex.allStarsParty.logic.manager.GameManager;
-import be.artex.allStarsParty.logic.Role;
-import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.api.manager.GameManager;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.registry.RoleRegistry;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,7 +12,7 @@ import org.bukkit.entity.Player;
 public class Scoreboard {
     private static final String BORDER = ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "                        ";
     private static final GameManager gameManager = AllStarsParty.gameManager;
-    private static final RoleManager roleManager = AllStarsParty.roleManager;
+    private static final RoleManager roleManager = RoleRegistry.roleManager;
 
     public static void updateScoreboard(FastBoard board, Player player) {
         board.updateLines(

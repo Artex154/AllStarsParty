@@ -3,9 +3,10 @@ package be.artex.allStarsParty.command.subCommands;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.command.SubCommand;
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.manager.GameManager;
-import be.artex.allStarsParty.logic.manager.RoleManager;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.manager.GameManager;
+import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.registry.RoleRegistry;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Start extends SubCommand {
-    private static final RoleManager roleManager = AllStarsParty.roleManager;
+    private static final RoleManager roleManager = RoleRegistry.roleManager;
     private static final GameManager gameManager = AllStarsParty.gameManager;
 
     @Override

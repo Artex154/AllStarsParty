@@ -1,10 +1,9 @@
 package be.artex.allStarsParty.role.MHA.shoto;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Cooldown;
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import org.bukkit.Bukkit;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Cooldown;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -39,7 +38,7 @@ public class FireSide extends ASPItem {
 
             @Override
             public void run() {
-                if (playersInFire.contains(player) || runs++ == 16) {
+                if (!playersInFire.contains(player) || runs++ == 16) {
                     playersInFire.remove(player);
                     cancel();
                     return;

@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.role.MHA.hawks;
 
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.items.ASPBowItem;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.items.ASPBowItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

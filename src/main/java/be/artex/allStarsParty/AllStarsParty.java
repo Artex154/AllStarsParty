@@ -6,27 +6,16 @@ import be.artex.allStarsParty.command.subCommands.Composition;
 import be.artex.allStarsParty.command.subCommands.Effect;
 import be.artex.allStarsParty.command.subCommands.Finish;
 import be.artex.allStarsParty.command.subCommands.Start;
-import be.artex.allStarsParty.logic.listener.block.BlockBreakListener;
-import be.artex.allStarsParty.logic.listener.entity.DamageByEntityListener;
-import be.artex.allStarsParty.logic.listener.entity.EntityDamageListener;
-import be.artex.allStarsParty.logic.listener.player.*;
-import be.artex.allStarsParty.logic.listener.projectile.ProjectileListeners;
-import be.artex.allStarsParty.logic.manager.GameManager;
-import be.artex.allStarsParty.logic.manager.ItemManager;
-import be.artex.allStarsParty.logic.manager.RoleManager;
-import be.artex.allStarsParty.role.AOT.Livai;
-import be.artex.allStarsParty.role.AOT.peak.Peak;
-import be.artex.allStarsParty.role.AOT.reiner.Reiner;
-import be.artex.allStarsParty.role.DS.Kokushibo;
-import be.artex.allStarsParty.role.DS.Muzan;
-import be.artex.allStarsParty.role.HXH.Kirua;
-import be.artex.allStarsParty.role.HXH.Neferupito;
-import be.artex.allStarsParty.role.HXH.kurapika.Kurapika;
-import be.artex.allStarsParty.role.MHA.hawks.Hawks;
-import be.artex.allStarsParty.role.MHA.shoto.Shoto;
-import be.artex.allStarsParty.role.NS.Minato;
-import be.artex.allStarsParty.role.solo.Yoriichi;
-import be.artex.allStarsParty.role.solo.hisoka.Hisoka;
+import be.artex.allStarsParty.listener.block.BlockBreakListener;
+import be.artex.allStarsParty.listener.entity.DamageByEntityListener;
+import be.artex.allStarsParty.listener.entity.EntityDamageListener;
+import be.artex.allStarsParty.listener.inventory.InventoryClickListener;
+import be.artex.allStarsParty.listener.player.*;
+import be.artex.allStarsParty.listener.projectile.ProjectileListeners;
+import be.artex.allStarsParty.api.manager.GUIManager;
+import be.artex.allStarsParty.api.manager.GameManager;
+import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.role.DS.muzan.Muzan;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -39,9 +28,8 @@ import java.util.*;
 public final class AllStarsParty extends JavaPlugin {
     public static JavaPlugin instance;
 
-    public static RoleManager roleManager = new RoleManager();
     public static GameManager gameManager = new GameManager();
-    public static ItemManager itemManager = new ItemManager();
+    public static GUIManager GUIManager = new GUIManager();
     public static CommandManager commandManager = new CommandManager();
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
@@ -61,9 +49,6 @@ public final class AllStarsParty extends JavaPlugin {
 
         defineGameRules();
 
-        roleManager.registerRole(new Shoto());
-        roleManager.registerRole(new Minato());
-
         getCommand("as").setExecutor(new ASCommand());
 
         commandManager.registerSubCommand(new Composition());
@@ -82,6 +67,7 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
         getServer().getPluginManager().registerEvents(new ProjectileListeners(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
     }
 
     private void setupWorldBorder(WorldBorder border) {

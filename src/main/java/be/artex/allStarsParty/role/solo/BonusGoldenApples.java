@@ -1,16 +1,12 @@
 package be.artex.allStarsParty.role.solo;
 
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.items.ASPItem;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.items.ASPItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class BonusGoldenApples extends ASPItem {
-    private static ItemBuilder STACK = new ItemBuilder(Material.GOLDEN_APPLE).amount(12);
-
-    public BonusGoldenApples(int bonusAmount) {
-        STACK = STACK.amount(bonusAmount);
-    }
+    private static final ItemBuilder STACK = new ItemBuilder(Material.GOLDEN_APPLE).amount(12);
 
     @Override
     public ItemStack getStack() {

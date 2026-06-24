@@ -2,7 +2,7 @@ package be.artex.allStarsParty.command.subCommands;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.command.SubCommand;
-import be.artex.allStarsParty.logic.manager.GameManager;
+import be.artex.allStarsParty.api.manager.GameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;

@@ -1,11 +1,12 @@
 package be.artex.allStarsParty.role.MHA.denki;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.item_builder.ItemBuilder;
-import be.artex.allStarsParty.logic.items.ASPItem;
-import be.artex.allStarsParty.logic.Cooldown;
-import be.artex.allStarsParty.logic.Side;
-import be.artex.allStarsParty.logic.stats.Speed;
+import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.Cooldown;
+import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.api.stats.Speed;
+import be.artex.allStarsParty.registry.RoleRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -44,7 +45,7 @@ public class Decharge extends ASPItem {
 
             Player p = (Player) entity;
 
-            if (AllStarsParty.roleManager.getPlayerRole(p).getSide() == Side.MHA)
+            if (RoleRegistry.roleManager.getPlayerRole(p).getSide() == Side.MHA)
                 return;
 
             entity.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.BLUE + "Denki" + ChatColor.WHITE + " vous " + ChatColor.DARK_AQUA + "électrocute" + ChatColor.WHITE + ".");
