@@ -4,14 +4,12 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.role.MHA.shoto.IceSide;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
-
-import static sun.audio.AudioPlayer.player;
 
 public class PlayerBlockListeners implements Listener {
     @EventHandler
@@ -30,6 +28,14 @@ public class PlayerBlockListeners implements Listener {
     public static void onBlockBreak(BlockBreakEvent event) {
         switch (event.getBlock().getType()) {
             case STONE:
+            case ICE:
+                event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockPhysics(BlockPhysicsEvent event) {
+        switch (event.getBlock().getType()) {
             case ICE:
                 event.setCancelled(true);
         }
