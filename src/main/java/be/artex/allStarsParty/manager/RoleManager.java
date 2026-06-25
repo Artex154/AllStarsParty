@@ -1,14 +1,12 @@
 package be.artex.allStarsParty.manager;
 
+import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.stats.Resistance;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
-import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
-import be.artex.allStarsParty.role.HXH.kurapika.Serment;
-import be.artex.allStarsParty.role.MHA.denki.Decharge;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -17,8 +15,6 @@ public class RoleManager {
     private final List<Role> registeredRoles = new ArrayList<>();
     private final Map<UUID, Role> playersRole = new HashMap<>();
     private final List<Role> aliveRoles = new ArrayList<>(registeredRoles);
-
-    // Getters
 
     public List<Role> getRegisteredRoles() {
         return Collections.unmodifiableList(registeredRoles);
@@ -32,17 +28,17 @@ public class RoleManager {
         return playersRole.get(player.getUniqueId());
     }
 
-    // Player Roles
-
     public void setPlayerRole(Player player, Role role) {
         playersRole.put(player.getUniqueId(), role);
+    }
+
+    public boolean isWonBy(Side side, List<Role> aliveRoles) {
+        return aliveRoles.stream().allMatch(role -> role.getSide() == side);
     }
 
     public void clearPlayersRole() {
         playersRole.clear();
     }
-
-    // Alive Roles
 
     public void removeAliveRole(Role role) {
         aliveRoles.remove(role);
@@ -53,16 +49,12 @@ public class RoleManager {
         aliveRoles.addAll(registeredRoles);
     }
 
-    // Registration
-
     public Role registerRole(Role role) {
         registeredRoles.add(role);
         aliveRoles.add(role);
 
         return role;
     }
-
-    // Assignment
 
     public void assignRolesRandomly(List<Player> players) {
         Collections.shuffle(registeredRoles);

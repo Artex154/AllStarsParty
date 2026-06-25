@@ -67,7 +67,7 @@ public final class AllStarsParty extends JavaPlugin {
     }
 
     private void setupWorldBorder(WorldBorder border) {
-        final int BORDER_SIZE = 50;
+        final int BORDER_SIZE = 100;
 
         border.setCenter(0, 0);
         border.setSize(BORDER_SIZE);

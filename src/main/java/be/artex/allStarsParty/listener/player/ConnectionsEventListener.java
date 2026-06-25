@@ -2,7 +2,11 @@ package be.artex.allStarsParty.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
+import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.manager.GameManager;
+import be.artex.allStarsParty.manager.RoleManager;
+import be.artex.allStarsParty.registry.RoleRegistry;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,6 +21,7 @@ import org.bukkit.potion.PotionEffect;
 
 public class ConnectionsEventListener implements Listener {
     private static final GameManager gameManager = AllStarsParty.gameManager;
+    private static final RoleManager roleManager = RoleRegistry.roleManager;
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -65,5 +70,20 @@ public class ConnectionsEventListener implements Listener {
         );
 
         AllStarsParty.boards.remove(event.getPlayer().getUniqueId());
+
+        Role playerRole = roleManager.getPlayerRole(player);
+        PlayerUtil.updateAllPlayerScoreboards();
+
+        if (playerRole == null)
+            return;
+
+        roleManager.removeAliveRole(playerRole);
+        roleManager.setPlayerRole(player, null);
+
+        Side firstSide = roleManager.getRolesAlive().get(0).getSide();
+
+        if (roleManager.isWonBy(firstSide, roleManager.getRolesAlive()))
+            gameManager.finishGame(firstSide);
+
     }
 }
