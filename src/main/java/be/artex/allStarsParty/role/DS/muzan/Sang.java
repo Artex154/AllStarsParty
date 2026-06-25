@@ -27,7 +27,7 @@ public class Sang extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("sang", 60*20);
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + " secondes" + ChatColor.WHITE + ".");
             return;
         }
 
@@ -48,9 +48,11 @@ public class Sang extends ASPItem {
                 if ((player.getHealth() - 1) > 0)
                     player.setHealth(player.getHealth() - 1);
             }
-        }.runTaskTimer(AllStarsParty.instance, 0L, 10L);
+        }.runTaskTimer(AllStarsParty.instance, 0L, 20L);
 
         damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous faites" + ChatColor.RED + " saigné " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + ".");
+        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.RED + " Muzan" + ChatColor.WHITE + " vous fait " + ChatColor.RED + "saigné " + ChatColor.WHITE + ".");
+
         cooldown.putPlayerInCooldown(damager);
     }
 }

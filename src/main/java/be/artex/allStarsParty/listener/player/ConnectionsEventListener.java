@@ -2,7 +2,7 @@ package be.artex.allStarsParty.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
-import be.artex.allStarsParty.api.manager.GameManager;
+import be.artex.allStarsParty.manager.GameManager;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

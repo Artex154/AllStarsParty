@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.api.manager;
+package be.artex.allStarsParty.manager;
 
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Cooldown;
@@ -78,10 +78,6 @@ public class RoleManager {
             }
 
             Cooldown.clearAllCooldowns(p);
-
-            Serment.playersInSerment.remove(p);
-            TransformationReiner.transformedPlayer.remove(p);
-            Decharge.electrocutedPlayers.remove(p);
 
             p.setPlayerListName(r.getSide().getColor() + p.getName());
             p.sendMessage(r.getDescription());

@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.registry;
 
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.manager.ItemManager;
+import be.artex.allStarsParty.manager.ItemManager;
 import be.artex.allStarsParty.role.AOT.peak.DashPeak;
 import be.artex.allStarsParty.role.AOT.peak.TransformationPeak;
 import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;

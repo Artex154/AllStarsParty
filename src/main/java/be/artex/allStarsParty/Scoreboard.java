@@ -1,8 +1,8 @@
 package be.artex.allStarsParty;
 
-import be.artex.allStarsParty.api.manager.GameManager;
+import be.artex.allStarsParty.manager.GameManager;
 import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.manager.RoleManager;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;

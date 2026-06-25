@@ -22,7 +22,7 @@ public class InventoryClickListener implements Listener {
 
         GUI gui = AllStarsParty.GUIManager.getOpenGUI(player);
 
-        if (gui == null)
+        if (gui == null || !gui.getInventory().equals(event.getClickedInventory()))
             return;
 
         int slot = event.getSlot();

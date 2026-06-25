@@ -1,8 +1,5 @@
-package be.artex.allStarsParty.api.manager;
+package be.artex.allStarsParty.manager;
 
-import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.api.gui.ItemButton;
-import be.artex.allStarsParty.api.items.ASPGuiOpenerItem;
 import be.artex.allStarsParty.api.items.ASPItem;
 import org.bukkit.inventory.ItemStack;
 

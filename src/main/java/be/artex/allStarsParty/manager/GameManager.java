@@ -1,9 +1,9 @@
-package be.artex.allStarsParty.api.manager;
+package be.artex.allStarsParty.manager;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
+import be.artex.allStarsParty.role.DS.muzan.Sang;
 import be.artex.allStarsParty.role.DS.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.MHA.denki.Decharge;
@@ -36,6 +36,7 @@ public class GameManager {
         FireSide.playersInFire.remove(player);
         IceSide.playersInIce.remove(player);
         EffectSelector.playerEffects.remove(player);
+        Sang.playersBleeding.remove(player);
 
         Cooldown.clearAllCooldowns(player);
     }

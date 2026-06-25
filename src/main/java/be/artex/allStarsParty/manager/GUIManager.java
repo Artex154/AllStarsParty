@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.api.manager;
+package be.artex.allStarsParty.manager;
 
 import be.artex.allStarsParty.api.gui.GUI;
 import be.artex.allStarsParty.api.gui.ItemButton;

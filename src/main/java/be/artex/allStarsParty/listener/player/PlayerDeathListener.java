@@ -3,11 +3,11 @@ package be.artex.allStarsParty.listener.player;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.manager.GameManager;
-import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.api.stats.Strength;
+import be.artex.allStarsParty.manager.GameManager;
+import be.artex.allStarsParty.manager.RoleManager;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.registry.RoleRegistry;
-import be.artex.allStarsParty.role.DS.muzan.effectSelector.EffectSelector;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -61,6 +61,7 @@ public class PlayerDeathListener implements Listener {
             p.getInventory().clear();
             p.setMaxHealth(20);
             p.setHealth(20);
+            gameManager.resetAllPlayerState(p);
 
             for (PotionEffect effect : p.getActivePotionEffects())
                 p.removePotionEffect(effect.getType());

@@ -31,22 +31,24 @@ public class DamageByEntityListener implements Listener {
             return;
         }
 
-        double damage = event.getDamage();
 
-        damage = damage / 100 * (100 + (Strength.getPlayerStrength(damager) - Resistance.getPlayerResistance(player)));
+        int resistance = Resistance.getPlayerResistance(player);
+        int strength = Strength.getPlayerStrength(damager);
+        double bDamage = event.getDamage();
+        double fDamage = (bDamage / 100) * (100 + resistance - strength);
 
-        event.setDamage(damage);
+        event.setDamage(fDamage);
 
         ItemStack stack = damager.getItemInHand();
 
         Role damagerRole = RoleRegistry.roleManager.getPlayerRole(damager);
 
         if (damagerRole != null)
-            damagerRole.onHit(player, damager, damage);
+            damagerRole.onHit(player, damager, fDamage);
 
         ASPItem item = ItemRegistry.itemManager.getItemFromStack(stack);
 
         if (item != null)
-            item.onHit(damager, player, damage);
+            item.onHit(damager, player, fDamage);
     }
 }

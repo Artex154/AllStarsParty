@@ -2,7 +2,7 @@ package be.artex.allStarsParty.listener.player;
 
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.manager.ItemManager;
+import be.artex.allStarsParty.manager.ItemManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -17,12 +17,9 @@ public class PlayerInteractionListener implements Listener {
 
         ASPItem item = itemManager.getItemFromStack(stack);
 
-        System.out.println("called");
-
         if (item == null)
             return;
 
         item.onInteraction(event);
-        System.out.println("interaction succesful");
     }
 }

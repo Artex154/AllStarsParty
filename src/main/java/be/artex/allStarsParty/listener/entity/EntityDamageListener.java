@@ -1,8 +1,7 @@
 package be.artex.allStarsParty.listener.entity;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.manager.RoleManager;
+import be.artex.allStarsParty.manager.RoleManager;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
