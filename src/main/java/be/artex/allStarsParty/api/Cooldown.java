@@ -2,6 +2,7 @@ package be.artex.allStarsParty.api;
 
 import be.artex.allStarsParty.AllStarsParty;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -12,17 +13,23 @@ public class Cooldown {
     private final long cooldownTime;
     private final ArrayList<Player> playerCooldowns;
     private final Map<Player, Long> cooldownStartTimes;
+    private final String displayName;
 
     private static final Map<String, Cooldown> cooldowns = new HashMap<>();
 
-    private Cooldown(long cooldownTime) {
+    private Cooldown(long cooldownTime, String displayName) {
         this.cooldownTime = cooldownTime;
         this.playerCooldowns = new ArrayList<>();
         this.cooldownStartTimes = new HashMap<>();
+        this.displayName = displayName;
     }
 
     public static Cooldown getCooldown(String cooldownID, long cooldownTime) {
-        return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime));
+        return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime, "<N/A>"));
+    }
+
+    public static Cooldown getCooldown(String cooldownID, long cooldownTime, String name) {
+        return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime, name));
     }
 
     public static void clearAllCooldowns(Player player) {
@@ -37,12 +44,17 @@ public class Cooldown {
     }
 
     public void putPlayerInCooldown(Player player) {
+        if (isPlayerInCooldown(player))
+            return;
+
         playerCooldowns.add(player);
         cooldownStartTimes.put(player, System.currentTimeMillis());
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + this.displayName + ChatColor.WHITE + " n'est plus en cooldown.");
+
             playerCooldowns.remove(player);
-            cooldownStartTimes.put(player, System.currentTimeMillis());
+            cooldownStartTimes.remove(player);
         }, cooldownTime);
     }
 

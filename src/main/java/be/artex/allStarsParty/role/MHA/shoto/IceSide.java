@@ -26,10 +26,10 @@ public class IceSide extends ASPItem {
 
     @Override
     public void onHit(Player damager, Player player, double damage) {
-        Cooldown cooldown = Cooldown.getCooldown("shoto_ice_side", 65*20);
+        Cooldown cooldown = Cooldown.getCooldown("shoto_ice_side", 65*20, ChatColor.WHITE + "Votre" + ChatColor.AQUA + ChatColor.BOLD + " côté droit");
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + ChatColor.WHITE + ".");
+            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + ChatColor.WHITE + ".");
             return;
         }
 
