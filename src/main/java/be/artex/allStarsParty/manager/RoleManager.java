@@ -78,6 +78,8 @@ public class RoleManager {
             Strength.setPlayerStrength(p, r.getStrength());
             Speed.setPlayerSpeed(p, r.getSpeed());
             Resistance.setPlayerResistance(p, r.getResistance());
+
+            r.whenAssigned(p);
         }
     }
 }
