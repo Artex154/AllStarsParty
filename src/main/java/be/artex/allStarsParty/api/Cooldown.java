@@ -51,7 +51,7 @@ public class Cooldown {
         cooldownStartTimes.put(player, System.currentTimeMillis());
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + this.displayName + ChatColor.WHITE + " n'est plus en cooldown.");
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + this.displayName + ChatColor.WHITE + " n'est plus en cooldown.");
 
             playerCooldowns.remove(player);
             cooldownStartTimes.remove(player);

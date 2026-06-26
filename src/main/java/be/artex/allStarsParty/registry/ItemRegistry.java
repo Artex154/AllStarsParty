@@ -16,6 +16,7 @@ import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
 import be.artex.allStarsParty.role.rewrited.tobirama.HNJ;
 import be.artex.allStarsParty.role.old.solo.BonusGoldenApples;
 import be.artex.allStarsParty.role.old.solo.hisoka.JeuDeCartes;
+import be.artex.allStarsParty.role.rewrited.tobirama.RNK;
 
 public class ItemRegistry {
     public static ItemManager itemManager = new ItemManager();
@@ -32,6 +33,7 @@ public class ItemRegistry {
     public static final ASPItem FIRE_SIDE = itemManager.registerItem(new FireSide());
     public static final ASPItem ICE_SIDE = itemManager.registerItem(new IceSide());
     public static final ASPItem HNJ = itemManager.registerItem(new HNJ());
+    public static final ASPItem RNK = itemManager.registerItem(new RNK());
     public static final ASPItem BONUS_GOLDEN_APPLES = itemManager.registerItem(new BonusGoldenApples());
     public static final ASPItem JEU_DE_CARTES = itemManager.registerItem(new JeuDeCartes());
 }

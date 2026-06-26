@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 public class HNJ extends ASPBowItem {
-    private static final ItemStack STACK = new ItemBuilder(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 3).name(ChatColor.GOLD + "" + ChatColor.BOLD + "Hiraishin no Jutsu").addEnchant(Enchantment.ARROW_INFINITE, 1).itemFlags(ItemFlag.HIDE_ENCHANTS).build();
+    private static final ItemStack STACK = new ItemBuilder(Material.BOW).name(ChatColor.GOLD + "" + ChatColor.BOLD + "Hiraishin no Jutsu").addEnchant(Enchantment.ARROW_INFINITE, 1).itemFlags(ItemFlag.HIDE_ENCHANTS).build();
 
     @Override
     public ItemStack getStack() {
@@ -23,7 +23,7 @@ public class HNJ extends ASPBowItem {
     @Override
     public void onShoot(EntityShootBowEvent event) {
         Player player = (Player) event.getEntity();
-        Cooldown cooldown = Cooldown.getCooldown("hnj", 180);
+        Cooldown cooldown = Cooldown.getCooldown("hnj", 180, "Votre " + ChatColor.GOLD + ChatColor.BOLD + "Hiraishin no Jutsu");
 
         if (cooldown.isPlayerInCooldown(player)) {
             player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");

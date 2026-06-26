@@ -13,6 +13,7 @@ import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
 import be.artex.allStarsParty.role.rewrited.shoto.FireSide;
 import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
 import be.artex.allStarsParty.role.old.solo.hisoka.HisokaPower;
+import be.artex.allStarsParty.role.rewrited.tobirama.RNK;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -45,6 +46,7 @@ public class GameManager {
         IceSide.playersInIce.remove(player);
         EffectSelector.playerEffects.remove(player);
         Sang.playersBleeding.remove(player);
+        RNK.playerHitNumber.remove(player);
 
         Cooldown.clearAllCooldowns(player);
     }
