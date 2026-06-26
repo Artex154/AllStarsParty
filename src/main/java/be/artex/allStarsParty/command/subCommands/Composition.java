@@ -1,6 +1,5 @@
 package be.artex.allStarsParty.command.subCommands;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.command.SubCommand;
 import be.artex.allStarsParty.api.Role;

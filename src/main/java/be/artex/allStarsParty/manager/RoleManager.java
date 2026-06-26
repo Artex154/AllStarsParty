@@ -72,7 +72,6 @@ public class RoleManager {
             Cooldown.clearAllCooldowns(p);
 
             p.setPlayerListName(r.getSide().getColor() + p.getName());
-            p.sendMessage(r.getDescription());
             p.setMaxHealth(r.getMaxHealth());
             p.setHealth(r.getMaxHealth());
             Strength.setPlayerStrength(p, r.getStrength());

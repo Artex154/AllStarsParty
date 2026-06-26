@@ -1,21 +1,13 @@
 package be.artex.allStarsParty.role.old.HXH;
 
-import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
 public class Kirua extends Role {
     public static final HashMap<Player, Integer> playerHitNumber = new HashMap<>();
-
-    private static final String DESCRIPTION = TextUtil.BORDER +
-            "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.GREEN + "Kirua" + ChatColor.WHITE + "." +
-            "\n Vous possédez 120% de " + ChatColor.YELLOW + "speed" + ChatColor.WHITE + "." +
-            "\n Tout les " + ChatColor.DARK_AQUA + "10 coups" + ChatColor.WHITE + ", vous infligez " + ChatColor.LIGHT_PURPLE + "3 demi-coeurs " + ChatColor.WHITE + "de dégats." +
-            "\n" + TextUtil.BORDER;
 
     @Override
     public String getName() {
@@ -25,11 +17,6 @@ public class Kirua extends Role {
     @Override
     public Side getSide() {
         return Side.HXH;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
     }
 
     @Override

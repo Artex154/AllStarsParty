@@ -1,22 +1,14 @@
 package be.artex.allStarsParty.role.rewrited.shoto;
 
-import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.registry.ItemRegistry;
-import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shoto extends Role {
-    private static final String DESCRIPTION = TextUtil.BORDER +
-            "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.BLUE + "Shoto" + ChatColor.WHITE + "." +
-            "\n Vous possédez deux items, votre " + ChatColor.GOLD + ChatColor.BOLD + "côté gauche" + ChatColor.WHITE + " et votre " + ChatColor.AQUA + ChatColor.BOLD + "côté droit" + ChatColor.WHITE + "." +
-            "\n - " + ChatColor.GOLD + ChatColor.BOLD + "Côté gauche" + ChatColor.WHITE + ": Lorsque vous " + ChatColor.RED + "tappez" + ChatColor.WHITE + " un joueur, vous l'" + ChatColor.GOLD  + "enflammez" + ChatColor.WHITE + ". Celui-ci ne pourra pas s'éteindre pendant" + ChatColor.YELLOW + " 4 secondes" + ChatColor.WHITE + "." + ChatColor.GRAY + " (cooldown de 40s)" +
-            "\n" + ChatColor.WHITE + " - " + ChatColor.AQUA + ChatColor.BOLD + "Côté droit" + ChatColor.WHITE + ": Quand vous " + ChatColor.RED + "tappez" + ChatColor.WHITE + " un joueur, vous l'enfermez dans un " + ChatColor.AQUA + "cocon de glace" + ChatColor.WHITE + ". " + ChatColor.GRAY + "(cooldown de 60s)" +
-            "\n" + TextUtil.BORDER;
 
     @Override
     public String getName() {
@@ -26,11 +18,6 @@ public class Shoto extends Role {
     @Override
     public Side getSide() {
         return Side.MHA;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
     }
 
     @Override

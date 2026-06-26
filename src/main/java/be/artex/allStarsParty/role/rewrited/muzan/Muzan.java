@@ -1,6 +1,5 @@
 package be.artex.allStarsParty.role.rewrited.muzan;
 
-import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.api.items.ASPItem;
@@ -10,7 +9,6 @@ import be.artex.allStarsParty.api.stats.Strength;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelectorHolder;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
@@ -18,12 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Muzan extends Role {
-    private static final String DESCRIPTION = TextUtil.BORDER +
-            "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.RED + "Muzan" + ChatColor.WHITE + "." +
-            "\n Vous possédez 105% de " + ChatColor.RED + "force" + ChatColor.WHITE + "." +
-            "\n Quand vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous régénérez " + ChatColor.LIGHT_PURPLE + "5% des dégats infligés " + ChatColor.WHITE + "." +
-            "\n" + TextUtil.BORDER;
-
     @Override
     public String getName() {
         return "Muzan";
@@ -32,11 +24,6 @@ public class Muzan extends Role {
     @Override
     public Side getSide() {
         return Side.DS;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.List;
 public abstract class Role {
     public abstract String getName();
     public abstract Side getSide();
-    public abstract String getDescription();
 
     public void onKill(PlayerDeathEvent event) {
     }

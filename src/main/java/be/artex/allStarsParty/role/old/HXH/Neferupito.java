@@ -1,6 +1,5 @@
 package be.artex.allStarsParty.role.old.HXH;
 
-import be.artex.allStarsParty.TextUtil;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import org.bukkit.ChatColor;
@@ -12,15 +11,6 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Random;
 
 public class Neferupito extends Role {
-    private static final String DESCRIPTION = TextUtil.BORDER +
-            "\n" + ChatColor.WHITE + " Vous êtes " + ChatColor.GREEN + "Neferupito" + ChatColor.WHITE + "." +
-            "\n " +
-            "\n Lorsque vous " + ChatColor.RED + "tappez " + ChatColor.WHITE + "un joueur, vous possédez " + ChatColor.DARK_AQUA + "15% " + ChatColor.WHITE + "de chance" +
-            "\n de lui infliger " + ChatColor.DARK_GRAY + "blindless " + ChatColor.WHITE + "pendant" + ChatColor.YELLOW + " 3 secondes" + ChatColor.WHITE + "." +
-            "\n " +
-            "\n Lorsque vous " + ChatColor.RED + "tuez " + ChatColor.WHITE + "un joueur, vous gagnez" + ChatColor.GOLD + " 4 coeurs d'absorption" + ChatColor.WHITE + "." +
-            "\n" + TextUtil.BORDER;
-
     @Override
     public String getName() {
         return "Neferupito";
@@ -29,11 +19,6 @@ public class Neferupito extends Role {
     @Override
     public Side getSide() {
         return Side.HXH;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
     }
 
     @Override

@@ -28,11 +28,6 @@ public class Tobirama extends Role {
     }
 
     @Override
-    public String getDescription() {
-        return "a";
-    }
-
-    @Override
     public List<ASPItem> getItems() {
         return Collections.singletonList(ItemRegistry.HNJ);
     }

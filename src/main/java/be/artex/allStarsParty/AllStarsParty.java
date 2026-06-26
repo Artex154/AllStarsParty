@@ -2,10 +2,7 @@ package be.artex.allStarsParty;
 
 import be.artex.allStarsParty.command.ASCommand;
 import be.artex.allStarsParty.command.CommandManager;
-import be.artex.allStarsParty.command.subCommands.Composition;
-import be.artex.allStarsParty.command.subCommands.Effect;
-import be.artex.allStarsParty.command.subCommands.Finish;
-import be.artex.allStarsParty.command.subCommands.Start;
+import be.artex.allStarsParty.command.subCommands.*;
 import be.artex.allStarsParty.listener.entity.DamageByEntityListener;
 import be.artex.allStarsParty.listener.entity.EntityDamageListener;
 import be.artex.allStarsParty.listener.inventory.InventoryClickListener;
@@ -52,6 +49,7 @@ public final class AllStarsParty extends JavaPlugin {
         commandManager.registerSubCommand(new Start());
         commandManager.registerSubCommand(new Effect());
         commandManager.registerSubCommand(new Finish());
+        commandManager.registerSubCommand(new Docs());
 
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
