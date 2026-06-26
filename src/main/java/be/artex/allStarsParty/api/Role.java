@@ -41,4 +41,7 @@ public abstract class Role {
     public boolean hasNoFall() {
         return false;
     }
+
+    public void whenAssigned(Player player) {
+    }
 }

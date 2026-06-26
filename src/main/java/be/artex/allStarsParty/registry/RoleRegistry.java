@@ -2,8 +2,8 @@ package be.artex.allStarsParty.registry;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.manager.RoleManager;
-import be.artex.allStarsParty.role.DS.muzan.Muzan;
-import be.artex.allStarsParty.role.MHA.shoto.Shoto;
+import be.artex.allStarsParty.role.rewrited.muzan.Muzan;
+import be.artex.allStarsParty.role.rewrited.shoto.Shoto;
 
 public class RoleRegistry {
     public static RoleManager roleManager = new RoleManager();

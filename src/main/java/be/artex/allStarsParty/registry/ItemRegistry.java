@@ -2,20 +2,20 @@ package be.artex.allStarsParty.registry;
 
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.manager.ItemManager;
-import be.artex.allStarsParty.role.AOT.peak.DashPeak;
-import be.artex.allStarsParty.role.AOT.peak.TransformationPeak;
-import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
-import be.artex.allStarsParty.role.DS.muichiro.SouffleBrume;
-import be.artex.allStarsParty.role.DS.muzan.Sang;
-import be.artex.allStarsParty.role.DS.muzan.effectSelector.EffectSelector;
-import be.artex.allStarsParty.role.HXH.kurapika.Serment;
-import be.artex.allStarsParty.role.MHA.denki.Decharge;
-import be.artex.allStarsParty.role.MHA.hawks.AilesDAcier;
-import be.artex.allStarsParty.role.MHA.shoto.FireSide;
-import be.artex.allStarsParty.role.MHA.shoto.IceSide;
-import be.artex.allStarsParty.role.NS.HNJ;
-import be.artex.allStarsParty.role.solo.BonusGoldenApples;
-import be.artex.allStarsParty.role.solo.hisoka.JeuDeCartes;
+import be.artex.allStarsParty.role.old.AOT.peak.DashPeak;
+import be.artex.allStarsParty.role.old.AOT.peak.TransformationPeak;
+import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
+import be.artex.allStarsParty.role.old.DS.muichiro.SouffleBrume;
+import be.artex.allStarsParty.role.rewrited.muzan.Sang;
+import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
+import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
+import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.old.MHA.hawks.AilesDAcier;
+import be.artex.allStarsParty.role.rewrited.shoto.FireSide;
+import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
+import be.artex.allStarsParty.role.rewrited.tobirama.HNJ;
+import be.artex.allStarsParty.role.old.solo.BonusGoldenApples;
+import be.artex.allStarsParty.role.old.solo.hisoka.JeuDeCartes;
 
 public class ItemRegistry {
     public static ItemManager itemManager = new ItemManager();

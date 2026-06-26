@@ -5,22 +5,20 @@ import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.registry.RoleRegistry;
-import be.artex.allStarsParty.role.AOT.reiner.TransformationReiner;
-import be.artex.allStarsParty.role.DS.muzan.Sang;
-import be.artex.allStarsParty.role.DS.muzan.effectSelector.EffectSelector;
-import be.artex.allStarsParty.role.HXH.kurapika.Serment;
-import be.artex.allStarsParty.role.MHA.denki.Decharge;
-import be.artex.allStarsParty.role.MHA.shoto.FireSide;
-import be.artex.allStarsParty.role.MHA.shoto.IceSide;
-import be.artex.allStarsParty.role.solo.hisoka.HisokaPower;
+import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
+import be.artex.allStarsParty.role.rewrited.muzan.Sang;
+import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
+import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
+import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.rewrited.shoto.FireSide;
+import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
+import be.artex.allStarsParty.role.old.solo.hisoka.HisokaPower;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-
-import java.util.Collection;
 
 public class GameManager {
     private final RoleManager roleManager = RoleRegistry.roleManager;
