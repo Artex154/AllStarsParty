@@ -87,17 +87,16 @@ public class Start extends SubCommand {
         inv.setBoots(new ItemBuilder(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());
         inv.setItem(0, new ItemBuilder(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 3).build());
         inv.setItem(1, new ItemBuilder(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 1).build());
-        inv.setItem(2, new ItemStack(Material.LAVA));
+        inv.setItem(2, new ItemStack(Material.LAVA_BUCKET));
         inv.setItem(3, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE, 24));
         inv.setItem(5, new ItemStack(Material.GOLDEN_CARROT, 64));
         inv.setItem(6, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(7, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(8, new ItemStack(Material.WATER_BUCKET));
-        inv.setItem(2, new ItemStack(Material.WATER_BUCKET));
-        inv.setItem(2, new ItemStack(Material.WATER_BUCKET));
-        inv.setItem(2, new ItemStack(Material.LAVA_BUCKET));
-
+        inv.addItem(new ItemStack(Material.WATER_BUCKET));
+        inv.addItem(new ItemStack(Material.WATER_BUCKET));
+        inv.addItem(new ItemStack(Material.LAVA_BUCKET));
         inv.addItem(new ItemStack(Material.ARROW, 24));
     }
 }

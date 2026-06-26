@@ -64,7 +64,7 @@ public class FDMO extends ASPItem {
                 Speed.addSpeedToPlayer(p, 10);
         }, 200);
 
-        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez utilisé votre" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " Flux de Milles Oiseaux" + ChatColor.WHITE + ".");
+        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez utilisé votre" + ChatColor.AQUA + ChatColor.BOLD + " Flux de Milles Oiseaux" + ChatColor.WHITE + ".");
 
         cooldown.putPlayerInCooldown(player);
     }
