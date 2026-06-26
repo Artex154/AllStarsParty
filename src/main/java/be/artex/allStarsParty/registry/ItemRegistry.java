@@ -11,6 +11,8 @@ import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
 import be.artex.allStarsParty.role.old.MHA.hawks.AilesDAcier;
+import be.artex.allStarsParty.role.rewrited.sasuke.FDMO;
+import be.artex.allStarsParty.role.rewrited.sasuke.Susano;
 import be.artex.allStarsParty.role.rewrited.shoto.FireSide;
 import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
 import be.artex.allStarsParty.role.rewrited.tobirama.HNJ;
@@ -36,4 +38,6 @@ public class ItemRegistry {
     public static final ASPItem RNK = itemManager.registerItem(new RNK());
     public static final ASPItem BONUS_GOLDEN_APPLES = itemManager.registerItem(new BonusGoldenApples());
     public static final ASPItem JEU_DE_CARTES = itemManager.registerItem(new JeuDeCartes());
+    public static final ASPItem SUSANO = itemManager.registerItem(new Susano());
+    public static final ASPItem FDMO = itemManager.registerItem(new FDMO());
 }

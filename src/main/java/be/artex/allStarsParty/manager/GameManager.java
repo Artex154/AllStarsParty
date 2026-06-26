@@ -10,6 +10,8 @@ import be.artex.allStarsParty.role.rewrited.muzan.Sang;
 import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.rewrited.sasuke.FDMO;
+import be.artex.allStarsParty.role.rewrited.sasuke.Susano;
 import be.artex.allStarsParty.role.rewrited.shoto.FireSide;
 import be.artex.allStarsParty.role.rewrited.shoto.IceSide;
 import be.artex.allStarsParty.role.old.solo.hisoka.HisokaPower;
@@ -47,6 +49,8 @@ public class GameManager {
         EffectSelector.playerEffects.remove(player);
         Sang.playersBleeding.remove(player);
         RNK.playerHitNumber.remove(player);
+        Susano.playersWithSusano.remove(player);
+        FDMO.playersLightenend.remove(player);
 
         Cooldown.clearAllCooldowns(player);
     }
@@ -64,7 +68,6 @@ public class GameManager {
             p.getInventory().clear();
             p.setMaxHealth(20);
             p.setHealth(20);
-            resetAllPlayerState(p);
 
             for (PotionEffect effect : p.getActivePotionEffects())
                 p.removePotionEffect(effect.getType());

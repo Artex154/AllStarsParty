@@ -67,6 +67,7 @@ public class Start extends SubCommand {
         player.setGameMode(GameMode.SURVIVAL);
         player.teleport(generateRandomLocation(world));
         setupInventory(player.getInventory());
+        gameManager.resetAllPlayerState(player);
     }
 
     private static Location generateRandomLocation(World world) {

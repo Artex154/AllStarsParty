@@ -7,6 +7,7 @@ import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.stats.Resistance;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -77,6 +78,8 @@ public class RoleManager {
             Strength.setPlayerStrength(p, r.getStrength());
             Speed.setPlayerSpeed(p, r.getSpeed());
             Resistance.setPlayerResistance(p, r.getResistance());
+
+            p.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous êtes " + r.getSide().getColor() + ChatColor.BOLD + r.getName() + ChatColor.WHITE + ".");
 
             r.whenAssigned(p);
         }
