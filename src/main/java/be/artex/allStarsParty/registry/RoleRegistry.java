@@ -10,5 +10,6 @@ import be.artex.allStarsParty.role.rewrited.tobirama.Tobirama;
 public class RoleRegistry {
     public static RoleManager roleManager = new RoleManager();
 
-    public static final Role SASUKE = roleManager.registerRole(new Sasuke());
+    public static final Role TOBIRAMA = roleManager.registerRole(new Tobirama());
+    public static final Role MUZAN = roleManager.registerRole(new Muzan());
 }

@@ -17,7 +17,7 @@ public class Docs extends SubCommand {
         TextComponent component = new TextComponent(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Cliquez sur ce message pour ouvrir la documentation sur votre opérateur.");
         component.setClickEvent(new ClickEvent(
                 ClickEvent.Action.OPEN_URL,
-                "https://artexs-plug-ins.gitbook.io/all-stars-party"
+                "https://all-stars-party.nuclino-site.com"
         ));
 
         sender.spigot().sendMessage(component);
