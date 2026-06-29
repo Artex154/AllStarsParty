@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.muzan.effectSelector;
+package be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.gui.GUI;
@@ -70,6 +70,7 @@ public class EffectSelector extends ASPGuiOpenerItem {
 
             holder.strengthEffect = false;
             applyEffect(player, EffectSelectorType.STRENGTH);
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez choisi " + ChatColor.RED + "force" + ChatColor.WHITE + ".");
         }), 11);
 
         gui.addButton(new ItemButton(RESISTANCE, "resistance").onClick(event -> {
@@ -83,6 +84,7 @@ public class EffectSelector extends ASPGuiOpenerItem {
 
             holder.resistanceEffect = false;
             playerEffects.put(player, holder);
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez choisi " + ChatColor.GRAY + "resistance" + ChatColor.WHITE + ".");
 
             applyEffect(player, EffectSelectorType.RESISTANCE);
         }), 13);
@@ -97,6 +99,8 @@ public class EffectSelector extends ASPGuiOpenerItem {
             }
 
             holder.speedEffect = false;
+            playerEffects.put(player, holder);
+            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez choisi " + ChatColor.YELLOW + "vitesse" + ChatColor.WHITE + ".");
 
             applyEffect(player, EffectSelectorType.SPEED);
         }), 15);

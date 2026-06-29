@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.shoto;
+package be.artex.allStarsParty.role.rewrited.MHA.shoto;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.items.ASPItem;

@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.all_might;
+package be.artex.allStarsParty.role.rewrited.MHA.all_might;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;

@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.tobirama;
+package be.artex.allStarsParty.role.rewrited.NS.tobirama;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;

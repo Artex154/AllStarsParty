@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.muzan;
+package be.artex.allStarsParty.role.rewrited.DS.muzan;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
@@ -7,8 +7,8 @@ import be.artex.allStarsParty.api.stats.Resistance;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
 import be.artex.allStarsParty.registry.ItemRegistry;
-import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
-import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelectorHolder;
+import be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector.EffectSelector;
+import be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector.EffectSelectorHolder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 

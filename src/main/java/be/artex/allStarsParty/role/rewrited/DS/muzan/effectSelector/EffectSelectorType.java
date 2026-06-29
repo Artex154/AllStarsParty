@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.muzan.effectSelector;
+package be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector;
 
 import be.artex.allStarsParty.api.stats.Resistance;
 import be.artex.allStarsParty.api.stats.Speed;
