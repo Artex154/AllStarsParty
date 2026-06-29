@@ -4,6 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,7 +25,7 @@ public class USOS extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("USOS", 120*20, ChatColor.WHITE + "Votre" + ChatColor.GOLD + ChatColor.BOLD + " United States of Smash");
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
             return;
         }
 

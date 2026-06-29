@@ -4,6 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.api.stats.Resistance;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -30,7 +31,7 @@ public class Susano extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("susano", 150*20, ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "Susano");
 
         if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
             return;
         }
 
@@ -42,10 +43,11 @@ public class Susano extends ASPItem {
 
             playersWithSusano.remove(player);
             Resistance.setPlayerResistance(player, 100);
+            player.sendMessage(Message.info(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + " Susano" + ChatColor.WHITE + " cesse."));
         }, 400);
 
         playersWithSusano.add(player);
-        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez activé" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " Susano" + ChatColor.WHITE + ".");
+        player.sendMessage(Message.info("Vous avez activé" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " Susano" + ChatColor.WHITE + "."));
 
         cooldown.putPlayerInCooldown(player);
     }

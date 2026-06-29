@@ -6,6 +6,7 @@ import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import org.bukkit.Bukkit;
@@ -34,7 +35,7 @@ public class FDMO extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("FDMO", 120*20, ChatColor.WHITE + "Votre" + ChatColor.AQUA + ChatColor.BOLD + " Flux de Milles Oiseaux");
 
         if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
             return;
         }
 
@@ -55,7 +56,7 @@ public class FDMO extends ASPItem {
                 p.setHealth(p.getHealth() - 6);
             else p.setHealth(0);
 
-            p.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.DARK_PURPLE + " Sasuke" + ChatColor.WHITE + " vous foudroie.");
+            p.sendMessage(Message.info(ChatColor.DARK_PURPLE + "Sasuke" + ChatColor.WHITE + " vous foudroie."));
             Speed.removeSpeedFromPlayer(p, 10);
         }
 
@@ -64,7 +65,7 @@ public class FDMO extends ASPItem {
                 Speed.addSpeedToPlayer(p, 10);
         }, 200);
 
-        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez utilisé votre" + ChatColor.AQUA + ChatColor.BOLD + " Flux de Milles Oiseaux" + ChatColor.WHITE + ".");
+        player.sendMessage(Message.info("Vous avez utilisé votre" + ChatColor.AQUA + ChatColor.BOLD + " Flux de Milles Oiseaux" + ChatColor.WHITE + "."));
 
         cooldown.putPlayerInCooldown(player);
     }

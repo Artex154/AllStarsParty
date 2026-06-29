@@ -4,6 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public class FireSide extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("shoto_fire_side", 40*20, ChatColor.WHITE + "Votre" + ChatColor.GOLD + ChatColor.BOLD + " côté droit");
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + ChatColor.WHITE + ".");
+            damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
             return;
         }
 
@@ -47,6 +48,9 @@ public class FireSide extends ASPItem {
                 player.setFireTicks(20);
             }
         }.runTaskTimer(AllStarsParty.instance, 0L, 5L);
+
+        damager.sendMessage(Message.info("Vous avez " + ChatColor.GOLD + "enflammé " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + "."));
+        player.sendMessage(Message.info(ChatColor.BLUE + "Shoto" + ChatColor.WHITE + " vous" + ChatColor.GOLD + " enflamme" + ChatColor.WHITE + "."));
 
         cooldown.putPlayerInCooldown(damager);
     }

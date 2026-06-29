@@ -4,6 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -29,11 +30,14 @@ public class IceSide extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("shoto_ice_side", 65*20, ChatColor.WHITE + "Votre" + ChatColor.AQUA + ChatColor.BOLD + " côté droit");
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + ChatColor.WHITE + ".");
+            damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
             return;
         }
 
         playersInIce.add(player);
+
+        damager.sendMessage(Message.info("Vous avez enfermé " + ChatColor.AQUA + player.getName() + ChatColor.WHITE + " dans un" + ChatColor.AQUA + " cocon de glace" + ChatColor.WHITE + "."));
+        player.sendMessage(Message.info(ChatColor.BLUE + "Shoto" + ChatColor.WHITE + " vous enferme dans un " + ChatColor.AQUA + "cocon de glace" + ChatColor.WHITE + "."));
 
         Location loc = player.getLocation();
 

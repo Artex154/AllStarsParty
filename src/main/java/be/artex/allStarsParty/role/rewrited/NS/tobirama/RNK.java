@@ -2,6 +2,7 @@ package be.artex.allStarsParty.role.rewrited.NS.tobirama;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -24,7 +25,6 @@ public class RNK extends ASPItem {
         int hitNumber = playerHitNumber.getOrDefault(damager, 0);
         hitNumber++;
 
-
         if (hitNumber != 10) {
             playerHitNumber.put(damager, hitNumber);
             return;
@@ -33,6 +33,8 @@ public class RNK extends ASPItem {
         playerHitNumber.put(damager, 0);
 
         player.getWorld().strikeLightning(player.getLocation());
+
+        damager.sendMessage(Message.info("Vous avez foudroyé " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + "."));
 
         if ((player.getHealth() - 4) < 0)
             player.setHealth(1);

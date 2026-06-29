@@ -3,6 +3,7 @@ package be.artex.allStarsParty.role.rewrited.DS.zenitsu;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ public class FrappeFoudroyante extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("frappe_foudroyante", 15*20, ChatColor.WHITE + "Votre" + ChatColor.YELLOW + ChatColor.BOLD + " Frappe Foudroyante");
 
         if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
             return;
         }
 

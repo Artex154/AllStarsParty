@@ -3,6 +3,7 @@ package be.artex.allStarsParty.role.rewrited.NS.tobirama;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.items.ASPBowItem;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -26,7 +27,7 @@ public class HNJ extends ASPBowItem {
         Cooldown cooldown = Cooldown.getCooldown("hnj", 180, "Votre " + ChatColor.GOLD + ChatColor.BOLD + "Hiraishin no Jutsu");
 
         if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(player) + " secondes" + ChatColor.WHITE + ".");
+            player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
             return;
         }
 

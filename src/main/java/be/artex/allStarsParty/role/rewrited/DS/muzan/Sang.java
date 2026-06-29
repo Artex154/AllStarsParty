@@ -4,6 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public class Sang extends ASPItem {
         Cooldown cooldown = Cooldown.getCooldown("sang", 50*20, ChatColor.WHITE + "Votre" + ChatColor.RED + ChatColor.BOLD + " sang");
 
         if (cooldown.isPlayerInCooldown(damager)) {
-            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous êtes encore en cooldown pour " + ChatColor.DARK_AQUA + cooldown.getPlayerCooldownTimeLeft(damager) + " secondes" + ChatColor.WHITE + ".");
+            damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
             return;
         }
 
@@ -50,8 +51,8 @@ public class Sang extends ASPItem {
             }
         }.runTaskTimer(AllStarsParty.instance, 0L, 20L);
 
-        damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous faites" + ChatColor.RED + " saigné " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + ".");
-        player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.RED + " Muzan" + ChatColor.WHITE + " vous fait " + ChatColor.RED + "saigné " + ChatColor.WHITE + ".");
+        damager.sendMessage(Message.info("Vous faites" + ChatColor.RED + " saigné " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + "."));
+        player.sendMessage(Message.info(ChatColor.RED + "Muzan" + ChatColor.WHITE + " vous fait " + ChatColor.RED + "saigné " + ChatColor.WHITE + "."));
 
         cooldown.putPlayerInCooldown(damager);
     }
