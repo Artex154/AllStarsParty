@@ -6,6 +6,8 @@ import be.artex.allStarsParty.role.old.AOT.peak.DashPeak;
 import be.artex.allStarsParty.role.old.AOT.peak.TransformationPeak;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.old.DS.muichiro.SouffleBrume;
+import be.artex.allStarsParty.role.rewrited.all_might.PlusUltra;
+import be.artex.allStarsParty.role.rewrited.all_might.USOS;
 import be.artex.allStarsParty.role.rewrited.muzan.Sang;
 import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
@@ -42,4 +44,6 @@ public class ItemRegistry {
     public static final ASPItem SUSANO = itemManager.registerItem(new Susano());
     public static final ASPItem FDMO = itemManager.registerItem(new FDMO());
     public static final ASPItem FRAPPE_FOUDROYANTE = itemManager.registerItem(new FrappeFoudroyante());
+    public static final ASPItem USOS = itemManager.registerItem(new USOS());
+    public static final ASPItem PLUS_ULTRA = itemManager.registerItem(new PlusUltra());
 }

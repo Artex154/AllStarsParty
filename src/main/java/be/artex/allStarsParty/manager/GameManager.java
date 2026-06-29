@@ -6,6 +6,7 @@ import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
+import be.artex.allStarsParty.role.rewrited.all_might.PlusUltra;
 import be.artex.allStarsParty.role.rewrited.muzan.Sang;
 import be.artex.allStarsParty.role.rewrited.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
@@ -51,6 +52,7 @@ public class GameManager {
         RNK.playerHitNumber.remove(player);
         Susano.playersWithSusano.remove(player);
         FDMO.playersLightenend.remove(player);
+        PlusUltra.playersWithPlusUltra.remove(player);
 
         Cooldown.clearAllCooldowns(player);
     }
