@@ -19,6 +19,7 @@ import be.artex.allStarsParty.role.rewrited.tobirama.HNJ;
 import be.artex.allStarsParty.role.old.solo.BonusGoldenApples;
 import be.artex.allStarsParty.role.old.solo.hisoka.JeuDeCartes;
 import be.artex.allStarsParty.role.rewrited.tobirama.RNK;
+import be.artex.allStarsParty.role.rewrited.zenitsu.FrappeFoudroyante;
 
 public class ItemRegistry {
     public static ItemManager itemManager = new ItemManager();
@@ -40,4 +41,5 @@ public class ItemRegistry {
     public static final ASPItem JEU_DE_CARTES = itemManager.registerItem(new JeuDeCartes());
     public static final ASPItem SUSANO = itemManager.registerItem(new Susano());
     public static final ASPItem FDMO = itemManager.registerItem(new FDMO());
+    public static final ASPItem FRAPPE_FOUDROYANTE = itemManager.registerItem(new FrappeFoudroyante());
 }

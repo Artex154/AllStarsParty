@@ -42,7 +42,7 @@ public class Susano extends ASPItem {
 
             playersWithSusano.remove(player);
             Resistance.setPlayerResistance(player, 100);
-        }, 2000);
+        }, 400);
 
         playersWithSusano.add(player);
         player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE + " Vous avez activé" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + " Susano" + ChatColor.WHITE + ".");

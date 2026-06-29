@@ -1,6 +1,5 @@
 package be.artex.allStarsParty.listener.entity;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Role;
@@ -30,7 +29,6 @@ public class DamageByEntityListener implements Listener {
             event.setCancelled(true);
             return;
         }
-
 
         int resistance = Resistance.getPlayerResistance(player);
         int strength = Strength.getPlayerStrength(damager);
