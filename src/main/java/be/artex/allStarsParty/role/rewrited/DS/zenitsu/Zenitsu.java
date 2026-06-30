@@ -39,8 +39,8 @@ public class Zenitsu extends Role {
         int i = random.nextInt(100);
 
         if (i <= 33) {
-            Speed.addSpeedToPlayer(player, 1);
-            player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous avez gagné " + ChatColor.YELLOW + "1% de vitesse" + ChatColor.WHITE + ".");
+            Speed.addSpeedToPlayer(damager, 1);
+            damager.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏" + ChatColor.WHITE +" Vous avez gagné " + ChatColor.YELLOW + "1% de vitesse" + ChatColor.WHITE + ".");
         }
     }
 }

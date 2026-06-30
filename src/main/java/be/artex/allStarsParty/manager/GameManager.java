@@ -4,6 +4,9 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.Side;
+import be.artex.allStarsParty.api.stats.Resistance;
+import be.artex.allStarsParty.api.stats.Speed;
+import be.artex.allStarsParty.api.stats.Strength;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.rewrited.MHA.all_might.PlusUltra;
@@ -53,6 +56,10 @@ public class GameManager {
         Susano.playersWithSusano.remove(player);
         FDMO.playersLightenend.remove(player);
         PlusUltra.playersWithPlusUltra.remove(player);
+
+        Speed.setPlayerSpeed(player, 100);
+        Strength.setPlayerStrength(player, 100);
+        Resistance.setPlayerResistance(player, 100);
 
         Cooldown.clearAllCooldowns(player);
     }
