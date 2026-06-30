@@ -15,6 +15,7 @@ import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
 import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.FDMO;
 import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.Susano;
+import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.OFA;
 import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.FireSide;
 import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.IceSide;
 import be.artex.allStarsParty.role.old.solo.hisoka.HisokaPower;
@@ -54,6 +55,9 @@ public class GameManager {
         RNK.playerHitNumber.remove(player);
         Susano.playersWithSusano.remove(player);
         FDMO.playersLightenend.remove(player);
+        OFA.playersTimeLeft.remove(player);
+        OFA.playersActivated.remove(player);
+        OFA.playersWhenActivated.remove(player);
 
         Speed.setPlayerSpeed(player, 100);
         Strength.setPlayerStrength(player, 100);

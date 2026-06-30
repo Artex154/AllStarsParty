@@ -34,7 +34,6 @@ public class OFA extends ASPItem {
         boolean isActivated = playersActivated.getOrDefault(player, false);
         long currentTimeLeftTicks = playersTimeLeft.getOrDefault(player, 45*20L);
         long currentSystemMillis = System.currentTimeMillis();
-        int currentTimeLeftSeconds = Math.round((float) currentTimeLeftTicks / 20);
 
         if (isActivated) {
             playersActivated.put(player, false);
