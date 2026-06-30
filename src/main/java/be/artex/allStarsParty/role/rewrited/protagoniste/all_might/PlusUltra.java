@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.MHA.all_might;
+package be.artex.allStarsParty.role.rewrited.protagoniste.all_might;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;

@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.MHA.shoto;
+package be.artex.allStarsParty.role.rewrited.protagoniste.shoto;
 
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Role;
@@ -20,7 +20,7 @@ public class Shoto extends Role {
 
     @Override
     public Side getSide() {
-        return Side.MHA;
+        return Side.PROTAGONISTE;
     }
 
     @Override

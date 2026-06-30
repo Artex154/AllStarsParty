@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.NS.tobirama;
+package be.artex.allStarsParty.role.rewrited.protagoniste.tobirama;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.Cooldown;

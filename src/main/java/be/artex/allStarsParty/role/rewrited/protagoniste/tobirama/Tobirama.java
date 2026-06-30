@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.NS.tobirama;
+package be.artex.allStarsParty.role.rewrited.protagoniste.tobirama;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
@@ -24,7 +24,7 @@ public class Tobirama extends Role {
 
     @Override
     public Side getSide() {
-        return Side.NS;
+        return Side.PROTAGONISTE;
     }
 
     @Override

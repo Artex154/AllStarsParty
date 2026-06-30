@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector;
+package be.artex.allStarsParty.role.rewrited.antagoniste.muzan.effectSelector;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.gui.GUI;

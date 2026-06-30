@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.MHA.all_might;
+package be.artex.allStarsParty.role.rewrited.protagoniste.all_might;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
@@ -16,7 +16,7 @@ public class AllMight extends Role {
 
     @Override
     public Side getSide() {
-        return Side.MHA;
+        return Side.PROTAGONISTE;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.NS.sasuke;
+package be.artex.allStarsParty.role.rewrited.antagoniste.sasuke;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;

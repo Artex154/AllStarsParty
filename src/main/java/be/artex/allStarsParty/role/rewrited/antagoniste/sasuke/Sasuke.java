@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.NS.sasuke;
+package be.artex.allStarsParty.role.rewrited.antagoniste.sasuke;
 
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
@@ -19,7 +19,7 @@ public class Sasuke extends Role {
 
     @Override
     public Side getSide() {
-        return Side.NS;
+        return Side.ANTAGONISTE;
     }
 
     @Override

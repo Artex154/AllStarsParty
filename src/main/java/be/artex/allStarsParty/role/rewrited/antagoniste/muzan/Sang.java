@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.DS.muzan;
+package be.artex.allStarsParty.role.rewrited.antagoniste.muzan;
 
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;

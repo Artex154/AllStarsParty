@@ -1,7 +1,7 @@
 package be.artex.allStarsParty.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.role.rewrited.MHA.shoto.IceSide;
+import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.IceSide;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

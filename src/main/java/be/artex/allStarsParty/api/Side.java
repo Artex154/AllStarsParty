@@ -10,6 +10,8 @@ public enum Side {
     NS("Naruto", ChatColor.DARK_PURPLE),
     YORIICHI("Yoriichi", ChatColor.YELLOW),
     HISOKA("Hisoka", ChatColor.YELLOW),
+    PROTAGONISTE("Protagonistes", ChatColor.GREEN),
+    ANTAGONISTE("Antagonistes", ChatColor.RED),
     ;
 
     private final String name;

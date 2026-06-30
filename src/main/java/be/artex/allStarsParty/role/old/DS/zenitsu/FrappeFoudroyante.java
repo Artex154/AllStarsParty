@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.rewrited.DS.zenitsu;
+package be.artex.allStarsParty.role.old.DS.zenitsu;
 
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;

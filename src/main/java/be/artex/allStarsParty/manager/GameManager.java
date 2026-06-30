@@ -9,17 +9,17 @@ import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
 import be.artex.allStarsParty.registry.RoleRegistry;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
-import be.artex.allStarsParty.role.rewrited.MHA.all_might.PlusUltra;
-import be.artex.allStarsParty.role.rewrited.DS.muzan.Sang;
-import be.artex.allStarsParty.role.rewrited.DS.muzan.effectSelector.EffectSelector;
+import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.PlusUltra;
+import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.Sang;
+import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
-import be.artex.allStarsParty.role.rewrited.NS.sasuke.FDMO;
-import be.artex.allStarsParty.role.rewrited.NS.sasuke.Susano;
-import be.artex.allStarsParty.role.rewrited.MHA.shoto.FireSide;
-import be.artex.allStarsParty.role.rewrited.MHA.shoto.IceSide;
+import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.FDMO;
+import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.Susano;
+import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.FireSide;
+import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.IceSide;
 import be.artex.allStarsParty.role.old.solo.hisoka.HisokaPower;
-import be.artex.allStarsParty.role.rewrited.NS.tobirama.RNK;
+import be.artex.allStarsParty.role.rewrited.protagoniste.tobirama.RNK;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -68,7 +68,7 @@ public class GameManager {
         setInGame(false);
 
         PlayerUtil.sendMessageToAllPlayers(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GREEN + "Victoire " + ChatColor.WHITE + "du camp " + winningSide.getColor() + winningSide.getName() + ChatColor.WHITE + "."
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GREEN + "Victoire " + ChatColor.WHITE + "du camp des " + winningSide.getColor() + winningSide.getName() + ChatColor.WHITE + "."
         );
 
         for (Player p : Bukkit.getOnlinePlayers()) {
