@@ -75,6 +75,12 @@ public class Start extends SubCommand {
 
         int x = random.nextInt(25);
         int z = random.nextInt(25);
+
+        if (Math.random() < 0.5)
+            x = -x;
+        if (Math.random() < 0.5)
+            z = -z;
+
         int y = world.getHighestBlockYAt(x, z);
 
         return new Location(world, x, y, z);
