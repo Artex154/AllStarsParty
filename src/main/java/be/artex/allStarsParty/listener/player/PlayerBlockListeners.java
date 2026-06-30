@@ -14,6 +14,9 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 public class PlayerBlockListeners implements Listener {
     @EventHandler
     public void onPlayerBlockPlace(BlockPlaceEvent event) {
+        if (event.getBlock().getType() == Material.DIAMOND_BLOCK)
+            event.setCancelled(true);
+
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () ->
                 event.getBlock().setType(Material.AIR), 10*20L);
     }

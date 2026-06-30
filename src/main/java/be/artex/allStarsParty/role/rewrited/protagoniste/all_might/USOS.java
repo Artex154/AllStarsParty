@@ -7,6 +7,7 @@ import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -33,13 +34,17 @@ public class USOS extends ASPItem {
             player.setHealth(0);
         else player.setHealth(player.getHealth() - 4);
 
-        player.setVelocity(new Vector(0, 1.75, 0));
+        Location location = player.getLocation();
+        location.add(0, 1, 0);
+        player.teleport(location);
+
+        player.setVelocity(new Vector(0, 1.5f, 0));
 
         Vector direction = player.getLocation().toVector()
                 .subtract(damager.getLocation().toVector())
-                .normalize().multiply(10);
+                .multiply(10).normalize();
 
-        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> player.setVelocity(direction), 10);
+        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> player.setVelocity(direction), 5);
 
         cooldown.putPlayerInCooldown(damager);
     }

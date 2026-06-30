@@ -20,16 +20,11 @@ public class AllMight extends Role {
     }
 
     @Override
-    public int getStrength() {
-        return 110;
-    }
-
-    @Override
     public List<ASPItem> getItems() {
         ArrayList<ASPItem> list = new ArrayList<>();
 
         list.add(ItemRegistry.USOS);
-        list.add(ItemRegistry.PLUS_ULTRA);
+        list.add(ItemRegistry.OFA);
 
         return list;
     }

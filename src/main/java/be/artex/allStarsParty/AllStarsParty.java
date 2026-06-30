@@ -56,7 +56,6 @@ public final class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteractionListener(), this);
         getServer().getPluginManager().registerEvents(new DamageByEntityListener(), this);
         getServer().getPluginManager().registerEvents(new ItemDamageListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteractionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerBlockListeners(), this);
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
         getServer().getPluginManager().registerEvents(new ProjectileListeners(), this);
