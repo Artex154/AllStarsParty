@@ -67,7 +67,7 @@ public class OFA extends ASPItem {
             Resistance.addResistanceToPlayer(player, 10);
 
             Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-                if (playersWhenActivated.get(player) == currentSystemMillis) {
+                if (playersWhenActivated.get(player) == currentSystemMillis && playersActivated.get(player)) {
                     Strength.removeStrengthFromPlayer(player, 10);
                     Speed.removeSpeedFromPlayer(player, 15);
                     Resistance.removeResistanceFromPlayer(player, 10);
