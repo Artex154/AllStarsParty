@@ -1,8 +1,10 @@
 package be.artex.allStarsParty.listener.player;
 
 import be.artex.allStarsParty.AllStarsParty;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.IceSide;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,8 +16,13 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 public class PlayerBlockListeners implements Listener {
     @EventHandler
     public void onPlayerBlockPlace(BlockPlaceEvent event) {
-        if (event.getBlock().getType() == Material.DIAMOND_BLOCK)
-            event.setCancelled(true);
+        switch (event.getBlock().getType()) {
+            case DIAMOND_BLOCK:
+                event.setCancelled(true);
+            case BARRIER:
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(Message.error(ChatColor.RED + "Tomura " + ChatColor.WHITE + "a désactivé cet item."));
+        }
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () ->
                 event.getBlock().setType(Material.AIR), 10*20L);

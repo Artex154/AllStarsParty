@@ -6,6 +6,8 @@ import be.artex.allStarsParty.role.old.AOT.peak.DashPeak;
 import be.artex.allStarsParty.role.old.AOT.peak.TransformationPeak;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.old.DS.muichiro.SouffleBrume;
+import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Mains;
+import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Unusable;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.OFA;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.USOS;
 import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.Sang;
@@ -46,4 +48,6 @@ public class ItemRegistry {
     public static final ASPItem FRAPPE_FOUDROYANTE = itemManager.registerItem(new FrappeFoudroyante());
     public static final ASPItem USOS = itemManager.registerItem(new USOS());
     public static final ASPItem OFA = itemManager.registerItem(new OFA());
+    public static final ASPItem MAINS = itemManager.registerItem(new Mains());
+    public static final ASPItem UNUSABLE = itemManager.registerItem(new Unusable());
 }
