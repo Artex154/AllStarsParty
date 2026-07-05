@@ -12,6 +12,7 @@ public enum Side {
     HISOKA("Hisoka", ChatColor.YELLOW),
     PROTAGONISTE("Protagonistes", ChatColor.GREEN),
     ANTAGONISTE("Antagonistes", ChatColor.RED),
+    JIGO_ZEN("Jigoro & Zen'itsu", ChatColor.YELLOW),
     ;
 
     private final String name;

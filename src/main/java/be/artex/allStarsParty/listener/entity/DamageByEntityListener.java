@@ -1,5 +1,6 @@
 package be.artex.allStarsParty.listener.entity;
 
+import be.artex.allStarsParty.manager.RoleManager;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.api.items.ASPItem;
 import be.artex.allStarsParty.api.Role;
@@ -14,6 +15,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class DamageByEntityListener implements Listener {
+    private static final RoleManager ROLE_MANAGER = RoleRegistry.roleManager;
+
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager() == null || event.getEntity() == null)
@@ -39,10 +42,17 @@ public class DamageByEntityListener implements Listener {
 
         ItemStack stack = damager.getItemInHand();
 
-        Role damagerRole = RoleRegistry.roleManager.getPlayerRole(damager);
+        Role damagerRole = ROLE_MANAGER.getPlayerRole(damager);
 
-        if (damagerRole != null)
+        if (damagerRole != null) {
             damagerRole.onHit(player, damager, fDamage);
+            damagerRole.onHit(player, damager, fDamage, event);
+        }
+
+        Role playerRole = ROLE_MANAGER.getPlayerRole(player);
+
+        if (playerRole != null)
+            playerRole.whenHit(player, damager, fDamage, event);
 
         ASPItem item = ItemRegistry.itemManager.getItemFromStack(stack);
 

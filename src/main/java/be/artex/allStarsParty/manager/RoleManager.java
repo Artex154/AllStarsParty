@@ -11,10 +11,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class RoleManager {
     private final List<Role> registeredRoles = new ArrayList<>();
-    private final Map<UUID, Role> playersRole = new HashMap<>();
+    private final Map<Player, Role> playersRole = new HashMap<>();
     private final List<Role> aliveRoles = new ArrayList<>(registeredRoles);
 
     public List<Role> getRegisteredRoles() {
@@ -26,11 +27,19 @@ public class RoleManager {
     }
 
     public Role getPlayerRole(Player player) {
-        return playersRole.get(player.getUniqueId());
+        return playersRole.get(player);
     }
 
     public void setPlayerRole(Player player, Role role) {
-        playersRole.put(player.getUniqueId(), role);
+        playersRole.put(player, role);
+    }
+
+    public Set<Player> getPlayersWithRole(Role role) {
+        return playersRole.entrySet()
+                .stream()
+                .filter(entry -> Objects.equals(entry.getValue(), role))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 
     public boolean isWonBy(Side side, List<Role> aliveRoles) {

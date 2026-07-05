@@ -1,4 +1,4 @@
-package be.artex.allStarsParty.role.old.DS.zenitsu;
+package be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu;
 
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
@@ -22,6 +22,12 @@ public class FrappeFoudroyante extends ASPItem {
     @Override
     public void onInteraction(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+
+        if (Zenitsu.isAwake(player.getUniqueId())) {
+            player.sendMessage(Message.error("Vous devez être endormi pour utiliser la " + ChatColor.YELLOW + ChatColor.BOLD + "Frappe Foudroyante" + ChatColor.WHITE + "."));
+            return;
+        }
+
         Cooldown cooldown = Cooldown.getCooldown("frappe_foudroyante", 15*20, ChatColor.WHITE + "Votre" + ChatColor.YELLOW + ChatColor.BOLD + " Frappe Foudroyante");
 
         if (cooldown.isPlayerInCooldown(player)) {

@@ -1,7 +1,9 @@
 package be.artex.allStarsParty.api;
 
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.registry.RoleRegistry;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.Collections;
@@ -14,7 +16,21 @@ public abstract class Role {
     public void onKill(PlayerDeathEvent event) {
     }
 
+    /**
+     * @deprecated in favor of {@link #onHit(Player, Player, double, EntityDamageByEntityEvent)}
+     */
+    @Deprecated
     public void onHit(Player player, Player damager, double damage) {
+    }
+
+    public void onHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+    }
+
+    public void whenKilled(PlayerDeathEvent event) {
+    }
+
+    public void whenHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+
     }
 
     public List<ASPItem> getItems() {
@@ -42,5 +58,10 @@ public abstract class Role {
     }
 
     public void whenAssigned(Player player) {
+    }
+
+    public final Role register() {
+        RoleRegistry.roleManager.registerRole(this);
+        return this;
     }
 }

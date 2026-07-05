@@ -8,6 +8,7 @@ import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.old.DS.muichiro.SouffleBrume;
 import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Mains;
 import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Unusable;
+import be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu.DDFC;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.OFA;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.USOS;
 import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.Sang;
@@ -23,7 +24,7 @@ import be.artex.allStarsParty.role.rewrited.protagoniste.tobirama.HNJ;
 import be.artex.allStarsParty.role.old.solo.BonusGoldenApples;
 import be.artex.allStarsParty.role.old.solo.hisoka.JeuDeCartes;
 import be.artex.allStarsParty.role.rewrited.protagoniste.tobirama.RNK;
-import be.artex.allStarsParty.role.old.DS.zenitsu.FrappeFoudroyante;
+import be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu.FrappeFoudroyante;
 
 public class ItemRegistry {
     public static ItemManager itemManager = new ItemManager();
@@ -46,6 +47,7 @@ public class ItemRegistry {
     public static final ASPItem SUSANO = itemManager.registerItem(new Susano());
     public static final ASPItem FDMO = itemManager.registerItem(new FDMO());
     public static final ASPItem FRAPPE_FOUDROYANTE = itemManager.registerItem(new FrappeFoudroyante());
+    public static final ASPItem DDFC = itemManager.registerItem(new DDFC());
     public static final ASPItem USOS = itemManager.registerItem(new USOS());
     public static final ASPItem OFA = itemManager.registerItem(new OFA());
     public static final ASPItem MAINS = itemManager.registerItem(new Mains());

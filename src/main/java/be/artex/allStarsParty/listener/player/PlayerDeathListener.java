@@ -24,6 +24,8 @@ public class PlayerDeathListener implements Listener {
         Player player = event.getEntity();
         Role playerRole = roleManager.getPlayerRole(player);
 
+        playerRole.whenKilled(event);
+
         event.getDrops().clear();
         event.setDeathMessage(
                 ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
