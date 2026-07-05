@@ -41,7 +41,7 @@ public class OFA extends ASPItem {
             player.sendMessage(Message.info("Vous avez" + ChatColor.RED + " désactivé" + ChatColor.WHITE + " le " + ChatColor.GOLD + ChatColor.BOLD + "One For All" + ChatColor.WHITE + "."));
 
             Strength.removeStrengthFromPlayer(player, 10);
-            Speed.removeSpeedFromPlayer(player, 15);
+            Speed.removeSpeedFromPlayer(player, 30);
             Resistance.removeResistanceFromPlayer(player, 10);
 
             long elapsedMillis = currentSystemMillis - playersWhenActivated.get(player);
@@ -63,13 +63,13 @@ public class OFA extends ASPItem {
             playersWhenActivated.put(player, currentSystemMillis);
 
             Strength.addStrengthToPlayer(player, 10);
-            Speed.addSpeedToPlayer(player, 15);
+            Speed.addSpeedToPlayer(player, 30);
             Resistance.addResistanceToPlayer(player, 10);
 
             Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
                 if (playersWhenActivated.get(player) == currentSystemMillis && playersActivated.get(player)) {
                     Strength.removeStrengthFromPlayer(player, 10);
-                    Speed.removeSpeedFromPlayer(player, 15);
+                    Speed.removeSpeedFromPlayer(player, 30);
                     Resistance.removeResistanceFromPlayer(player, 10);
 
                     player.sendMessage(Message.warn("Le " + ChatColor.GOLD + ChatColor.BOLD + "One For All" + ChatColor.WHITE + " cesse."));
