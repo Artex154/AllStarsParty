@@ -83,7 +83,7 @@ public class Zenitsu extends Role {
 
     @Override
     public void whenAssigned(Player player) {
-        if (!RoleRegistry.roleManager.getRolesAlive().codntains(RoleRegistry.JIGORO)) {
+        if (!RoleRegistry.roleManager.getRolesAlive().contains(RoleRegistry.JIGORO)) {
             putAsleep(player, SleepState.ASLEEP_PERMANENT);
             player.sendMessage(Message.info(ChatColor.YELLOW + "Jigoro " + ChatColor.WHITE + "n'est pas présent dans cette partie. Vous avez donc les effets d'endormissement de façon permanente en plus d'une utilisation supplémentaire du " + ChatColor.GOLD + ChatColor.BOLD + "Dieu du Feu Céleste" + ChatColor.WHITE + "."));
         }
