@@ -4,6 +4,7 @@ import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.OFA;
 import org.bukkit.ChatColor;
@@ -38,6 +39,15 @@ public class Obito extends Role {
     @Override
     public void whenAssigned(Player player) {
         player.getInventory().setItem(0, GUNBAI.clone());
+    }
+
+    @Override
+    public void whenHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+        if (!Intigibility.playersActivated.contains(player))
+            return;
+
+        event.setCancelled(true);
+        damager.sendMessage(Message.error(ChatColor.RED + "Obito" + ChatColor.WHITE + " a activé son " + ChatColor.LIGHT_PURPLE + "intigibilité" + ChatColor.WHITE + ". Vous ne savez donc pas le tapper."));
     }
 
     @Override

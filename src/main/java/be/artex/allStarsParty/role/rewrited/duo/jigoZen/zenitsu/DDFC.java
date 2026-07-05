@@ -67,6 +67,6 @@ public class DDFC extends ASPItem {
             Strength.removeStrengthFromPlayer(player, 20);
             Speed.removeSpeedFromPlayer(player, 50);
             player.sendMessage(Message.info("Les effets du " + ChatColor.GOLD + ChatColor.BOLD + " Dieu du Feu Céleste" + ChatColor.WHITE + " cesse."));
-        }, 400);
+        }, 200);
     }
 }
