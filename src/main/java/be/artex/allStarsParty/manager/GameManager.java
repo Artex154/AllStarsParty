@@ -13,8 +13,10 @@ import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.Sang;
 import be.artex.allStarsParty.role.rewrited.antagoniste.muzan.effectSelector.EffectSelector;
 import be.artex.allStarsParty.role.old.HXH.kurapika.Serment;
 import be.artex.allStarsParty.role.old.MHA.denki.Decharge;
+import be.artex.allStarsParty.role.rewrited.antagoniste.obito.Intigibility;
 import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.FDMO;
 import be.artex.allStarsParty.role.rewrited.antagoniste.sasuke.Susano;
+import be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu.DDFC;
 import be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu.Zenitsu;
 import be.artex.allStarsParty.role.rewrited.protagoniste.all_might.OFA;
 import be.artex.allStarsParty.role.rewrited.protagoniste.shoto.FireSide;
@@ -60,6 +62,11 @@ public class GameManager {
         OFA.playersActivated.remove(player);
         OFA.playersWhenActivated.remove(player);
         Zenitsu.playersAsleep.remove(player.getUniqueId());
+        DDFC.playersWith7thMove.remove(player.getUniqueId());
+        DDFC.playersActivation.remove(player.getUniqueId());
+        Intigibility.playersActivated.remove(player);
+        Intigibility.playersWhenActivated.remove(player);
+        Intigibility.playersTimeLeft.remove(player);
 
         Speed.setPlayerSpeed(player, 100);
         Strength.setPlayerStrength(player, 100);

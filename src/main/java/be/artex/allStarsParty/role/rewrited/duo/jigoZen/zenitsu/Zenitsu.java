@@ -43,7 +43,12 @@ public class Zenitsu extends Role {
 
     @Override
     public List<ASPItem> getItems() {
-        return Collections.singletonList(ItemRegistry.FRAPPE_FOUDROYANTE);
+        ArrayList<ASPItem> list = new ArrayList<>();
+
+        list.add(ItemRegistry.FRAPPE_FOUDROYANTE);
+        list.add(ItemRegistry.DDFC);
+
+        return list;
     }
 
     @Override

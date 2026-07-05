@@ -6,6 +6,7 @@ import be.artex.allStarsParty.role.old.AOT.peak.DashPeak;
 import be.artex.allStarsParty.role.old.AOT.peak.TransformationPeak;
 import be.artex.allStarsParty.role.old.AOT.reiner.TransformationReiner;
 import be.artex.allStarsParty.role.old.DS.muichiro.SouffleBrume;
+import be.artex.allStarsParty.role.rewrited.antagoniste.obito.Intigibility;
 import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Mains;
 import be.artex.allStarsParty.role.rewrited.antagoniste.tomura.mains.Unusable;
 import be.artex.allStarsParty.role.rewrited.duo.jigoZen.zenitsu.DDFC;
@@ -52,4 +53,5 @@ public class ItemRegistry {
     public static final ASPItem OFA = itemManager.registerItem(new OFA());
     public static final ASPItem MAINS = itemManager.registerItem(new Mains());
     public static final ASPItem UNUSABLE = itemManager.registerItem(new Unusable());
+    public static final ASPItem INTIGIBILITY = itemManager.registerItem(new Intigibility());
 }
