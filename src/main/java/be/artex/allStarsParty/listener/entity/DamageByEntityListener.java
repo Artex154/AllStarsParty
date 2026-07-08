@@ -36,7 +36,9 @@ public class DamageByEntityListener implements Listener {
         int resistance = Resistance.getPlayerResistance(player);
         int strength = Strength.getPlayerStrength(damager);
         double bDamage = event.getDamage();
-        double fDamage = (bDamage / 100) * (100 + resistance - strength);
+        double fDamage = (bDamage / 100) * (100 - resistance + strength);
+
+        System.out.println(fDamage);
 
         event.setDamage(fDamage);
 

@@ -52,8 +52,8 @@ public class FDMO extends ASPItem {
             playersLightenend.add(p);
             p.damage(0.1);
 
-            if ((p.getHealth() - 6) > 0)
-                p.setHealth(p.getHealth() - 6);
+            if ((p.getHealth() - 4) > 0)
+                p.setHealth(p.getHealth() - 4);
             else p.setHealth(0);
 
             p.sendMessage(Message.info(ChatColor.DARK_PURPLE + "Sasuke" + ChatColor.WHITE + " vous foudroie."));

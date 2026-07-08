@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -49,5 +50,11 @@ public class PlayerBlockListeners implements Listener {
             case ICE:
                 event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent event) {
+        if (event.getCause() == BlockIgniteEvent.IgniteCause.LIGHTNING)
+            event.setCancelled(true);
     }
 }

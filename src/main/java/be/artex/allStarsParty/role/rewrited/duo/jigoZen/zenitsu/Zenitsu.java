@@ -105,8 +105,17 @@ public class Zenitsu extends Role {
     public static void putAsleep(Player player, SleepState sleepState) {
         UUID uuid = player.getUniqueId();
 
-        if (!isAwake(uuid) || sleepState == SleepState.AWAKE || sleepState == SleepState.ASLEEP_PERMANENT)
+        if (!isAwake(uuid) || sleepState == SleepState.AWAKE)
             return;
+
+        if (sleepState == SleepState.ASLEEP_PERMANENT) {
+            playersAsleep.put(uuid, sleepState);
+
+            Strength.addStrengthToPlayer(player, 15);
+            Speed.addSpeedToPlayer(player, 10);
+
+            return;
+        }
 
         playersAsleep.put(uuid, sleepState);
 

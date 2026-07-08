@@ -36,9 +36,9 @@ public class RNK extends ASPItem {
 
         damager.sendMessage(Message.info("Vous avez foudroyé " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + "."));
 
-        if ((player.getHealth() - 4) < 0)
-            player.setHealth(1);
+        if ((player.getHealth() - 3) < 0)
+            player.setHealth(0);
         else
-            player.setHealth(player.getHealth() - 4);
+            player.setHealth(player.getHealth() - 3);
     }
 }

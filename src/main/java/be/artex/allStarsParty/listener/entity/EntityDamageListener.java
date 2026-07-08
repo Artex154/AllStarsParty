@@ -23,7 +23,7 @@ public class EntityDamageListener implements Listener {
 
         switch (cause) {
             case LIGHTNING:
-                event.setCancelled(true);
+                event.setDamage(0);
             case FALL:
                 if (role == null)
                     return;
