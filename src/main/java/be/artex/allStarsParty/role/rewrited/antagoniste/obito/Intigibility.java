@@ -35,17 +35,9 @@ public class Intigibility extends ASPItem {
         long currentSystemMillis = System.currentTimeMillis();
 
         if (isActivated) {
-            playersActivated.remove(player);
-
             player.sendMessage(Message.info("Vous avez" + ChatColor.RED + " désactivé" + ChatColor.WHITE + " l'" + ChatColor.LIGHT_PURPLE + ChatColor.BOLD + "intigibilité" + ChatColor.WHITE + "."));
 
-            long elapsedMillis = currentSystemMillis - playersWhenActivated.get(player);
-            long elapsedTicks = elapsedMillis / 50;
-
-            long remainingTicks = currentTimeLeftTicks - elapsedTicks;
-            playersTimeLeft.put(player, Math.max(0L, remainingTicks));
-
-            player.sendMessage(Message.info("Il vous reste " + ChatColor.DARK_AQUA + ((float) remainingTicks / 20) + " secondes" + ChatColor.WHITE + "."));
+            disableIntigibility(player, currentSystemMillis, currentSystemMillis);
         } else {
             if (currentTimeLeftTicks == 0L) {
                 player.sendMessage(Message.error("Il ne vous reste " + ChatColor.RED + "aucun temps" + ChatColor.WHITE + "."));
@@ -65,6 +57,17 @@ public class Intigibility extends ASPItem {
                 }
             }, currentTimeLeftTicks);
         }
+    }
 
+    public static void disableIntigibility(Player player, long currentTimeLeftTicks, long currentSystemMillis) {
+        playersActivated.remove(player);
+
+        long elapsedMillis = currentSystemMillis - playersWhenActivated.get(player);
+        long elapsedTicks = elapsedMillis / 50;
+
+        long remainingTicks = currentTimeLeftTicks - elapsedTicks;
+        playersTimeLeft.put(player, Math.max(0L, remainingTicks));
+
+        player.sendMessage(Message.info("Il vous reste " + ChatColor.DARK_AQUA + ((float) remainingTicks / 20) + " secondes" + ChatColor.WHITE + "."));
     }
 }

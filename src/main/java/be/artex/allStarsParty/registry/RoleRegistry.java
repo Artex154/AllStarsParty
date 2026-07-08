@@ -15,9 +15,9 @@ import be.artex.allStarsParty.role.rewrited.protagoniste.tobirama.Tobirama;
 public class RoleRegistry {
     public static RoleManager roleManager = new RoleManager();
 
-    public static final Role ZENITSU = new Zenitsu();
+    public static final Role ZENITSU = new Zenitsu().register();
     public static final Role JIGORO = new Jigoro();
     public static final Role SHOTO = new Shoto();
-    public static final Role TOBIRAMA = new Tobirama().register();
-    public static final Role MUZAN = new Muzan().register();
+    public static final Role OBITO = new Obito().register();
+    public static final Role ALL_MIGHT = new AllMight().register();
 }

@@ -25,7 +25,7 @@ public class FireSide extends ASPItem {
 
     @Override
     public void onHit(Player damager, Player player, double damage) {
-        Cooldown cooldown = Cooldown.getCooldown("shoto_fire_side", 40*20, ChatColor.WHITE + "Votre" + ChatColor.GOLD + ChatColor.BOLD + " côté droit");
+        Cooldown cooldown = Cooldown.getCooldown("shoto_fire_side", 40*20, ChatColor.WHITE + "Votre" + ChatColor.GOLD + ChatColor.BOLD + " côté gauche");
 
         if (cooldown.isPlayerInCooldown(damager)) {
             damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
