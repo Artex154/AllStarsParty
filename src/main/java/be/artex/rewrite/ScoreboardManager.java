@@ -4,6 +4,7 @@ import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,19 +26,19 @@ public class ScoreboardManager {
         );
     }
 
-    private static String getRoleNameFromPlayer(Player player) {
+    private static @NotNull String getRoleNameFromPlayer(@NotNull Player player) {
         return "Sasuke";
     }
 
-    private static String getOnlinePlayers() {
+    private static @NotNull String getOnlinePlayers() {
         return Bukkit.getOnlinePlayers().size() + "/" + 4;
     }
 
-    private static int getAmountOfKills(Player player) {
+    private static int getAmountOfKills(@NotNull Player player) {
         return 1;
     }
 
-    private static String getDate() {
+    private static @NotNull String getDate() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -49,7 +50,7 @@ public class ScoreboardManager {
             updateScoreboard(boards.get(player.getUniqueId()), player);
     }
 
-    public static void updateAllPlayerScoreboardsExcept(Player p) {
+    public static void updateAllPlayerScoreboardsExcept(@NotNull Player p) {
         List<Player> onlinePlayers = new ArrayList<>(Bukkit.getOnlinePlayers());
 
         onlinePlayers.remove(p);
