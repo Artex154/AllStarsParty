@@ -3,6 +3,7 @@ package be.artex.allStarsParty.listener.player;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.PlayerUtil;
 import be.artex.allStarsParty.api.Role;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.manager.GameManager;
 import be.artex.allStarsParty.manager.RoleManager;
 import be.artex.allStarsParty.api.Side;
@@ -41,6 +42,8 @@ public class PlayerDeathListener implements Listener {
 
             killerRole.onKill(event);
             killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 5));
+
+            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(player.getHealth() * 2) / 4 + " coeurs" + ChatColor.WHITE + ".")));
         }
 
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();

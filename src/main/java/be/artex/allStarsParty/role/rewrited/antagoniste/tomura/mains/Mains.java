@@ -28,8 +28,8 @@ public class Mains extends ASPItem {
     public void onHit(Player damager, Player player, double damage) {
         Cooldown cooldown = Cooldown.getCooldown("mains", 90*20, ChatColor.WHITE + "Vos " +ChatColor.GRAY + ChatColor.BOLD + "Mains");
 
-        if (cooldown.isPlayerInCooldown(player)) {
-            player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
+        if (cooldown.isPlayerInCooldown(damager)) {
+            damager.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(damager)));
             return;
         }
 
@@ -43,6 +43,8 @@ public class Mains extends ASPItem {
                 player.getInventory().setItem(holder.getPlacement(), holder.getStack());
             }
         }, 7*20L);
+
+        cooldown.putPlayerInCooldown(damager);
     }
 
 }
