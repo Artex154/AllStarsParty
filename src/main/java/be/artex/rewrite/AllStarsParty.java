@@ -1,6 +1,8 @@
 package be.artex.rewrite;
 
 import be.artex.rewrite.api.GameManager;
+import be.artex.rewrite.commands.ASCommand;
+import be.artex.rewrite.commands.subCommands.HelpSubCommand;
 import be.artex.rewrite.listener.ConnectionsEventListener;
 import be.artex.rewrite.listener.EntityDamageByEntityListener;
 import be.artex.rewrite.listener.PlayerDeathListener;
@@ -21,5 +23,9 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
         WorldUtil.setupSpawnArea();
+
+        new HelpSubCommand().register();
+
+        getCommand("as").setExecutor(new ASCommand());
     }
 }
