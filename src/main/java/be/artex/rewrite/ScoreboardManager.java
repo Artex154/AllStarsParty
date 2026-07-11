@@ -1,5 +1,6 @@
 package be.artex.rewrite;
 
+import be.artex.rewrite.api.role.Role;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +19,7 @@ public class ScoreboardManager {
                 ChatColor.GRAY + "  " + ChatColor.ITALIC + getDate(),
                 " ",
                 ChatColor.GOLD + "" + ChatColor.BOLD + "» Informations",
-                ChatColor.GOLD + "" + ChatColor.BOLD + " - " + ChatColor.WHITE + "Joueurs: " + ChatColor.GOLD + ChatColor.BOLD + getOnlinePlayers(),
+                ChatColor.GOLD + "" + ChatColor.BOLD + " - " + ChatColor.WHITE + "Joueurs: " + ChatColor.GOLD + ChatColor.BOLD + getPlayerCount(),
                 ChatColor.GOLD + "" + ChatColor.BOLD + " - " + ChatColor.WHITE + "Rôle: " + ChatColor.GOLD + ChatColor.BOLD + getRoleNameFromPlayer(player),
                 ChatColor.GOLD + "" + ChatColor.BOLD + " - " + ChatColor.WHITE + "Kills: " + ChatColor.GOLD + ChatColor.BOLD + getAmountOfKills(player),
                 " ",
@@ -27,11 +28,19 @@ public class ScoreboardManager {
     }
 
     private static @NotNull String getRoleNameFromPlayer(@NotNull Player player) {
-        return "Sasuke";
+        Role role = Role.manager.getPlayerRole(player.getUniqueId());
+
+        if (role == null)
+            return "Aucun";
+
+        return role.getName();
     }
 
-    private static @NotNull String getOnlinePlayers() {
-        return Bukkit.getOnlinePlayers().size() + "/" + 4;
+    private static @NotNull String getPlayerCount() {
+        if (AllStarsParty.gameManager.isInGame())
+            return String.valueOf(Role.manager.getRolesAlive().size());
+
+        return Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.gameManager.getMaxPlayerCount();
     }
 
     private static int getAmountOfKills(@NotNull Player player) {

@@ -1,6 +1,7 @@
 package be.artex.rewrite.listener;
 
 import be.artex.rewrite.ScoreboardManager;
+import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.world.WorldUtil;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
@@ -12,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.potion.PotionEffect;
 
 public class ConnectionsEventListener implements Listener {
     @EventHandler
@@ -29,12 +29,7 @@ public class ConnectionsEventListener implements Listener {
 
         player.setGameMode(GameMode.ADVENTURE);
         player.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
-        player.getInventory().clear();
-        player.setMaxHealth(20);
-        player.setHealth(20);
-
-        for (PotionEffect effect : player.getActivePotionEffects())
-            player.removePotionEffect(effect.getType());
+        PlayerUtil.resetPlayerStates(player);
     }
 
     @EventHandler

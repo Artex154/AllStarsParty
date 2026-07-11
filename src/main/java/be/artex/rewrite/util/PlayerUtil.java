@@ -3,6 +3,7 @@ package be.artex.rewrite.util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
@@ -36,5 +37,19 @@ public class PlayerUtil {
 
             team.addEntry(player.getName());
         }
+    }
+
+    public static void resetPlayerStates(Player player) {
+        player.getInventory().clear();
+        player.setMaxHealth(20);
+        player.setHealth(20);
+
+        for (PotionEffect effect : player.getActivePotionEffects())
+            player.removePotionEffect(effect.getType());
+
+        Stats stats = Stats.get(player.getUniqueId());
+
+        stats.setStrengthBonus(0);
+        stats.setResistanceBonus(0);
     }
 }

@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.*;
 
@@ -32,8 +33,20 @@ public abstract class Role {
             return playersRole.get(uuid);
         }
 
+        public @NotNull @Unmodifiable List<Role> getRegisteredRoles() {
+            return Collections.unmodifiableList(registeredRoles);
+        }
+
+        public @NotNull @Unmodifiable List<Role> getRolesAlive() {
+            return Collections.unmodifiableList(aliveRoles);
+        }
+
         public boolean isRoleAlive(@NotNull Role role) {
             return aliveRoles.contains(role);
+        }
+
+        public boolean isWonBy(Side side, List<Role> aliveRoles) {
+            return aliveRoles.stream().allMatch(role -> role.getSide() == side);
         }
 
         public void removeAliveRole(@NotNull Role role) {
