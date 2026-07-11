@@ -16,14 +16,6 @@ public class WorldUtil {
     public static final int CENTER_Y = 120;
     public static final int CENTER_Z = -1256;
 
-    public static void setupWorldBorder() {
-        final int BORDER_SIZE = 100;
-        WorldBorder border = world.getWorldBorder();
-
-        border.setCenter(CENTER_X, CENTER_Y);
-        border.setSize(BORDER_SIZE);
-    }
-
     public static void setupSpawnArea() {
         final int HALF_SIZE = 6;
         final int WALL_HEIGHT = 4;

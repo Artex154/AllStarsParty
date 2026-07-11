@@ -15,7 +15,6 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageByEntity(), this);
 
-        WorldUtil.setupWorldBorder();
         WorldUtil.setupSpawnArea();
     }
 }
