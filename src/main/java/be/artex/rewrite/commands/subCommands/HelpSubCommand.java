@@ -12,8 +12,21 @@ public class HelpSubCommand extends SubCommand {
 
     @Override
     public void whenCalled(Player sender) {
-        sender.sendMessage(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des commandes \n" +
-                ChatColor.WHITE + " - " + ChatColor.GOLD + ChatColor.BOLD + "/as help: " + ChatColor.WHITE + "donne la liste de toutes les commandes.\n ");
+        StringBuilder str = new StringBuilder();
 
+        str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des commandes \n");
+
+        SubCommand.manager.getRegisteredCommands().forEach(c ->
+                str.append(ChatColor.WHITE + " - " + ChatColor.GOLD + ChatColor.BOLD + "/as " + c.getArgument()[0] + ChatColor.WHITE + ": " + c.getDescription()
+        ));
+
+        str.append("\n ");
+
+        sender.sendMessage(String.valueOf(str));
+    }
+
+    @Override
+    public String getDescription() {
+        return "Donne la liste de toutes les commandes.";
     }
 }
