@@ -20,6 +20,6 @@ public class EntityDamageByEntityListener implements Listener {
 
         double multiplier = 1 + (damagerStrengthBonus - playerResistanceBonus) / 100;
 
-        event.setDamage(event.getFinalDamage() * multiplier);
+        event.setDamage(event.getDamage() * multiplier);
     }
 }

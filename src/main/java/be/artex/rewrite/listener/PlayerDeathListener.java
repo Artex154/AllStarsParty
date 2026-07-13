@@ -4,6 +4,7 @@ import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
+import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -24,14 +25,17 @@ public class PlayerDeathListener implements Listener {
 
         event.getDrops().clear();
 
-        if (playerRole != null)
+        if (playerRole != null) {
             event.setDeathMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
+                    ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
+
+            Role.manager.removeAliveRole(playerRole);
+        }
 
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
 
-            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(player.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
+            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
         }
 
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();
@@ -46,7 +50,7 @@ public class PlayerDeathListener implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        event.setRespawnLocation(new Location(be.artex.allStarsParty.AllStarsParty.world, be.artex.allStarsParty.AllStarsParty.CENTER_X, be.artex.allStarsParty.AllStarsParty.CENTER_Y + 2, be.artex.allStarsParty.AllStarsParty.CENTER_Z));
+        event.setRespawnLocation(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
 
         if (AllStarsParty.gameManager.isInGame())
             event.getPlayer().setGameMode(GameMode.SPECTATOR);

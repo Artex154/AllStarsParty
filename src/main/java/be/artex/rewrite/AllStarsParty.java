@@ -2,10 +2,14 @@ package be.artex.rewrite;
 
 import be.artex.rewrite.api.GameManager;
 import be.artex.rewrite.commands.ASCommand;
+import be.artex.rewrite.commands.subCommands.CompositionSubCommand;
 import be.artex.rewrite.commands.subCommands.HelpSubCommand;
+import be.artex.rewrite.commands.subCommands.StartSubCommand;
 import be.artex.rewrite.listener.ConnectionsEventListener;
 import be.artex.rewrite.listener.EntityDamageByEntityListener;
 import be.artex.rewrite.listener.PlayerDeathListener;
+import be.artex.rewrite.registry.RoleRegistry;
+import be.artex.rewrite.role.A;
 import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,7 +28,11 @@ public class AllStarsParty extends JavaPlugin {
 
         WorldUtil.setupSpawnArea();
 
+        RoleRegistry.registerRoles();
+
         new HelpSubCommand().register();
+        new CompositionSubCommand().register();
+        new StartSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());
     }

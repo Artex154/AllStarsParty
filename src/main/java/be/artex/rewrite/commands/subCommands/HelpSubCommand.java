@@ -14,13 +14,11 @@ public class HelpSubCommand extends SubCommand {
     public void whenCalled(Player sender) {
         StringBuilder str = new StringBuilder();
 
-        str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des commandes \n");
+        str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des commandes \n ");
 
         SubCommand.manager.getRegisteredCommands().forEach(c ->
-                str.append(ChatColor.WHITE + " - " + ChatColor.GOLD + ChatColor.BOLD + "/as " + c.getArgument()[0] + ChatColor.WHITE + ": " + c.getDescription()
+                str.append(ChatColor.WHITE + "- " + ChatColor.GOLD + ChatColor.BOLD + "/as " + c.getArgument()[0] + ChatColor.WHITE + ": " + c.getDescription() + "\n "
         ));
-
-        str.append("\n ");
 
         sender.sendMessage(String.valueOf(str));
     }

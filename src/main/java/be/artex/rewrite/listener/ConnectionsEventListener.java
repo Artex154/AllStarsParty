@@ -1,6 +1,11 @@
 package be.artex.rewrite.listener;
 
+import be.artex.allStarsParty.api.message.Message;
+import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.ScoreboardManager;
+import be.artex.rewrite.api.GameManager;
+import be.artex.rewrite.api.role.Role;
+import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.world.WorldUtil;
 import fr.mrmicky.fastboard.FastBoard;
@@ -42,5 +47,26 @@ public class ConnectionsEventListener implements Listener {
 
         ScoreboardManager.boards.remove(event.getPlayer().getUniqueId());
         ScoreboardManager.updateAllPlayerScoreboardsExcept(player);
+
+        Role playerRole = Role.manager.getPlayerRole(player.getUniqueId());
+
+        if (playerRole == null)
+            return;
+
+        Role.manager.removePlayerRole(player.getUniqueId());
+
+        if (AllStarsParty.gameManager.isInGame()) {
+            Role.manager.removeAliveRole(playerRole);
+
+            Side firstSide = Role.manager.getRolesAlive().get(0).getSide();
+
+            if (Role.manager.isWonBy(firstSide, Role.manager.getRolesAlive())) {
+                AllStarsParty.gameManager.end();
+
+                Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
+            }
+
+            ScoreboardManager.updateAllPlayerScoreboardsExcept(player);
+        }
     }
 }

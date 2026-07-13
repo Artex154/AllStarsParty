@@ -43,6 +43,7 @@ public class PlayerUtil {
         player.getInventory().clear();
         player.setMaxHealth(20);
         player.setHealth(20);
+        PlayerUtil.setGlobalNameColor(player, ChatColor.WHITE);
 
         for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());

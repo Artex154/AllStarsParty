@@ -4,7 +4,8 @@ import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
 
 public enum Side {
-    ;
+    PROTAGONISTES("Protagonistes", ChatColor.GREEN),
+    ANTAGONISTES("Antagonistes", ChatColor.RED);
 
     private final ChatColor color;
     private final String name;

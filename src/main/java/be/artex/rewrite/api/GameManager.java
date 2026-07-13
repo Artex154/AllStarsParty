@@ -3,6 +3,7 @@ package be.artex.rewrite.api;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.util.PlayerUtil;
+import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -21,7 +22,7 @@ public class GameManager {
         return inGame;
     }
 
-    public static void start() {
+    public void start() {
         if (inGame)
             return;
 
@@ -39,7 +40,7 @@ public class GameManager {
         Role.manager.finishGame();
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.teleport(new Location(AllStarsParty.world, AllStarsParty.CENTER_X, AllStarsParty.CENTER_Y + 2, AllStarsParty.CENTER_Z));
+            p.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
             p.setGameMode(GameMode.ADVENTURE);
 
             PlayerUtil.resetPlayerStates(p);

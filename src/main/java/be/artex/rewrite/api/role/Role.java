@@ -1,8 +1,10 @@
 package be.artex.rewrite.api.role;
 
+import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.util.PlayerUtil;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -10,7 +12,7 @@ import org.jetbrains.annotations.Unmodifiable;
 import java.util.*;
 
 public abstract class Role {
-    public static final Role.Manager manager = new Manager();
+    public static final Role.Manager manager = Manager.get(AllStarsParty.instance);
 
     public abstract @NotNull String getName();
     public abstract @NotNull Side getSide();
@@ -21,9 +23,18 @@ public abstract class Role {
     }
 
     public static class Manager {
+        private static final Map<Plugin, Manager> managers = new HashMap<>();
+
         private final List<Role> registeredRoles = new ArrayList<>();
         private final Map<UUID, Role> playersRole = new HashMap<>();
-        private final List<Role> aliveRoles = new ArrayList<>(registeredRoles);
+        private final List<Role> aliveRoles = new ArrayList<>();
+
+        private Manager() {
+        }
+
+        public static @NotNull Manager get(@NotNull Plugin plugin) {
+            return managers.computeIfAbsent(plugin, ignored -> new Manager());
+        }
 
         public void setPlayerRole(@NotNull UUID uuid, @NotNull Role role) {
             playersRole.put(uuid, role);
@@ -51,6 +62,10 @@ public abstract class Role {
 
         public void removeAliveRole(@NotNull Role role) {
             aliveRoles.remove(role);
+        }
+
+        public void removePlayerRole(@NotNull UUID player) {
+            playersRole.remove(player);
         }
 
         public void startGame(List<Player> players) {
