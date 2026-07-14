@@ -9,7 +9,6 @@ import be.artex.rewrite.listener.ConnectionsEventListener;
 import be.artex.rewrite.listener.EntityDamageByEntityListener;
 import be.artex.rewrite.listener.PlayerDeathListener;
 import be.artex.rewrite.registry.RoleRegistry;
-import be.artex.rewrite.role.A;
 import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,6 +26,7 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
         WorldUtil.setupSpawnArea();
+        WorldUtil.defineGameRules();
 
         RoleRegistry.registerRoles();
 

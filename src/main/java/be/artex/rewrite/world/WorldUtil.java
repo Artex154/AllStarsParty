@@ -45,4 +45,10 @@ public class WorldUtil {
         return spawnLocations.get(0);
     }
 
+    public static void defineGameRules() {
+        world.setGameRuleValue("naturalRegeneration", "false");
+        world.setGameRuleValue("doDaylightCycle", "false");
+        world.setGameRuleValue("doMobSpawning", "false");
+    }
+
 }
