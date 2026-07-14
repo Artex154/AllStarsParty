@@ -3,7 +3,6 @@ package be.artex.rewrite.listener;
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.ScoreboardManager;
-import be.artex.rewrite.api.GameManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.util.PlayerUtil;
@@ -24,7 +23,7 @@ public class ConnectionsEventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        event.setJoinMessage(ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a rejoint la partie." + ChatColor.GOLD + " (" + Bukkit.getOnlinePlayers().size() + "/" + 4 + ")");
+        event.setJoinMessage(ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a rejoint la partie." + ChatColor.GOLD + " (" + Bukkit.getOnlinePlayers().size() + "/" + Role.manager.getRegisteredRoles().size() + ")");
 
         FastBoard board = new FastBoard(player);
         board.updateTitle(ChatColor.GOLD + "" + ChatColor.BOLD + ChatColor.BOLD + " All Stars Party ");
@@ -42,7 +41,7 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + 4 + ")"
+                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + Role.manager.getRegisteredRoles().size() + ")"
         );
 
         ScoreboardManager.boards.remove(event.getPlayer().getUniqueId());
