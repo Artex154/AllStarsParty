@@ -1,6 +1,7 @@
 package be.artex.rewrite;
 
 import be.artex.rewrite.api.role.Role;
+import be.artex.rewrite.listener.PlayerDeathListener;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -44,7 +45,7 @@ public class ScoreboardManager {
     }
 
     private static int getAmountOfKills(@NotNull Player player) {
-        return 1;
+        return PlayerDeathListener.playersKillAmount.getOrDefault(player.getUniqueId(), 0);
     }
 
     private static @NotNull String getDate() {

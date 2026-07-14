@@ -2,6 +2,7 @@ package be.artex.rewrite.listener;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
+import be.artex.rewrite.ScoreboardManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.world.WorldUtil;
@@ -15,8 +16,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class PlayerDeathListener implements Listener {
     private static final Role.Manager roleManager = Role.manager;
+    public static final Map<UUID, Integer> playersKillAmount = new HashMap<>();
 
     @EventHandler
     public static void onPlayerDeath(PlayerDeathEvent event) {
@@ -35,6 +41,10 @@ public class PlayerDeathListener implements Listener {
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
 
+            int amountOfKills = playersKillAmount.getOrDefault(killer.getUniqueId(), 0);
+            amountOfKills++;
+            playersKillAmount.put(killer.getUniqueId(), amountOfKills);
+
             player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
         }
 
@@ -46,6 +56,7 @@ public class PlayerDeathListener implements Listener {
             Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
         }
 
+        ScoreboardManager.updateAllPlayerScoreboards();
     }
 
     @EventHandler
