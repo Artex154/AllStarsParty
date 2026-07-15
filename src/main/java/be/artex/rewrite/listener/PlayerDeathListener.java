@@ -18,21 +18,21 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
     private static final Role.Manager roleManager = Role.manager;
-    public static final Map<UUID, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
+    public static final Map<Player, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
 
     @EventHandler
-    public static void onPlayerDeath(PlayerDeathEvent event) {
+    public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         Role playerRole = roleManager.getPlayerRole(player.getUniqueId());
 
         event.getDrops().clear();
+        event.setDeathMessage("");
 
         if (playerRole != null) {
-            event.setDeathMessage(
+            Bukkit.broadcastMessage(
                     ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
             Role.manager.removeAliveRole(playerRole);
@@ -41,9 +41,9 @@ public class PlayerDeathListener implements Listener {
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
 
-            int amountOfKills = PLAYERS_KILL_AMOUNT.getOrDefault(killer.getUniqueId(), 0);
+            int amountOfKills = PLAYERS_KILL_AMOUNT.getOrDefault(killer, 0);
             amountOfKills++;
-            PLAYERS_KILL_AMOUNT.put(killer.getUniqueId(), amountOfKills);
+            PLAYERS_KILL_AMOUNT.put(killer, amountOfKills);
 
             player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
         }
@@ -51,9 +51,11 @@ public class PlayerDeathListener implements Listener {
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();
 
         if (roleManager.isWonBy(firstSide, roleManager.getRolesAlive())) {
+            Bukkit.broadcastMessage(getKillLeaderBoard());
+
             AllStarsParty.gameManager.end();
 
-            Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
+            Bukkit.broadcastMessage(" \n" + Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
         }
 
         ScoreboardManager.updateAllPlayerScoreboards();
@@ -67,5 +69,31 @@ public class PlayerDeathListener implements Listener {
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
         else
             event.getPlayer().setGameMode(GameMode.ADVENTURE);
+    }
+
+    private String getKillLeaderBoard() {
+        Map<Player, Integer> allPlayersWithKills = new HashMap<>();
+
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            allPlayersWithKills.put(onlinePlayer, PLAYERS_KILL_AMOUNT.getOrDefault(onlinePlayer, 0));
+        }
+
+        StringBuilder killLeaderboard = new StringBuilder(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Classement du nombre de kills \n ");
+
+        allPlayersWithKills.entrySet().stream()
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                .forEach(entry -> {
+                    Player p = entry.getKey();
+                    int kills = entry.getValue();
+                    Role playerRoleForKills = roleManager.getPlayerRole(p.getUniqueId());
+                    String roleName = playerRoleForKills != null ? playerRoleForKills.getName() : "Inconnu";
+                    String roleColor = playerRoleForKills != null ?
+                            playerRoleForKills.getSide().getColor().toString() :
+                            ChatColor.GRAY.toString();
+
+                    killLeaderboard.append(ChatColor.GOLD + "" + ChatColor.BOLD + "- " + ChatColor.WHITE + p.getName() + " (" + roleColor + roleName + ChatColor.WHITE + "): " + ChatColor.GOLD + ChatColor.BOLD + kills + " kill(s)\n ");
+                });
+
+        return String.valueOf(killLeaderboard);
     }
 }

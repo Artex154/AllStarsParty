@@ -50,6 +50,7 @@ public class GameManager {
         }
 
         BlockListeners.PLACED_BLOCKS.forEach(b -> b.setType(Material.AIR));
+        BlockListeners.PLACED_BLOCKS.clear();
         PlayerDeathListener.PLAYERS_KILL_AMOUNT.clear();
 
     }
