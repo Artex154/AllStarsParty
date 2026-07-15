@@ -49,6 +49,7 @@ public class WorldUtil {
         world.setGameRuleValue("naturalRegeneration", "false");
         world.setGameRuleValue("doDaylightCycle", "false");
         world.setGameRuleValue("doMobSpawning", "false");
+        world.setGameRuleValue("doFireTick", "false");
     }
 
 }

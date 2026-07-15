@@ -5,6 +5,7 @@ import be.artex.rewrite.commands.ASCommand;
 import be.artex.rewrite.commands.subCommands.CompositionSubCommand;
 import be.artex.rewrite.commands.subCommands.HelpSubCommand;
 import be.artex.rewrite.commands.subCommands.StartSubCommand;
+import be.artex.rewrite.listener.BlockListeners;
 import be.artex.rewrite.listener.ConnectionsEventListener;
 import be.artex.rewrite.listener.EntityDamageByEntityListener;
 import be.artex.rewrite.listener.PlayerDeathListener;
@@ -24,6 +25,7 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ConnectionsEventListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new BlockListeners(), this);
 
         WorldUtil.setupSpawnArea();
         WorldUtil.defineGameRules();

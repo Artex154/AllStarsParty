@@ -22,7 +22,7 @@ import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
     private static final Role.Manager roleManager = Role.manager;
-    public static final Map<UUID, Integer> playersKillAmount = new HashMap<>();
+    public static final Map<UUID, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
 
     @EventHandler
     public static void onPlayerDeath(PlayerDeathEvent event) {
@@ -41,9 +41,9 @@ public class PlayerDeathListener implements Listener {
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
 
-            int amountOfKills = playersKillAmount.getOrDefault(killer.getUniqueId(), 0);
+            int amountOfKills = PLAYERS_KILL_AMOUNT.getOrDefault(killer.getUniqueId(), 0);
             amountOfKills++;
-            playersKillAmount.put(killer.getUniqueId(), amountOfKills);
+            PLAYERS_KILL_AMOUNT.put(killer.getUniqueId(), amountOfKills);
 
             player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
         }

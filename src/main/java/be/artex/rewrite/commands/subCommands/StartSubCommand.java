@@ -84,6 +84,7 @@ public class StartSubCommand extends SubCommand {
         inv.addItem(new ItemStack(Material.WATER_BUCKET));
         inv.addItem(new ItemStack(Material.LAVA_BUCKET));
         inv.addItem(new ItemStack(Material.ARROW, 24));
+        inv.addItem(new ItemStack(Material.DIAMOND_PICKAXE, 24));
     }
 
 

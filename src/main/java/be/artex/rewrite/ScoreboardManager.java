@@ -45,7 +45,7 @@ public class ScoreboardManager {
     }
 
     private static int getAmountOfKills(@NotNull Player player) {
-        return PlayerDeathListener.playersKillAmount.getOrDefault(player.getUniqueId(), 0);
+        return PlayerDeathListener.PLAYERS_KILL_AMOUNT.getOrDefault(player.getUniqueId(), 0);
     }
 
     private static @NotNull String getDate() {
