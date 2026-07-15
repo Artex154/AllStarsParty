@@ -2,9 +2,8 @@ package be.artex.rewrite.commands.subCommands;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.rewrite.AllStarsParty;
-import be.artex.rewrite.ScoreboardManager;
+import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.GameManager;
-import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.commands.SubCommand;
 import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.world.WorldUtil;
@@ -14,9 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class StartSubCommand extends SubCommand {
     private final GameManager gameManager = AllStarsParty.gameManager;
@@ -84,7 +81,7 @@ public class StartSubCommand extends SubCommand {
         inv.addItem(new ItemStack(Material.WATER_BUCKET));
         inv.addItem(new ItemStack(Material.LAVA_BUCKET));
         inv.addItem(new ItemStack(Material.ARROW, 24));
-        inv.addItem(new ItemStack(Material.DIAMOND_PICKAXE, 24));
+        inv.addItem(new ItemStack(Material.DIAMOND_PICKAXE));
     }
 
 

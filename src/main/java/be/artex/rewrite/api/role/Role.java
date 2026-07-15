@@ -2,6 +2,7 @@ package be.artex.rewrite.api.role;
 
 import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.util.PlayerUtil;
+import be.artex.rewrite.util.Stats;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -17,6 +18,14 @@ public abstract class Role {
     public abstract @NotNull String getName();
     public abstract @NotNull Side getSide();
     public abstract @NotNull TextComponent getDescription();
+
+    public int getBonusStrength() {
+        return 0;
+    }
+
+    public int getBonusResistance() {
+        return 0;
+    }
 
     public final void register() {
         manager.registeredRoles.add(this);
@@ -94,6 +103,10 @@ public abstract class Role {
             setPlayerRole(player.getUniqueId(), role);
             PlayerUtil.setGlobalNameColor(player, role.getSide().getColor());
             player.spigot().sendMessage(role.getDescription());
+
+            Stats playerStats = Stats.get(player.getUniqueId());
+            playerStats.setResistanceBonus(role.getBonusResistance());
+            playerStats.setStrengthBonus(role.getBonusStrength());
         }
     }
 }

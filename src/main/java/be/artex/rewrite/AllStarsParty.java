@@ -3,6 +3,7 @@ package be.artex.rewrite;
 import be.artex.rewrite.api.GameManager;
 import be.artex.rewrite.commands.ASCommand;
 import be.artex.rewrite.commands.subCommands.CompositionSubCommand;
+import be.artex.rewrite.commands.subCommands.EffectSubCommand;
 import be.artex.rewrite.commands.subCommands.HelpSubCommand;
 import be.artex.rewrite.commands.subCommands.StartSubCommand;
 import be.artex.rewrite.listener.BlockListeners;
@@ -35,6 +36,7 @@ public class AllStarsParty extends JavaPlugin {
         new HelpSubCommand().register();
         new CompositionSubCommand().register();
         new StartSubCommand().register();
+        new EffectSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());
     }

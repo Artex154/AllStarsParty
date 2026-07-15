@@ -2,7 +2,7 @@ package be.artex.rewrite.listener;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
-import be.artex.rewrite.ScoreboardManager;
+import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.world.WorldUtil;

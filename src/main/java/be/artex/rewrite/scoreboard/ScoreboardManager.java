@@ -1,5 +1,6 @@
-package be.artex.rewrite;
+package be.artex.rewrite.scoreboard;
 
+import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.listener.PlayerDeathListener;
 import fr.mrmicky.fastboard.FastBoard;
