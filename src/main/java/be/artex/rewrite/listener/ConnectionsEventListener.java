@@ -32,6 +32,10 @@ public class ConnectionsEventListener implements Listener {
         ScoreboardManager.updateAllPlayerScoreboards();
 
         player.setGameMode(GameMode.ADVENTURE);
+
+        if (AllStarsParty.gameManager.isInGame())
+            player.setGameMode(GameMode.SPECTATOR);
+
         player.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
         PlayerUtil.resetPlayerStates(player);
     }

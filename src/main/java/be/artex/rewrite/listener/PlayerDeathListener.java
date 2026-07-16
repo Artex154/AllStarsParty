@@ -55,7 +55,7 @@ public class PlayerDeathListener implements Listener {
 
             AllStarsParty.gameManager.end();
 
-            Bukkit.broadcastMessage(" \n" + Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
+            Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
         }
 
         ScoreboardManager.updateAllPlayerScoreboards();

@@ -48,9 +48,6 @@ public class PlayerUtil {
         for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());
 
-        Stats stats = Stats.get(player.getUniqueId());
-
-        stats.setStrengthBonus(0);
-        stats.setResistanceBonus(0);
+        Stats.remove(player.getUniqueId());
     }
 }

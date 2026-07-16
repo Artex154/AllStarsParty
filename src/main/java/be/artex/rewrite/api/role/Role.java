@@ -2,6 +2,7 @@ package be.artex.rewrite.api.role;
 
 import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.util.PlayerUtil;
+import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
@@ -24,6 +25,10 @@ public abstract class Role {
     }
 
     public int getBonusResistance() {
+        return 0;
+    }
+
+    public int getBonusSpeed() {
         return 0;
     }
 
@@ -105,8 +110,9 @@ public abstract class Role {
             player.spigot().sendMessage(role.getDescription());
 
             Stats playerStats = Stats.get(player.getUniqueId());
-            playerStats.setResistanceBonus(role.getBonusResistance());
-            playerStats.setStrengthBonus(role.getBonusStrength());
+            playerStats.setBonus(StatValues.RESISTANCE, role.getBonusResistance());
+            playerStats.setBonus(StatValues.STRENGTH, role.getBonusStrength());
+            playerStats.setBonus(StatValues.SPEED, role.getBonusSpeed());
         }
     }
 }

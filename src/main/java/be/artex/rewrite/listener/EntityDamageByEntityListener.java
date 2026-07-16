@@ -1,5 +1,6 @@
 package be.artex.rewrite.listener;
 
+import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,8 +16,8 @@ public class EntityDamageByEntityListener implements Listener {
         Player player = (Player) event.getEntity();
         Player damager = (Player) event.getDamager();
 
-        double playerResistanceBonus = Stats.get(player.getUniqueId()).getResistanceBonus();
-        double damagerStrengthBonus = Stats.get(damager.getUniqueId()).getStrengthBonus();
+        double playerResistanceBonus = Stats.get(player.getUniqueId()).getBonus(StatValues.RESISTANCE);
+        double damagerStrengthBonus = Stats.get(damager.getUniqueId()).getBonus(StatValues.STRENGTH);
 
         double multiplier = 1 + (damagerStrengthBonus - playerResistanceBonus) / 100;
 
