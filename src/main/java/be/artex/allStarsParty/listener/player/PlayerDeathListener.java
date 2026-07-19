@@ -43,7 +43,7 @@ public class PlayerDeathListener implements Listener {
             killerRole.onKill(event);
             killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 5));
 
-            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(player.getHealth() * 2) / 4 + " coeurs" + ChatColor.WHITE + ".")));
+            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(player.getHealth() * 2) / 4 + "❤" + ChatColor.WHITE + ".")));
         }
 
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();

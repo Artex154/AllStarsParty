@@ -1,9 +1,10 @@
 package be.artex.rewrite.api.item;
 
-import be.artex.allStarsParty.AllStarsParty;
+import be.artex.rewrite.AllStarsParty;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,12 +25,30 @@ public class Cooldown {
         this.displayName = displayName;
     }
 
-    public static Cooldown getCooldown(String cooldownID, long cooldownTime) {
+    public static @NotNull Cooldown getCooldown(String cooldownID, long cooldownTime) {
         return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime, "<N/A>"));
     }
 
-    public static Cooldown getCooldown(String cooldownID, long cooldownTime, String name) {
+    public static @NotNull Cooldown getCooldown(String cooldownID, long cooldownTime, String name) {
         return cooldowns.computeIfAbsent(cooldownID, id -> new Cooldown(cooldownTime, name));
+    }
+
+    public long getPlayerCooldownTimeLeft(Player player) {
+        if (!isPlayerInCooldown(player))
+            return 0;
+
+        long startTime = cooldownStartTimes.getOrDefault(player, 0L);
+        long elapsedMillis = System.currentTimeMillis() - startTime;
+
+        long cooldownMillis = cooldownTime * 50L;
+
+        long remainingMillis = cooldownMillis - elapsedMillis;
+
+        return Math.max(0, remainingMillis / 1000);
+    }
+
+    public boolean isPlayerInCooldown(Player player) {
+        return playerCooldowns.contains(player);
     }
 
     public static void clearAllCooldowns(Player player) {
@@ -37,10 +56,6 @@ public class Cooldown {
             cooldown.playerCooldowns.remove(player);
             cooldown.cooldownStartTimes.remove(player);
         }
-    }
-
-    public boolean isPlayerInCooldown(Player player) {
-        return playerCooldowns.contains(player);
     }
 
     public void putPlayerInCooldown(Player player) {
@@ -61,18 +76,8 @@ public class Cooldown {
         }, cooldownTime);
     }
 
-    public long getPlayerCooldownTimeLeft(Player player) {
-        if (!isPlayerInCooldown(player))
-            return 0;
-
-        long startTime = cooldownStartTimes.getOrDefault(player, 0L);
-        long elapsedMillis = System.currentTimeMillis() - startTime;
-
-        long cooldownMillis = cooldownTime * 50L;
-
-        long remainingMillis = cooldownMillis - elapsedMillis;
-
-        return Math.max(0, remainingMillis / 1000);
+    public void removePlayerCooldown(Player player) {
+        playerCooldowns.remove(player);
+        cooldownStartTimes.remove(player);
     }
-
 }

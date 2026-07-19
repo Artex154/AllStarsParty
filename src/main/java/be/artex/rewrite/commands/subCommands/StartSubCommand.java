@@ -69,7 +69,7 @@ public class StartSubCommand extends SubCommand {
         inv.setLeggings(new ItemBuilder(Material.IRON_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).build());
         inv.setBoots(new ItemBuilder(Material.DIAMOND_BOOTS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());
         inv.setItem(0, new ItemBuilder(Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 3).build());
-        inv.setItem(1, new ItemBuilder(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 1).build());
+        inv.setItem(1, new ItemBuilder(Material.BOW).addEnchant(Enchantment.ARROW_DAMAGE, 3).build());
         inv.setItem(2, new ItemStack(Material.LAVA_BUCKET));
         inv.setItem(3, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE, 24));

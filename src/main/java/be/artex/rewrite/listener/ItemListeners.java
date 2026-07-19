@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class ItemListener implements Listener {
+public class ItemListeners implements Listener {
     @EventHandler
     public void onItemInteract(PlayerInteractEvent event) {
         ItemStack stack = event.getItem();

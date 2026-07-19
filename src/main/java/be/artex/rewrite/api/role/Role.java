@@ -1,11 +1,13 @@
 package be.artex.rewrite.api.role;
 
 import be.artex.rewrite.AllStarsParty;
+import be.artex.rewrite.api.item.CustomItem;
 import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
-import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +20,7 @@ public abstract class Role {
 
     public abstract @NotNull String getName();
     public abstract @NotNull Side getSide();
-    public abstract @NotNull TextComponent getDescription();
+    public abstract @NotNull String getDescription();
 
     public int getBonusStrength() {
         return 0;
@@ -30,6 +32,19 @@ public abstract class Role {
 
     public int getBonusSpeed() {
         return 0;
+    }
+
+    public List<CustomItem> getCustomItems() {
+        return Collections.emptyList();
+    }
+
+    public void whenAssigned(Player player) {
+    }
+
+    public void onKill(PlayerDeathEvent event) {
+    }
+
+    public void onDeath(PlayerDeathEvent event) {
     }
 
     public final void register() {
@@ -107,7 +122,12 @@ public abstract class Role {
         public void assignRoleToPlayer(@NotNull Player player, @NotNull Role role) {
             setPlayerRole(player.getUniqueId(), role);
             PlayerUtil.setGlobalNameColor(player, role.getSide().getColor());
-            player.spigot().sendMessage(role.getDescription());
+            player.sendMessage(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n" + role.getDescription() + ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n");
+            role.whenAssigned(player);
+
+            for (CustomItem i : role.getCustomItems()) {
+                player.getInventory().addItem(i.getStack());
+            }
 
             Stats playerStats = Stats.get(player.getUniqueId());
             playerStats.setBonus(StatValues.RESISTANCE, role.getBonusResistance());

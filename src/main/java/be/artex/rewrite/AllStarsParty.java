@@ -6,10 +6,8 @@ import be.artex.rewrite.commands.subCommands.CompositionSubCommand;
 import be.artex.rewrite.commands.subCommands.EffectSubCommand;
 import be.artex.rewrite.commands.subCommands.HelpSubCommand;
 import be.artex.rewrite.commands.subCommands.StartSubCommand;
-import be.artex.rewrite.listener.BlockListeners;
-import be.artex.rewrite.listener.ConnectionsEventListener;
-import be.artex.rewrite.listener.EntityDamageByEntityListener;
-import be.artex.rewrite.listener.PlayerDeathListener;
+import be.artex.rewrite.listener.*;
+import be.artex.rewrite.registry.ItemRegistry;
 import be.artex.rewrite.registry.RoleRegistry;
 import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,16 +25,18 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         getServer().getPluginManager().registerEvents(new BlockListeners(), this);
+        getServer().getPluginManager().registerEvents(new ItemListeners(), this);
 
         WorldUtil.setupSpawnArea();
         WorldUtil.defineGameRules();
 
         RoleRegistry.registerRoles();
+        ItemRegistry.registerItems();
 
         new HelpSubCommand().register();
         new CompositionSubCommand().register();
-        new StartSubCommand().register();
         new EffectSubCommand().register();
+        new StartSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());
     }

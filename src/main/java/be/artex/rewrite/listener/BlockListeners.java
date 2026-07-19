@@ -25,6 +25,12 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
+        switch (event.getBlock().getType()) {
+            case BARRIER:
+                event.setCancelled(true);
+                return;
+        }
+
         PLACED_BLOCKS.add(event.getBlock());
     }
 

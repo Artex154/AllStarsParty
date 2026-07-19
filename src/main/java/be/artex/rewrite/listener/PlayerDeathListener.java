@@ -35,8 +35,11 @@ public class PlayerDeathListener implements Listener {
             Bukkit.broadcastMessage(
                     ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
+            playerRole.onDeath(event);
+
             Role.manager.removeAliveRole(playerRole);
         }
+
 
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
@@ -46,6 +49,11 @@ public class PlayerDeathListener implements Listener {
             PLAYERS_KILL_AMOUNT.put(killer, amountOfKills);
 
             player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
+
+            Role killerRole = Role.manager.getPlayerRole(killer.getUniqueId());
+
+            if (killerRole != null)
+                killerRole.onKill(event);
         }
 
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();

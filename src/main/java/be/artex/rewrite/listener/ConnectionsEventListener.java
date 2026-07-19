@@ -45,7 +45,7 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + Role.manager.getRegisteredRoles().size() + ")"
+                ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + Role.manager.getRegisteredRoles().size() + ")"
         );
 
         ScoreboardManager.boards.remove(event.getPlayer().getUniqueId());
@@ -60,6 +60,11 @@ public class ConnectionsEventListener implements Listener {
 
         if (AllStarsParty.gameManager.isInGame()) {
             Role.manager.removeAliveRole(playerRole);
+
+            if (Role.manager.getRolesAlive().isEmpty())  {
+                AllStarsParty.gameManager.end();
+                return;
+            }
 
             Side firstSide = Role.manager.getRolesAlive().get(0).getSide();
 
