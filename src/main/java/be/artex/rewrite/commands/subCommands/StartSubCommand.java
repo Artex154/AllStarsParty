@@ -73,7 +73,7 @@ public class StartSubCommand extends SubCommand {
         inv.setItem(2, new ItemStack(Material.LAVA_BUCKET));
         inv.setItem(3, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE, 24));
-        inv.setItem(5, new ItemStack(Material.GOLDEN_CARROT, 64));
+        inv.setItem(5, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(6, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(7, new ItemStack(Material.COBBLESTONE, 64));
         inv.setItem(8, new ItemStack(Material.WATER_BUCKET));

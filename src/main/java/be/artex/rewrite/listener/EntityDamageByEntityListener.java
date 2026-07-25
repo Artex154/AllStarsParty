@@ -1,7 +1,9 @@
 package be.artex.rewrite.listener;
 
+import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,11 +18,26 @@ public class EntityDamageByEntityListener implements Listener {
         Player player = (Player) event.getEntity();
         Player damager = (Player) event.getDamager();
 
+        if (player.getGameMode() == GameMode.ADVENTURE || damager.getGameMode() == GameMode.ADVENTURE) {
+            event.setCancelled(true);
+            return;
+        }
+
         double playerResistanceBonus = Stats.get(player.getUniqueId()).getBonus(StatValues.RESISTANCE);
         double damagerStrengthBonus = Stats.get(damager.getUniqueId()).getBonus(StatValues.STRENGTH);
 
         double multiplier = 1 + (damagerStrengthBonus - playerResistanceBonus) / 100;
+        double finalDamage = event.getDamage() * multiplier;
 
-        event.setDamage(event.getDamage() * multiplier);
+        event.setDamage(finalDamage);
+
+        Role playerRole = Role.manager.getPlayerRole(player.getUniqueId());
+        Role damagerRole = Role.manager.getPlayerRole(damager.getUniqueId());
+
+        if (playerRole != null)
+            playerRole.whenHit(player, damager, finalDamage, event);
+
+        if (damagerRole != null)
+            damagerRole.onHit(player, damager, finalDamage, event);
     }
 }

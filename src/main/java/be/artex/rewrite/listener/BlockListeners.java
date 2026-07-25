@@ -1,6 +1,7 @@
 package be.artex.rewrite.listener;
 
 import be.artex.allStarsParty.api.message.Message;
+import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +17,11 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        if (MrJack.playersRevived.get(event.getPlayer().getUniqueId()) != null && MrJack.playersRevived.get(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (PLACED_BLOCKS.contains(event.getBlock()))
             return;
 
@@ -25,6 +31,11 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
+        if (MrJack.playersRevived.get(event.getPlayer().getUniqueId()) != null && MrJack.playersRevived.get(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            return;
+        }
+
         switch (event.getBlock().getType()) {
             case BARRIER:
                 event.setCancelled(true);
@@ -36,6 +47,11 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBucketEmpty(PlayerBucketEmptyEvent event) {
+        if (MrJack.playersRevived.get(event.getPlayer().getUniqueId()) != null && MrJack.playersRevived.get(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            return;
+        }
+
         Block placedBlock = event.getBlockClicked().getRelative(event.getBlockFace());
 
         PLACED_BLOCKS.add(placedBlock);

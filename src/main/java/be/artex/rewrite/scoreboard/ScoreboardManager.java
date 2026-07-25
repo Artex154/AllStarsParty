@@ -2,7 +2,7 @@ package be.artex.rewrite.scoreboard;
 
 import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.api.role.Role;
-import be.artex.rewrite.listener.PlayerDeathListener;
+import be.artex.rewrite.listener.PlayerListeners;
 import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -46,7 +46,7 @@ public class ScoreboardManager {
     }
 
     private static int getAmountOfKills(@NotNull Player player) {
-        return PlayerDeathListener.PLAYERS_KILL_AMOUNT.getOrDefault(player, 0);
+        return PlayerListeners.PLAYERS_KILL_AMOUNT.getOrDefault(player, 0);
     }
 
     private static @NotNull String getDate() {

@@ -7,6 +7,7 @@ import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -45,6 +46,12 @@ public abstract class Role {
     }
 
     public void onDeath(PlayerDeathEvent event) {
+    }
+
+    public void onHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+    }
+
+    public void whenHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
     }
 
     public final void register() {

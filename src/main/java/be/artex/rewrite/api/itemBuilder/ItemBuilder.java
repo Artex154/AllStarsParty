@@ -79,7 +79,7 @@ public class ItemBuilder {
         this.stack.setAmount(this.amount);
         this.stack.setItemMeta(this.meta);
 
-       if (this.durability != 0)
+        if (this.durability != 0)
            this.stack.setDurability((short) this.durability);
 
         return this.stack;

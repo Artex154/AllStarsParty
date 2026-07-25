@@ -4,6 +4,7 @@ import be.artex.rewrite.api.item.CustomItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemListeners implements Listener {
@@ -14,5 +15,10 @@ public class ItemListeners implements Listener {
 
         if (cItem != null)
             cItem.onInteract(event);
+    }
+
+    @EventHandler
+    public void onPlayerItemDamage(PlayerItemDamageEvent event) {
+        event.setDamage(0);
     }
 }

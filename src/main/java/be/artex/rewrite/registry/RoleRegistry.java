@@ -1,7 +1,7 @@
 package be.artex.rewrite.registry;
 
 import be.artex.rewrite.api.role.Role;
-import be.artex.rewrite.role.MrJack;
+import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import be.artex.rewrite.role.antagoniste.katarina.Katarina;
 
 public class RoleRegistry {

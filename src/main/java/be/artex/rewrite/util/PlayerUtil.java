@@ -1,6 +1,9 @@
 package be.artex.rewrite.util;
 
 import be.artex.rewrite.api.item.Cooldown;
+import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
+import be.artex.rewrite.role.protagonistes.mrjack.CostumesHolder;
+import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -81,5 +84,11 @@ public class PlayerUtil {
             player.removePotionEffect(effect.getType());
 
         Stats.remove(player.getUniqueId());
+
+        CostumesHolder.remove(player.getUniqueId());
+        MrJack.playersInFire.remove(player.getUniqueId());
+        MrJack.playersWithSpeedDebuff.remove(player.getUniqueId());
+        MrJack.playersRevived.remove(player.getUniqueId());
+        Costumes.playersWhenActivated.remove(player.getUniqueId());
     }
 }

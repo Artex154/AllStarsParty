@@ -6,20 +6,20 @@ import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.world.WorldUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerDeathListener implements Listener {
+public class PlayerListeners implements Listener {
     private static final Role.Manager roleManager = Role.manager;
     public static final Map<Player, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
 
@@ -28,7 +28,6 @@ public class PlayerDeathListener implements Listener {
         Player player = event.getEntity();
         Role playerRole = roleManager.getPlayerRole(player.getUniqueId());
 
-        event.getDrops().clear();
         event.setDeathMessage("");
 
         if (playerRole != null) {
@@ -39,7 +38,6 @@ public class PlayerDeathListener implements Listener {
 
             Role.manager.removeAliveRole(playerRole);
         }
-
 
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
@@ -64,6 +62,25 @@ public class PlayerDeathListener implements Listener {
             AllStarsParty.gameManager.end();
 
             Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
+
+            event.getDrops().clear();
+        } else {
+            for (ItemStack stack : event.getDrops()) {
+                switch (stack.getType()) {
+                    case DIAMOND_SWORD:
+                    case IRON_SWORD:
+                    case DIAMOND_HELMET:
+                    case DIAMOND_CHESTPLATE:
+                    case IRON_LEGGINGS:
+                    case DIAMOND_BOOTS:
+                    case DIAMOND_PICKAXE:
+                    case CHEST:
+                    case BOW:
+                        event.getDrops().remove(stack);
+
+                    default:
+                }
+            }
         }
 
         ScoreboardManager.updateAllPlayerScoreboards();
@@ -77,6 +94,31 @@ public class PlayerDeathListener implements Listener {
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
         else
             event.getPlayer().setGameMode(GameMode.ADVENTURE);
+    }
+
+    @EventHandler
+    public void onPlayerDrop(PlayerDropItemEvent event) {
+        switch (event.getItemDrop().getItemStack().getType()) {
+            case DIAMOND_SWORD:
+            case IRON_SWORD:
+            case DIAMOND_HELMET:
+            case DIAMOND_CHESTPLATE:
+            case IRON_LEGGINGS:
+            case DIAMOND_BOOTS:
+            case DIAMOND_PICKAXE:
+            case BOW:
+                event.setCancelled(true);
+
+            case CHEST:
+                event.getItemDrop().remove();
+
+            default:
+        }
+    }
+
+    @EventHandler
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+        event.setCancelled(true);
     }
 
     private String getKillLeaderBoard() {

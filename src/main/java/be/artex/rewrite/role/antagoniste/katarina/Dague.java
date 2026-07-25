@@ -78,14 +78,12 @@ public class Dague extends CustomItem {
 
                 p.sendMessage(Message.info("La lame de " + ChatColor.RED + "Katarina" + ChatColor.WHITE + " rebondit sur vous, elle vous régénère " + ChatColor.LIGHT_PURPLE + "1,5❤" + ChatColor.WHITE + "."));
             } else {
-                if (p.getHealth() - 2 <= 0) {
-                    p.damage(0);
+                p.damage(0);
+
+                if (p.getHealth() - 2 <= 0)
                     p.setHealth(0);
-                }
-                else {
-                    p.damage(0);
+                else
                     p.setHealth(p.getHealth() - 2);
-                }
 
                 p.sendMessage(Message.info("La lame de " + ChatColor.RED + "Katarina" + ChatColor.WHITE + " rebondit sur vous, elle vous inflige " + ChatColor.LIGHT_PURPLE + "1❤" + ChatColor.WHITE + "."));
             }

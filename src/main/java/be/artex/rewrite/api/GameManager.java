@@ -1,9 +1,8 @@
 package be.artex.rewrite.api;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.listener.BlockListeners;
-import be.artex.rewrite.listener.PlayerDeathListener;
+import be.artex.rewrite.listener.PlayerListeners;
 import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.Bukkit;
@@ -51,7 +50,7 @@ public class GameManager {
 
         BlockListeners.PLACED_BLOCKS.forEach(b -> b.setType(Material.AIR));
         BlockListeners.PLACED_BLOCKS.clear();
-        PlayerDeathListener.PLAYERS_KILL_AMOUNT.clear();
+        PlayerListeners.PLAYERS_KILL_AMOUNT.clear();
 
     }
 
