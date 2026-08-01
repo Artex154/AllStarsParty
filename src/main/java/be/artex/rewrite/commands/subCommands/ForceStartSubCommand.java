@@ -1,13 +1,17 @@
 package be.artex.rewrite.commands.subCommands;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
-import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.GameManager;
 import be.artex.rewrite.commands.SubCommand;
+import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.world.WorldUtil;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,12 +20,12 @@ import org.bukkit.inventory.PlayerInventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartSubCommand extends SubCommand {
+public class ForceStartSubCommand extends SubCommand {
     private final GameManager gameManager = AllStarsParty.gameManager;
 
     @Override
     public String[] getArgument() {
-        return new String[]{"start", "s"};
+        return new String[]{"forcestart", "fstart", "fs"};
     }
 
     @Override
@@ -39,8 +43,8 @@ public class StartSubCommand extends SubCommand {
 
         int maxPlayers = gameManager.getMaxPlayerCount();
 
-        if (maxPlayers != playersToStartWith.size()) {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + playersToStartWith.size() + "/" + maxPlayers + ")");
+        if (playersToStartWith.size() > maxPlayers) {
+            sender.sendMessage(Message.error("Le nombre de rôles disponibles doit être supérieur au nombre de joueurs."));
             return;
         }
 
@@ -50,7 +54,7 @@ public class StartSubCommand extends SubCommand {
         }
 
         for (Player p : playersToStartWith)
-            setupPlayer(p);
+            StartSubCommand.setupPlayer(p);
 
         for (Player p : SpecSubCommand.playersInSpec)
             p.setGameMode(GameMode.SPECTATOR);
@@ -61,10 +65,8 @@ public class StartSubCommand extends SubCommand {
     }
 
     @Override
-    public String getDescription(Player player) {
-        if (player.isOp())
-            return "commmence la partie.";
-        else return null;
+    public String getDescription(Player sender) {
+        return null;
     }
 
     public static void setupPlayer(Player player) {
@@ -94,6 +96,4 @@ public class StartSubCommand extends SubCommand {
         inv.addItem(new ItemStack(Material.ARROW, 24));
         inv.addItem(new ItemStack(Material.DIAMOND_PICKAXE));
     }
-
-
 }

@@ -94,7 +94,7 @@ public class PlayerListeners implements Listener {
 
             event.getDrops().clear();
         } else {
-            for (ItemStack stack : event.getDrops()) {
+            event.getDrops().removeIf(stack -> {
                 switch (stack.getType()) {
                     case DIAMOND_SWORD:
                     case IRON_SWORD:
@@ -106,11 +106,11 @@ public class PlayerListeners implements Listener {
                     case CHEST:
                     case NETHER_STAR:
                     case BOW:
-                        event.getDrops().remove(stack);
-
+                        return true;
                     default:
+                        return false;
                 }
-            }
+            });
         }
 
         ScoreboardManager.updateAllPlayerScoreboards();

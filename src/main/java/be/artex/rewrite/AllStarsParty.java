@@ -35,6 +35,7 @@ public class AllStarsParty extends JavaPlugin {
         new EffectSubCommand().register();
         new SpecSubCommand().register();
         new StartSubCommand().register();
+        new ForceStartSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());
     }

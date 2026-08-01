@@ -127,7 +127,16 @@ public abstract class Role {
 
         public void startGame(List<Player> players) {
             aliveRoles.addAll(registeredRoles);
-            assignRolesRandomly(players);
+
+            if (players.size() != registeredRoles.size()) {
+                Collections.shuffle(aliveRoles);
+
+                int i = aliveRoles.size() - players.size();
+
+                aliveRoles.subList(0, i).clear();
+            }
+
+            assignRolesRandomly(players, aliveRoles);
         }
 
         public void finishGame() {
@@ -137,8 +146,8 @@ public abstract class Role {
                 side.clearPlayers();
         }
 
-        public void assignRolesRandomly(@NotNull List<Player> players) {
-            List<Role> registeredRolesCopy = new ArrayList<>(registeredRoles);
+        public void assignRolesRandomly(@NotNull List<Player> players, @NotNull List<Role> roles) {
+            List<Role> registeredRolesCopy = new ArrayList<>(roles);
 
             Collections.shuffle(registeredRolesCopy);
 

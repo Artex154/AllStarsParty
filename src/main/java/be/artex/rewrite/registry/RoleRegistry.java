@@ -15,7 +15,7 @@ public class RoleRegistry {
     public static void registerRoles() {
         //KATARINA.register();
         //MR_JACK.register();
-        //MALENIA.register();
+        MALENIA.register();
         LGB.register();
     }
 }
