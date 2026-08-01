@@ -25,7 +25,7 @@ public class EffectSubCommand extends SubCommand {
     }
 
     @Override
-    public String getDescription() {
+    public String getDescription(Player player) {
         return "Donne vos pourcentages d'effets.";
     }
 }

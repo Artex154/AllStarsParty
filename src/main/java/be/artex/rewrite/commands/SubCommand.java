@@ -13,7 +13,7 @@ public abstract class SubCommand {
 
     public abstract String[] getArgument();
     public abstract void whenCalled(Player sender);
-    public abstract String getDescription();
+    public abstract String getDescription(Player sender);
 
     public final void register() {
         manager.registeredSubCommands.add(this);

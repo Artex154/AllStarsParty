@@ -52,8 +52,10 @@ public class StartSubCommand extends SubCommand {
     }
 
     @Override
-    public String getDescription() {
-        return ChatColor.RED + "" + ChatColor.BOLD + "COMMANDE OPERATEUR" + ChatColor.WHITE + " commmence la partie.";
+    public String getDescription(Player player) {
+        if (player.isOp())
+            return "commmence la partie.";
+        else return null;
     }
 
     private void setupPlayer(Player player) {

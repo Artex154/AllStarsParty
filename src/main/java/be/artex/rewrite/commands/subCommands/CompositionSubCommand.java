@@ -25,7 +25,7 @@ public class CompositionSubCommand extends SubCommand {
     }
 
     @Override
-    public String getDescription() {
+    public String getDescription(Player player) {
         return "Donne la liste de tous les rôles de la partie.";
     }
 }
