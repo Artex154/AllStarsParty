@@ -2,9 +2,12 @@ package be.artex.rewrite.listener;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
+import be.artex.rewrite.registry.RoleRegistry;
 import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
+import be.artex.rewrite.util.StatValues;
+import be.artex.rewrite.util.Stats;
 import be.artex.rewrite.world.WorldUtil;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -23,6 +26,8 @@ public class PlayerListeners implements Listener {
     private static final Role.Manager roleManager = Role.manager;
     public static final Map<Player, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
 
+    public static boolean hasLGBBonus = false;
+
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
@@ -32,11 +37,12 @@ public class PlayerListeners implements Listener {
 
         if (playerRole != null) {
             Bukkit.broadcastMessage(
-                    ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle est " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
+                    ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle était " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
             playerRole.onDeath(event);
 
             Role.manager.removeAliveRole(playerRole);
+            playerRole.getSide().removePlayer(player);
         }
 
         if (player.getKiller() != null) {
@@ -52,6 +58,18 @@ public class PlayerListeners implements Listener {
 
             if (killerRole != null)
                 killerRole.onKill(event);
+        }
+
+        if (Side.ANTAGONISTES.getPlayers().isEmpty() && Role.manager.isRoleAlive(RoleRegistry.LGB) && !hasLGBBonus) {
+            Role.manager.getPlayersWithRole(RoleRegistry.LGB).forEach(uuid -> {
+                Player pl = Bukkit.getPlayer(uuid);
+                Stats plStats = Stats.get(uuid);
+
+                plStats.addBonus(StatValues.SPEED, 10);
+                pl.sendMessage(Message.info("Plus aucun " + ChatColor.RED + "antagoniste " + ChatColor.WHITE + "est vivant. Vous écoper alors de " + ChatColor.YELLOW + "10%" + ChatColor.WHITE + " de " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse" + ChatColor.WHITE + " supplémentaire."));
+            });
+
+            hasLGBBonus = true;
         }
 
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();

@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class Role {
     public static final Role.Manager manager = Manager.get(AllStarsParty.instance);
@@ -37,6 +38,14 @@ public abstract class Role {
 
     public int getBonusMaxHealth() {
         return 0;
+    }
+
+    public ChatColor getDisplayColor() {
+        return getSide().getColor();
+    }
+
+    public String getScoreboardName() {
+        return getName();
     }
 
     public List<CustomItem> getCustomItems() {
@@ -92,6 +101,14 @@ public abstract class Role {
             return Collections.unmodifiableList(aliveRoles);
         }
 
+        public Set<UUID> getPlayersWithRole(Role role) {
+            return playersRole.entrySet()
+                    .stream()
+                    .filter(entry -> Objects.equals(entry.getValue(), role))
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toSet());
+        }
+
         public boolean isRoleAlive(@NotNull Role role) {
             return aliveRoles.contains(role);
         }
@@ -115,6 +132,9 @@ public abstract class Role {
 
         public void finishGame() {
             aliveRoles.clear();
+
+            for (Side side : Side.values())
+                side.clearPlayers();
         }
 
         public void assignRolesRandomly(@NotNull List<Player> players) {
@@ -132,9 +152,8 @@ public abstract class Role {
 
         public void assignRoleToPlayer(@NotNull Player player, @NotNull Role role) {
             setPlayerRole(player.getUniqueId(), role);
-            PlayerUtil.setGlobalNameColor(player, role.getSide().getColor());
+            PlayerUtil.setGlobalNameColor(player, role.getDisplayColor());
             player.sendMessage(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n" + role.getDescription() + ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n");
-            role.whenAssigned(player);
 
             for (CustomItem i : role.getCustomItems()) {
                 player.getInventory().addItem(i.getStack());
@@ -142,11 +161,14 @@ public abstract class Role {
 
             player.setMaxHealth(20 + role.getBonusMaxHealth());
             player.setHealth(player.getMaxHealth());
+            role.getSide().addPlayer(player);
 
             Stats playerStats = Stats.get(player.getUniqueId());
             playerStats.setBonus(StatValues.RESISTANCE, role.getBonusResistance());
             playerStats.setBonus(StatValues.STRENGTH, role.getBonusStrength());
             playerStats.setBonus(StatValues.SPEED, role.getBonusSpeed());
+
+            role.whenAssigned(player);
         }
     }
 }

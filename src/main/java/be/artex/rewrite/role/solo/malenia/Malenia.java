@@ -12,6 +12,7 @@ import be.artex.rewrite.util.PlayerUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -39,7 +40,7 @@ public class Malenia extends RevivableRole {
                     ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Waterfowl Dance" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/45s\n" +
                     ChatColor.WHITE + "     Vous faites un dash. Lorsque vous attérissez, vous infligez " + ChatColor.LIGHT_PURPLE + "1❤" + ChatColor.WHITE + " aux joueurs dans un rayon de 10 blocs de vous.";
 
-    private final ItemStack SWORD = new ItemBuilder(Material.DIAMOND_SWORD).name(ChatColor.BOLD + "" + ChatColor.RED + "Épée de Miquella").build();
+    private final ItemStack SWORD = new ItemBuilder(Material.DIAMOND_SWORD).name(ChatColor.BOLD + "" + ChatColor.RED + "Épée de Miquella").addEnchant(Enchantment.DAMAGE_ALL, 3).build();
 
     @Override
     public @NotNull String getName() {
