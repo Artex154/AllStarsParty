@@ -9,10 +9,10 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Side {
-    PROTAGONISTES("Protagonistes", ChatColor.GREEN),
-    ANTAGONISTES("Antagonistes", ChatColor.RED),
-    MELENIA("Melenia", ChatColor.GOLD),
-    LGB("Loup-Garou Blanc", ChatColor.GOLD);
+    PROTAGONISTES("du" + ChatColor.GREEN + " protagonistes", ChatColor.GREEN),
+    ANTAGONISTES("des" + ChatColor.RED + " antagonistes", ChatColor.RED),
+    MELENIA("de" + ChatColor.GOLD + " Melenia", ChatColor.GOLD),
+    LGB("du" + ChatColor.GOLD + " Loup-Garou Blanc", ChatColor.GOLD);
 
     private final ChatColor color;
     private final String name;

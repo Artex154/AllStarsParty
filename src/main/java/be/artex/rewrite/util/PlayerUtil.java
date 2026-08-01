@@ -9,6 +9,7 @@ import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import be.artex.rewrite.role.solo.malenia.Malenia;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import org.bukkit.Bukkit;
@@ -27,6 +28,8 @@ import java.util.*;
 
 public class PlayerUtil {
     private static final Map<UUID, ChatColor> playersColor = new HashMap<>();
+    private static final ProtocolManager protocolManager =
+            ProtocolLibrary.getProtocolManager();
 
     public static void setGlobalNameColor(Player player, ChatColor color) {
         String teamName = "color_" + color.getChar();
@@ -110,7 +113,7 @@ public class PlayerUtil {
     }
 
     public static void sendActionBar(Player player, String s) {
-        PacketContainer packet = ProtocolLibrary.getProtocolManager()
+        PacketContainer packet = protocolManager
                 .createPacket(PacketType.Play.Server.CHAT);
 
         packet.getChatComponents()
@@ -119,7 +122,7 @@ public class PlayerUtil {
         packet.getBytes()
                 .write(0, (byte) 2);
 
-        ProtocolLibrary.getProtocolManager()
+        protocolManager
                 .sendServerPacket(player, packet);
     }
 
@@ -145,5 +148,41 @@ public class PlayerUtil {
 
         ProtocolLibrary.getProtocolManager()
                 .sendServerPacket(viewer, packet);
+    }
+
+    public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        PacketContainer titlePacket =
+                protocolManager.createPacket(PacketType.Play.Server.TITLE);
+
+        titlePacket.getTitleActions().write(0,
+                com.comphenix.protocol.wrappers.EnumWrappers.TitleAction.TITLE);
+
+        titlePacket.getChatComponents().write(0,
+                WrappedChatComponent.fromText(title));
+
+        protocolManager.sendServerPacket(player, titlePacket);
+
+        PacketContainer subtitlePacket =
+                protocolManager.createPacket(PacketType.Play.Server.TITLE);
+
+        subtitlePacket.getTitleActions().write(0,
+                com.comphenix.protocol.wrappers.EnumWrappers.TitleAction.SUBTITLE);
+
+        subtitlePacket.getChatComponents().write(0,
+                WrappedChatComponent.fromText(subtitle));
+
+        protocolManager.sendServerPacket(player, subtitlePacket);
+
+        PacketContainer timesPacket =
+                protocolManager.createPacket(PacketType.Play.Server.TITLE);
+
+        timesPacket.getTitleActions().write(0,
+                com.comphenix.protocol.wrappers.EnumWrappers.TitleAction.TIMES);
+
+        timesPacket.getIntegers().write(0, fadeIn);
+        timesPacket.getIntegers().write(1, stay);
+        timesPacket.getIntegers().write(2, fadeOut);
+
+        protocolManager.sendServerPacket(player, timesPacket);
     }
 }

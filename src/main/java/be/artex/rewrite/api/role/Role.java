@@ -169,6 +169,8 @@ public abstract class Role {
             playerStats.setBonus(StatValues.SPEED, role.getBonusSpeed());
 
             role.whenAssigned(player);
+
+            PlayerUtil.sendTitle(player, ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "» " + role.getSide().getColor() + role.getName() + ChatColor.DARK_GRAY + ChatColor.BOLD + " «", "", 20, 60, 20);
         }
     }
 }
