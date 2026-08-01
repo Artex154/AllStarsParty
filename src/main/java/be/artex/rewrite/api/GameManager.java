@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager {
     private static boolean inGame = false;
@@ -25,13 +26,13 @@ public class GameManager {
         return inGame;
     }
 
-    public void start() {
+    public void start(List<Player> players) {
         if (inGame)
             return;
 
         inGame = true;
 
-        Role.manager.startGame(new ArrayList<>(Bukkit.getOnlinePlayers()));
+        Role.manager.startGame(players);
     }
 
     public void end() {

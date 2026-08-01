@@ -68,8 +68,6 @@ public class LGB extends Role {
 
                 plStats.addBonus(StatValues.SPEED, 10);
 
-                System.out.println(plStats.getBonus(StatValues.SPEED));
-
                 PlayerListeners.hasLGBBonus = true;
             }
         }, 10);

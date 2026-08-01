@@ -72,6 +72,17 @@ public class PlayerListeners implements Listener {
             hasLGBBonus = true;
         }
 
+        if (roleManager.getRolesAlive().isEmpty()) {
+            Bukkit.broadcastMessage(getKillLeaderBoard());
+
+            AllStarsParty.gameManager.end();
+
+            Bukkit.broadcastMessage(Message.info("La partie s'est finit en nulle.") + "\n ");
+
+            event.getDrops().clear();
+            return;
+        }
+
         Side firstSide = roleManager.getRolesAlive().get(0).getSide();
 
         if (roleManager.isWonBy(firstSide, roleManager.getRolesAlive())) {

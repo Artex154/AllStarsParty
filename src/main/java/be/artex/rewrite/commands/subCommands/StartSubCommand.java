@@ -13,7 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StartSubCommand extends SubCommand {
     private final GameManager gameManager = AllStarsParty.gameManager;
@@ -30,11 +31,16 @@ public class StartSubCommand extends SubCommand {
             return;
         }
 
-        Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+        List<Player> playersToStartWith = new ArrayList<>(Bukkit.getOnlinePlayers());
+
+        for (Player player : SpecSubCommand.playersInSpec) {
+            playersToStartWith.remove(player);
+        }
+
         int maxPlayers = gameManager.getMaxPlayerCount();
 
-        if (maxPlayers != onlinePlayers.size()) {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + onlinePlayers.size() + "/" + maxPlayers + ")");
+        if (maxPlayers != playersToStartWith.size()) {
+            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + playersToStartWith.size() + "/" + maxPlayers + ")");
             return;
         }
 
@@ -43,10 +49,13 @@ public class StartSubCommand extends SubCommand {
             return;
         }
 
-        for (Player p : onlinePlayers)
+        for (Player p : playersToStartWith)
             setupPlayer(p);
 
-        gameManager.start();
+        for (Player p : SpecSubCommand.playersInSpec)
+            p.setGameMode(GameMode.SPECTATOR);
+
+        gameManager.start(playersToStartWith);
 
         ScoreboardManager.updateAllPlayerScoreboards();
     }

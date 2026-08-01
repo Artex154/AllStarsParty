@@ -13,7 +13,7 @@ public class RoleRegistry {
     public static final Role LGB = new LGB();
 
     public static void registerRoles() {
-        KATARINA.register();
+        //KATARINA.register();
         //MR_JACK.register();
         //MALENIA.register();
         LGB.register();
