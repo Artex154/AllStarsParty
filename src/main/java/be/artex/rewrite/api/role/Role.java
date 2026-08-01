@@ -35,6 +35,10 @@ public abstract class Role {
         return 0;
     }
 
+    public int getBonusMaxHealth() {
+        return 0;
+    }
+
     public List<CustomItem> getCustomItems() {
         return Collections.emptyList();
     }
@@ -135,6 +139,9 @@ public abstract class Role {
             for (CustomItem i : role.getCustomItems()) {
                 player.getInventory().addItem(i.getStack());
             }
+
+            player.setMaxHealth(20 + role.getBonusMaxHealth());
+            player.setHealth(player.getMaxHealth());
 
             Stats playerStats = Stats.get(player.getUniqueId());
             playerStats.setBonus(StatValues.RESISTANCE, role.getBonusResistance());

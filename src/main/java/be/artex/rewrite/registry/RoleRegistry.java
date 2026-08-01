@@ -3,13 +3,16 @@ package be.artex.rewrite.registry;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import be.artex.rewrite.role.antagoniste.katarina.Katarina;
+import be.artex.rewrite.role.solo.malenia.Malenia;
 
 public class RoleRegistry {
     public static final Role KATARINA = new Katarina();
     public static final Role MR_JACK = new MrJack();
+    public static final Role MALENIA = new Malenia();
 
     public static void registerRoles() {
-        KATARINA.register();
+        //KATARINA.register();
         MR_JACK.register();
+        MALENIA.register();
     }
 }

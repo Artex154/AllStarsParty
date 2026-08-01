@@ -75,6 +75,7 @@ public class PlayerListeners implements Listener {
                     case DIAMOND_BOOTS:
                     case DIAMOND_PICKAXE:
                     case CHEST:
+                    case NETHER_STAR:
                     case BOW:
                         event.getDrops().remove(stack);
 
@@ -106,6 +107,7 @@ public class PlayerListeners implements Listener {
             case IRON_LEGGINGS:
             case DIAMOND_BOOTS:
             case DIAMOND_PICKAXE:
+            case NETHER_STAR:
             case BOW:
                 event.setCancelled(true);
 

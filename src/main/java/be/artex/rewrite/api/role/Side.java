@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 public enum Side {
     PROTAGONISTES("Protagonistes", ChatColor.GREEN),
-    ANTAGONISTES("Antagonistes", ChatColor.RED);
+    ANTAGONISTES("Antagonistes", ChatColor.RED),
+    MELENIA("Melenia", ChatColor.GOLD);
 
     private final ChatColor color;
     private final String name;
