@@ -3,6 +3,8 @@ package be.artex.rewrite.util;
 import be.artex.rewrite.api.HitCountHolder;
 import be.artex.rewrite.api.item.Cooldown;
 import be.artex.rewrite.api.role.RevivableRole;
+import be.artex.rewrite.role.antagoniste.akaza.Akaza;
+import be.artex.rewrite.role.antagoniste.akaza.Boussole;
 import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
 import be.artex.rewrite.role.protagonistes.mrjack.CostumesHolder;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
@@ -12,10 +14,14 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.google.common.collect.Lists;
 import com.lunarclient.apollo.Apollo;
 import com.lunarclient.apollo.module.glow.GlowModule;
+import com.lunarclient.apollo.module.nametag.Nametag;
+import com.lunarclient.apollo.module.nametag.NametagModule;
 import com.lunarclient.apollo.player.ApolloPlayer;
 import com.lunarclient.apollo.recipients.Recipients;
+import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -35,6 +41,8 @@ public class PlayerUtil {
             ProtocolLibrary.getProtocolManager();
     private static final GlowModule glowModule = Apollo.getModuleManager()
             .getModule(GlowModule.class);
+    private static final NametagModule nametagModule = Apollo.getModuleManager()
+            .getModule(NametagModule.class);
 
     public static void setGlobalNameColor(@NotNull Player player, @NotNull ChatColor color) {
         String teamName = "color_" + color.getChar();
@@ -115,6 +123,7 @@ public class PlayerUtil {
         Malenia.playersBleeding.remove(player.getUniqueId());
         Malenia.playersPercentage.remove(player.getUniqueId());
         Malenia.playersWithPutrefecation.remove(player.getUniqueId());
+        Boussole.playersWithCompassActive.remove(player.getUniqueId());
     }
 
     public static void sendActionBar(@NotNull Player player, @NotNull String s) {
@@ -207,5 +216,25 @@ public class PlayerUtil {
 
     public static void removeLunarGlow(@NotNull Player player) {
         glowModule.resetGlow(Recipients.ofEveryone(), player.getUniqueId());
+    }
+
+    public static void setLunarNametagForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String content) {
+        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
+                .getPlayer(viewer.getUniqueId());
+
+        if (!apolloViewer.isPresent())
+            return;
+
+        nametagModule.overrideNametag(Recipients.of(Collections.singletonList(apolloViewer.get())), target.getUniqueId(), Nametag.builder()
+                .lines(Lists.newArrayList(
+                        Component.text()
+                                .content(content)
+                                .build(),
+                        Component.text()
+                                .content(playersColor.get(target.getUniqueId()) + target.getName())
+                                .build()
+                ))
+                .build()
+        );
     }
 }

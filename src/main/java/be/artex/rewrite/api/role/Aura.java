@@ -3,10 +3,10 @@ package be.artex.rewrite.api.role;
 import org.bukkit.ChatColor;
 
 public enum Aura {
-    AUCUNE(ChatColor.WHITE + "" + ChatColor.BOLD + "A"),
-    FAIBLE(ChatColor.GREEN + "" + ChatColor.BOLD + "Fa"),
-    MOYENNE(ChatColor.YELLOW + "" + ChatColor.BOLD + "M"),
-    FORTE(ChatColor.RED + "" + ChatColor.BOLD + "Fo");
+    AUCUNE(ChatColor.GRAY + "Aucune"),
+    FAIBLE(ChatColor.GREEN + "Faible"),
+    MOYENNE(ChatColor.YELLOW + "Moyenne"),
+    FORTE(ChatColor.RED + "Forte");
 
     private final String name;
 

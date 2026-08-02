@@ -36,7 +36,8 @@ public class Malenia extends RevivableRole {
                     ChatColor.WHITE + " Vous disposez d'une " + ChatColor.AQUA + "épée en diamant" + ChatColor.WHITE + ", l'" + ChatColor.RED + ChatColor.BOLD + "Épée de Miquella" + ChatColor.WHITE + ". Elle est enchantée avec" + ChatColor.AQUA + " tranchant 3" + ChatColor.WHITE + ". Tout les 5 coups que vous infligez, vous vous régénérez du double des dégâts du prochain coup. \n" +
                     ChatColor.WHITE + " Lorsque vous subissez un coup fatal, vous devenez invincible et êtes régénéré complétement. Cependant, vous ne pourrez pas intéragir avec votre environnement pendant 2,5 secondes. Après ce lapse de temps, vous effectuez une explosion qui inflige 2❤ de dégâts aux joueurs dans un rayon de 5 blocs. Vous obtiendrez votre passif " + ChatColor.GOLD + ChatColor.BOLD + "Putréfaction" + ChatColor.WHITE + ". \n \n" +
                     ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Putréfaction\n" +
-                    ChatColor.WHITE + "   Chaque joueur dispose d'un % qui commence à 0% et qui peut aller jusqu'à 100%. A chaque fois que vous frappez un joueur, ce % augmente aléatoirement entre 5% et 10%. Lorsque vous frappez un joueur qui est a 100%, vous infligez un saignement de 0.5❤/3s pendant 9s que vous êtes régénéré. Le pourcentage du joueur retombra à 15%.\n \n" +
+                    ChatColor.WHITE + "   Chaque joueur dispose d'un % qui commence à 0% et qui peut aller jusqu'à 100%. A chaque fois que vous frappez un joueur, ce % augmente aléatoirement entre 5% et 10%. Lorsque vous frappez un joueur qui est a 100%, vous infligez un saignement de 0.5❤/3s pendant 9s que vous êtes régénéré. Le pourcentage du joueur retombra à 15%.\n" +
+                    ChatColor.WHITE + "   Ce pourcentage est visible sous le pseudo du joueur. " + ChatColor.GRAY + ChatColor.ITALIC + "(Lunar Client requis : le mod 'Nametags')\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Compétences activables: \n" +
                     ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Waterfowl Dance" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/45s\n" +
                     ChatColor.WHITE + "     Vous faites un dash. Lorsque vous attérissez, vous infligez " + ChatColor.LIGHT_PURPLE + "1❤" + ChatColor.WHITE + " aux joueurs dans un rayon de 10 blocs de vous.";
@@ -116,7 +117,7 @@ public class Malenia extends RevivableRole {
             int i = perc + 6 + new Random().nextInt(5);
 
             if (i >= 100) {
-                PlayerUtil.setNametagForOtherPlayer(damager, player, "", ChatColor.BOLD + " 15%");
+                PlayerUtil.setLunarNametagForAnotherPlayer(damager, player, ChatColor.GRAY + "» 15% «");
                 playersPercentage.put(player.getUniqueId(), 15);
                 playersBleeding.add(player.getUniqueId());
 
@@ -149,7 +150,7 @@ public class Malenia extends RevivableRole {
                 }.runTaskTimer(AllStarsParty.instance, 0L, 60L);
 
             } else {
-                PlayerUtil.setNametagForOtherPlayer(damager, player, "", ChatColor.BOLD + " " + i + "%");
+                PlayerUtil.setLunarNametagForAnotherPlayer(damager, player, ChatColor.GRAY + "» " + i + "% «");
                 playersPercentage.put(player.getUniqueId(), i);
             }
         }
