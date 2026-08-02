@@ -32,6 +32,7 @@ public class AllStarsParty extends JavaPlugin {
 
         new HelpSubCommand().register();
         new CompositionSubCommand().register();
+        new RolesSubCommand().register();
         new EffectSubCommand().register();
         new SpecSubCommand().register();
         new StartSubCommand().register();

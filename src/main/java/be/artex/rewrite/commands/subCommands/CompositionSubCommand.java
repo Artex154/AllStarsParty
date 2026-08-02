@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 public class CompositionSubCommand extends SubCommand {
     @Override
     public String[] getArgument() {
-        return new String[]{"composition", "compo", "c", "roles", "r", "list"};
+        return new String[]{"composition", "compo", "c", "list"};
     }
 
     @Override
     public void whenCalled(Player sender) {
         StringBuilder str = new StringBuilder();
 
-        str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des rôles de la partie \n ");
+        str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des rôles activés\n ");
 
         Role.manager.getRegisteredRoles().forEach(r -> {
             str.append(ChatColor.WHITE + "- " + r.getSide().getColor() + r.getName() + "\n ");
