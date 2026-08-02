@@ -108,6 +108,8 @@ public class PlayerUtil {
         player.setHealth(20);
         PlayerUtil.setGlobalNameColor(player, ChatColor.WHITE);
         Cooldown.clearAllCooldowns(player);
+        resetLunarNametag(player);
+        removeLunarGlow(player);
 
         for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());
@@ -236,5 +238,9 @@ public class PlayerUtil {
                 ))
                 .build()
         );
+    }
+
+    public static void resetLunarNametag(@NotNull Player target) {
+        nametagModule.resetNametag(Recipients.ofEveryone(), target.getUniqueId());
     }
 }

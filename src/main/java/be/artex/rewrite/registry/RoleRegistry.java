@@ -15,10 +15,10 @@ public class RoleRegistry {
     public static final Role AKAZA = new Akaza();
 
     public static void registerRoles() {
-        //KATARINA.register();
-        //MR_JACK.register();
+        KATARINA.register();
+        MR_JACK.register();
         MALENIA.register();
-        //LGB.register();
+        LGB.register();
         AKAZA.register();
     }
 }

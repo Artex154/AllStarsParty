@@ -29,7 +29,7 @@ public class Malenia extends RevivableRole {
     public static Map<UUID, Integer> playersPercentage = new HashMap<>();
 
     private final String DESCRIPTION =
-            ChatColor.GRAY + " Vous êtes " + ChatColor.GOLD + ChatColor.BOLD + "Melenia\n" +
+            ChatColor.GRAY + " Vous êtes " + ChatColor.GOLD + ChatColor.BOLD + "Malenia\n" +
                     ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner " + ChatColor.GOLD + "seul" + ChatColor.WHITE + ".\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Passifs: \n" +
                     ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse 1" + ChatColor.WHITE + " ainsi que" + ChatColor.LIGHT_PURPLE + " 12❤ permanents" + ChatColor.WHITE + ".\n" +
@@ -46,7 +46,7 @@ public class Malenia extends RevivableRole {
 
     @Override
     public @NotNull String getName() {
-        return "Melenia";
+        return "Malenia";
     }
 
     @Override

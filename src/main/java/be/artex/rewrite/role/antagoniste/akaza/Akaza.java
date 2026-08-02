@@ -58,7 +58,7 @@ public class Akaza extends Role {
 
     @Override
     public int getBonusStrength() {
-        return 5;
+        return 10;
     }
 
     @Override
