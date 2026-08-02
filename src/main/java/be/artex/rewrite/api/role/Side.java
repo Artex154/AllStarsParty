@@ -11,6 +11,7 @@ import java.util.List;
 public enum Side {
     PROTAGONISTES("du" + ChatColor.GREEN + " protagonistes", ChatColor.GREEN),
     ANTAGONISTES("des" + ChatColor.RED + " antagonistes", ChatColor.RED),
+    DIVERGENTS("des" + ChatColor.YELLOW + " divergents", ChatColor.YELLOW),
     MELENIA("de" + ChatColor.GOLD + " Melenia", ChatColor.GOLD),
     LGB("du" + ChatColor.GOLD + " Loup-Garou Blanc", ChatColor.GOLD);
 

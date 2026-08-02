@@ -45,7 +45,7 @@ public class Dague extends CustomItem {
         if (!player.isSneaking())
             return;
 
-        Cooldown cooldown = Cooldown.getCooldown("katarina_dague", 120*20, ChatColor.RED + "" + ChatColor.BOLD + "Lame rebondissante" + ChatColor.WHITE + "(" + ChatColor.RED + ChatColor.BOLD + "Dague" + ChatColor.WHITE + ")");
+        Cooldown cooldown = Cooldown.getCooldown("katarina_dague", 80*20, "la " + ChatColor.RED + ChatColor.BOLD + "Lame rebondissante" + ChatColor.WHITE + "(" + ChatColor.RED + ChatColor.BOLD + "Dague" + ChatColor.WHITE + ")");
 
         if (cooldown.isPlayerInCooldown(player)) {
             player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));

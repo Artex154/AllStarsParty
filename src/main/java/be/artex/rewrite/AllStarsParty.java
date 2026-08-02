@@ -37,6 +37,7 @@ public class AllStarsParty extends JavaPlugin {
         new SpecSubCommand().register();
         new StartSubCommand().register();
         new ForceStartSubCommand().register();
+        new SelfRevealSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());
     }

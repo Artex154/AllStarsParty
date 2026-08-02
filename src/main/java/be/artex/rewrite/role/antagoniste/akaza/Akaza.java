@@ -19,7 +19,7 @@ public class Akaza extends Role {
             ChatColor.GRAY + " Vous êtes " + ChatColor.RED + ChatColor.BOLD + "Akaza\n" +
                     ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner avec les " + ChatColor.RED + "antagonistes" + ChatColor.WHITE + ".\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Passifs: \n" +
-                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.RED + ChatColor.BOLD + "⚔" + ChatColor.DARK_GRAY + "]" + ChatColor.RED + " Force 0,5" + ChatColor.WHITE + ".\n" +
+                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.RED + ChatColor.BOLD + "⚔" + ChatColor.DARK_GRAY + "]" + ChatColor.RED + " Force 1" + ChatColor.WHITE + ".\n" +
                     ChatColor.WHITE + " Vous voyez l'aura de tout les joueurs sous leur pseudos." + ChatColor.GRAY + ChatColor.ITALIC + " (Lunar Client requis : le mod 'Nametags')\n" +
                     ChatColor.WHITE + " Vous infligez x% de dégâts en plus à chaque joueur en fonction de leur aura.\n" +
                     ChatColor.GRAY + "   Aucune" + ChatColor.WHITE + ":    -3%\n" +

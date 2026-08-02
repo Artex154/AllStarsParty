@@ -37,6 +37,7 @@ import java.util.*;
 
 public class PlayerUtil {
     private static final Map<UUID, ChatColor> playersColor = new HashMap<>();
+    private static final Map<UUID, String> playersName = new HashMap<>();
     private static final ProtocolManager protocolManager =
             ProtocolLibrary.getProtocolManager();
     private static final GlowModule glowModule = Apollo.getModuleManager()
@@ -227,13 +228,30 @@ public class PlayerUtil {
         if (!apolloViewer.isPresent())
             return;
 
+        String playerName = playersName.get(target.getUniqueId());
+
+        if (playerName == null) {
+            playerName = playersColor.get(target.getUniqueId()) + target.getName();
+        }
+
         nametagModule.overrideNametag(Recipients.of(Collections.singletonList(apolloViewer.get())), target.getUniqueId(), Nametag.builder()
                 .lines(Lists.newArrayList(
                         Component.text()
                                 .content(content)
                                 .build(),
                         Component.text()
-                                .content(playersColor.get(target.getUniqueId()) + target.getName())
+                                .content(playerName)
+                                .build()
+                ))
+                .build()
+        );
+    }
+
+    public static void setLunarNametagForEveryone(@NotNull Player target, @NotNull String content) {
+        nametagModule.overrideNametag(Recipients.ofEveryone(), target.getUniqueId(), Nametag.builder()
+                .lines(Lists.newArrayList(
+                        Component.text()
+                                .content(content)
                                 .build()
                 ))
                 .build()
@@ -242,5 +260,10 @@ public class PlayerUtil {
 
     public static void resetLunarNametag(@NotNull Player target) {
         nametagModule.resetNametag(Recipients.ofEveryone(), target.getUniqueId());
+    }
+
+    public static void setPlayerName(@NotNull Player player, @NotNull String s) {
+        playersName.put(player.getUniqueId(), s);
+        setLunarNametagForEveryone(player, s);
     }
 }

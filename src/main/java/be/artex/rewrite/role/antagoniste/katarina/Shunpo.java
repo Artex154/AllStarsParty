@@ -28,7 +28,7 @@ public class Shunpo extends CustomItem {
 
     @Override
     public void onInteract(PlayerInteractEvent event) {
-        Cooldown cooldown = Cooldown.getCooldown("katarina_shunpo", 120*20, ChatColor.GOLD + "" + ChatColor.BOLD + "Shunpo");
+        Cooldown cooldown = Cooldown.getCooldown("katarina_shunpo", 80*20, ChatColor.GOLD + "" + ChatColor.BOLD + "Shunpo");
         Player player = event.getPlayer();
 
         if (cooldown.isPlayerInCooldown(player)) {
