@@ -23,6 +23,7 @@ public abstract class Role {
     public abstract @NotNull String getName();
     public abstract @NotNull Side getSide();
     public abstract @NotNull String getDescription();
+    public abstract @NotNull Aura getAura();
 
     public int getBonusStrength() {
         return 0;
@@ -62,6 +63,15 @@ public abstract class Role {
     }
 
     public void onHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+    }
+
+    /**
+     * @param player the damaged player.
+     * @param damager the damager (the player with the role).
+     * @return bonus damage as a percentage.
+     */
+    public double bonusStrength(Player player, Player damager) {
+        return 0;
     }
 
     public void whenHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
@@ -179,7 +189,7 @@ public abstract class Role {
 
             role.whenAssigned(player);
 
-            PlayerUtil.sendTitle(player, ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "» " + role.getSide().getColor() + role.getName() + ChatColor.DARK_GRAY + ChatColor.BOLD + " «", "", 20, 60, 20);
+            PlayerUtil.sendTitle(player, ChatColor.DARK_GRAY + "» " + role.getSide().getColor() + role.getName() + ChatColor.DARK_GRAY + " «", "", 20, 60, 20);
         }
     }
 }

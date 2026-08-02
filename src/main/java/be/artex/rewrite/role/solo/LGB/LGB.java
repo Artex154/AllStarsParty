@@ -2,6 +2,7 @@ package be.artex.rewrite.role.solo.LGB;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
+import be.artex.rewrite.api.role.Aura;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.listener.PlayerListeners;
@@ -42,6 +43,11 @@ public class LGB extends Role {
     @Override
     public @NotNull String getDescription() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public @NotNull Aura getAura() {
+        return Aura.FORTE;
     }
 
     @Override

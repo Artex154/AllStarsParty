@@ -12,26 +12,31 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import com.lunarclient.apollo.Apollo;
+import com.lunarclient.apollo.module.glow.GlowModule;
+import com.lunarclient.apollo.player.ApolloPlayer;
+import com.lunarclient.apollo.recipients.Recipients;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.Color;
 import java.util.*;
 
 public class PlayerUtil {
     private static final Map<UUID, ChatColor> playersColor = new HashMap<>();
     private static final ProtocolManager protocolManager =
             ProtocolLibrary.getProtocolManager();
+    private static final GlowModule glowModule = Apollo.getModuleManager()
+            .getModule(GlowModule.class);
 
-    public static void setGlobalNameColor(Player player, ChatColor color) {
+    public static void setGlobalNameColor(@NotNull Player player, @NotNull ChatColor color) {
         String teamName = "color_" + color.getChar();
 
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -64,7 +69,7 @@ public class PlayerUtil {
         }
     }
 
-    public static @Nullable Player getPlayerTargetEntity(Player player, double maxDistance) {
+    public static @Nullable Player getPlayerTargetEntity(@NotNull Player player, double maxDistance) {
         Location eye = player.getEyeLocation();
         Vector direction = eye.getDirection().normalize();
         World world = player.getWorld();
@@ -89,7 +94,7 @@ public class PlayerUtil {
         return null;
     }
 
-    public static void resetPlayerStates(Player player) {
+    public static void resetPlayerStates(@NotNull Player player) {
         player.getInventory().clear();
         player.setMaxHealth(20);
         player.setHealth(20);
@@ -112,7 +117,7 @@ public class PlayerUtil {
         Malenia.playersWithPutrefecation.remove(player.getUniqueId());
     }
 
-    public static void sendActionBar(Player player, String s) {
+    public static void sendActionBar(@NotNull Player player, @NotNull String s) {
         PacketContainer packet = protocolManager
                 .createPacket(PacketType.Play.Server.CHAT);
 
@@ -126,7 +131,7 @@ public class PlayerUtil {
                 .sendServerPacket(player, packet);
     }
 
-    public static void setNametagForOtherPlayer(Player viewer, Player target, String prefix, String suffix) {
+    public static void setNametagForOtherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String prefix, @NotNull String suffix) {
         prefix = playersColor.get(target.getUniqueId()) + prefix;
 
         PacketContainer packet = ProtocolLibrary.getProtocolManager()
@@ -150,7 +155,7 @@ public class PlayerUtil {
                 .sendServerPacket(viewer, packet);
     }
 
-    public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+    public static void sendTitle(@NotNull Player player, @NotNull String title, @NotNull String subtitle, int fadeIn, int stay, int fadeOut) {
         PacketContainer titlePacket =
                 protocolManager.createPacket(PacketType.Play.Server.TITLE);
 
@@ -184,5 +189,23 @@ public class PlayerUtil {
         timesPacket.getIntegers().write(2, fadeOut);
 
         protocolManager.sendServerPacket(player, timesPacket);
+    }
+
+    public static void setLunarGlowForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull Color color) {
+        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
+                .getPlayer(viewer.getUniqueId());
+
+        if (!apolloViewer.isPresent())
+            return;
+
+        glowModule.overrideGlow(
+                Recipients.of(Collections.singletonList(apolloViewer.get())),
+                target.getUniqueId(),
+                color
+        );
+    }
+
+    public static void removeLunarGlow(@NotNull Player player) {
+        glowModule.resetGlow(Recipients.ofEveryone(), player.getUniqueId());
     }
 }

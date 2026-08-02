@@ -4,6 +4,7 @@ main: be.artex.rewrite.AllStarsParty
 api-version: '1.8.8'
 depend:
   - ProtocolLib
+  - Apollo-Bukkit
 commands:
   as:
     usage: /as <sub-command>

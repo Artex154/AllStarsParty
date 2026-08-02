@@ -71,7 +71,9 @@ public class ConnectionsEventListener implements Listener {
             if (Role.manager.isWonBy(firstSide, Role.manager.getRolesAlive())) {
                 AllStarsParty.gameManager.end();
 
-                Bukkit.broadcastMessage(Message.info("Victoire des " + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + "."));
+                Bukkit.broadcastMessage(Message.info("Victoire " + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
+
+                Bukkit.broadcastMessage(PlayerListeners.getKillLeaderBoard());
             }
 
             ScoreboardManager.updateAllPlayerScoreboardsExcept(player);

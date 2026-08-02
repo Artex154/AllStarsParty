@@ -17,7 +17,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -152,7 +151,7 @@ public class PlayerListeners implements Listener {
         event.setCancelled(true);
     }
 
-    private String getKillLeaderBoard() {
+    public static String getKillLeaderBoard() {
         Map<Player, Integer> allPlayersWithKills = new HashMap<>();
 
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {

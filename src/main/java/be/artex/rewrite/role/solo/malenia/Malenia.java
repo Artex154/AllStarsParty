@@ -5,6 +5,7 @@ import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.api.HitCountHolder;
 import be.artex.rewrite.api.item.CustomItem;
 import be.artex.rewrite.api.itemBuilder.ItemBuilder;
+import be.artex.rewrite.api.role.Aura;
 import be.artex.rewrite.api.role.RevivableRole;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.registry.ItemRegistry;
@@ -55,6 +56,11 @@ public class Malenia extends RevivableRole {
     @Override
     public @NotNull String getDescription() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public @NotNull Aura getAura() {
+        return Aura.FORTE;
     }
 
     @Override

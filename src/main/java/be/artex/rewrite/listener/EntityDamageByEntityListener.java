@@ -23,16 +23,19 @@ public class EntityDamageByEntityListener implements Listener {
             return;
         }
 
+        Role playerRole = Role.manager.getPlayerRole(player.getUniqueId());
+        Role damagerRole = Role.manager.getPlayerRole(damager.getUniqueId());
+
         double playerResistanceBonus = Stats.get(player.getUniqueId()).getBonus(StatValues.RESISTANCE);
         double damagerStrengthBonus = Stats.get(damager.getUniqueId()).getBonus(StatValues.STRENGTH);
+
+        if (damagerRole != null)
+            damagerStrengthBonus += damagerRole.bonusStrength(player, damager);
 
         double multiplier = 1 + (damagerStrengthBonus - playerResistanceBonus) / 100;
         double finalDamage = event.getDamage() * multiplier;
 
         event.setDamage(finalDamage);
-
-        Role playerRole = Role.manager.getPlayerRole(player.getUniqueId());
-        Role damagerRole = Role.manager.getPlayerRole(damager.getUniqueId());
 
         if (playerRole != null)
             playerRole.whenHit(player, damager, finalDamage, event);

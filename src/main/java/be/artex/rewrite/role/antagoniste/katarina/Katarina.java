@@ -3,6 +3,7 @@ package be.artex.rewrite.role.antagoniste.katarina;
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.api.item.Cooldown;
 import be.artex.rewrite.api.item.CustomItem;
+import be.artex.rewrite.api.role.Aura;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.registry.ItemRegistry;
@@ -43,6 +44,11 @@ public class Katarina extends Role {
     @Override
     public @NotNull String getDescription() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public @NotNull Aura getAura() {
+        return Aura.MOYENNE;
     }
 
     @Override
