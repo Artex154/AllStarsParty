@@ -25,7 +25,7 @@ public class Katarina extends Role {
             ChatColor.GRAY + ChatColor.BOLD + "» Compétences activables: \n" +
             ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Shunpo" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/1mn20s\n" +
             ChatColor.WHITE + "     Vous vous téléportez dans le dos du joueur ciblé. S'il ne s'agit pas d'un joueur de votre camp, " + ChatColor.LIGHT_PURPLE + "1❤" + ChatColor.WHITE + " lui sera infligé.\n " +
-            ChatColor.DARK_GRAY + " [" + ChatColor.RED + ChatColor.BOLD + "⚔" + ChatColor.DARK_GRAY + "]" + ChatColor.RED + ChatColor.BOLD + " Dague" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit en sneakant" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/3mn\n" +
+            ChatColor.DARK_GRAY + " [" + ChatColor.RED + ChatColor.BOLD + "⚔" + ChatColor.DARK_GRAY + "]" + ChatColor.RED + ChatColor.BOLD + " Dague" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit en sneakant" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/1mn20\n" +
             ChatColor.WHITE + "   Votre " + ChatColor.RED + ChatColor.BOLD + "Dague " + ChatColor.WHITE + "rebondit sur un " + ChatColor.UNDERLINE + "maximum de 5 joueurs" + ChatColor.WHITE + " dans un rayon de 20 blocs.\n" +
             ChatColor.WHITE + "   Vous perdez l'utilisation de votre " + ChatColor.RED + ChatColor.BOLD + "Dague" + ChatColor.WHITE + " pendant 0,5 secondes par joueur.\n" +
             ChatColor.GRAY + "  » S'il s'agit d'un joueur allié:\n" + ChatColor.LIGHT_PURPLE + "      1,5❤" + ChatColor.WHITE + " lui est régénéré.\n" +

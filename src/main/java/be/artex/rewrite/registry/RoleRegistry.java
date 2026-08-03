@@ -3,6 +3,7 @@ package be.artex.rewrite.registry;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.role.antagoniste.akaza.Akaza;
 import be.artex.rewrite.role.divergents.Light;
+import be.artex.rewrite.role.protagonistes.gyomei.Gyomei;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
 import be.artex.rewrite.role.antagoniste.katarina.Katarina;
 import be.artex.rewrite.role.solo.LGB.LGB;
@@ -15,13 +16,15 @@ public class RoleRegistry {
     public static final Role LGB = new LGB();
     public static final Role AKAZA = new Akaza();
     public static final Role LIGHT = new Light();
+    public static final Role GYOMEI = new Gyomei();
 
     public static void registerRoles() {
         //KATARINA.register();
         //MR_JACK.register();
         //MALENIA.register();
         //LGB.register();
-        AKAZA.register();
+        //AKAZA.register();
         LIGHT.register();
+        GYOMEI.register();
     }
 }

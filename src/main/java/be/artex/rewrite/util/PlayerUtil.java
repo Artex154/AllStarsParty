@@ -3,8 +3,11 @@ package be.artex.rewrite.util;
 import be.artex.rewrite.api.HitCountHolder;
 import be.artex.rewrite.api.item.Cooldown;
 import be.artex.rewrite.api.role.RevivableRole;
+import be.artex.rewrite.commands.subCommands.SelfRevealSubCommand;
 import be.artex.rewrite.role.antagoniste.akaza.Akaza;
 import be.artex.rewrite.role.antagoniste.akaza.Boussole;
+import be.artex.rewrite.role.divergents.Deathnote;
+import be.artex.rewrite.role.divergents.Light;
 import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
 import be.artex.rewrite.role.protagonistes.mrjack.CostumesHolder;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
@@ -127,6 +130,8 @@ public class PlayerUtil {
         Malenia.playersPercentage.remove(player.getUniqueId());
         Malenia.playersWithPutrefecation.remove(player.getUniqueId());
         Boussole.playersWithCompassActive.remove(player.getUniqueId());
+        Deathnote.playersAffectedByDeathNote.remove(player.getUniqueId());
+        SelfRevealSubCommand.revealedPlayers.remove(player.getUniqueId());
     }
 
     public static void sendActionBar(@NotNull Player player, @NotNull String s) {
