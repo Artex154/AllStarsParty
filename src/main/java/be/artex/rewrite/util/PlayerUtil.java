@@ -8,6 +8,7 @@ import be.artex.rewrite.role.antagoniste.akaza.Boussole;
 import be.artex.rewrite.role.divergents.light.Deathnote;
 import be.artex.rewrite.role.divergents.sasuke.Amaterasu;
 import be.artex.rewrite.role.divergents.sasuke.Sasuke;
+import be.artex.rewrite.role.protagonistes.gyomei.Gyomei;
 import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
 import be.artex.rewrite.role.protagonistes.mrjack.CostumesHolder;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
@@ -138,6 +139,7 @@ public class PlayerUtil {
         SelfRevealSubCommand.revealedPlayers.remove(player.getUniqueId());
         Amaterasu.playersAffectedByAmaterasu.remove(player.getUniqueId());
         Sasuke.playersChakra.remove(player.getUniqueId());
+        Gyomei.playersWithMark.remove(player.getUniqueId());
     }
 
     public static void sendActionBar(@NotNull Player player, @NotNull String s) {
