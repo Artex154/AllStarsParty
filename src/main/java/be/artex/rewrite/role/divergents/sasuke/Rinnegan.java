@@ -26,8 +26,16 @@ public class Rinnegan extends CustomItem {
 
     @Override
     public void onInteract(PlayerInteractEvent event) {
-        Cooldown cooldown = Cooldown.getCooldown("sasuke_rinnegan", 75*20, ChatColor.WHITE + "votre " + ChatColor.DARK_PURPLE + ChatColor.BOLD + "Rinnegan");
         Player player = event.getPlayer();
+
+        Integer ch = Sasuke.playersChakra.get(player.getUniqueId());
+
+        if (ch - 45 <= -1) {
+            player.sendMessage(Message.error("Vous n'avez pas assez de chakra."));
+            return;
+        }
+
+        Cooldown cooldown = Cooldown.getCooldown("sasuke_rinnegan", 5*20, ChatColor.WHITE + "Votre " + ChatColor.DARK_PURPLE + ChatColor.BOLD + "Rinnegan");
 
         if (cooldown.isPlayerInCooldown(player)) {
             player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
@@ -40,6 +48,8 @@ public class Rinnegan extends CustomItem {
             player.sendMessage(Message.error("Vous ne visez aucun joueur."));
             return;
         }
+
+        Sasuke.playersChakra.put(player.getUniqueId(), ch - 45);
 
         target.sendMessage(Message.info(ChatColor.YELLOW + "Sasuke" + ChatColor.WHITE + " échange de place avec vous."));
         player.sendMessage(Message.info("Vous échangez de place avec " + ChatColor.DARK_AQUA + target.getName() + ChatColor.WHITE + "."));

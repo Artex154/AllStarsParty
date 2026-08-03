@@ -29,8 +29,16 @@ public class Amaterasu extends CustomItem {
 
     @Override
     public void onInteract(PlayerInteractEvent event) {
-        Cooldown cooldown = Cooldown.getCooldown("sasuke_amaterasu", 90*20, ChatColor.GOLD + "" + ChatColor.BOLD + "Amaterasu");
         Player player = event.getPlayer();
+
+        Integer ch = Sasuke.playersChakra.get(player.getUniqueId());
+
+        if (ch - 70 <= -1) {
+            player.sendMessage(Message.error("Vous n'avez pas assez de chakra."));
+            return;
+        }
+
+        Cooldown cooldown = Cooldown.getCooldown("sasuke_amaterasu", 20*20, ChatColor.GOLD + "" + ChatColor.BOLD + "Amaterasu");
 
         if (cooldown.isPlayerInCooldown(player)) {
             player.sendMessage(Message.cooldownTimeLeft(cooldown.getPlayerCooldownTimeLeft(player)));
@@ -46,8 +54,8 @@ public class Amaterasu extends CustomItem {
 
         playersAffectedByAmaterasu.add(target.getUniqueId());
 
-        target.sendMessage(Message.info(ChatColor.YELLOW + "Sasuke " + ChatColor.WHITE + " vous inflige l'" + ChatColor.GOLD + ChatColor.BOLD + "Amaterasu" + ChatColor.WHITE + "."));
-        player.sendMessage(Message.info("Vous infligez l' " + ChatColor.GOLD + ChatColor.BOLD + "Amaterasu " + ChatColor.WHITE + "à " + ChatColor.DARK_AQUA + target.getName() + ChatColor.WHITE + "."));
+        target.sendMessage(Message.info(ChatColor.YELLOW + "Sasuke" + ChatColor.WHITE + " vous inflige l'" + ChatColor.GOLD + ChatColor.BOLD + "Amaterasu" + ChatColor.WHITE + "."));
+        player.sendMessage(Message.info("Vous infligez l'" + ChatColor.GOLD + ChatColor.BOLD + "Amaterasu " + ChatColor.WHITE + "à " + ChatColor.DARK_AQUA + target.getName() + ChatColor.WHITE + "."));
 
         PlayerUtil.setFireColor(target.getUniqueId(), Color.BLACK);
 
@@ -56,7 +64,7 @@ public class Amaterasu extends CustomItem {
 
             @Override
             public void run() {
-                if (!playersAffectedByAmaterasu.contains(target.getUniqueId()) || runs++ == 32) {
+                if (!playersAffectedByAmaterasu.contains(target.getUniqueId()) || runs++ == 48) {
                     playersAffectedByAmaterasu.remove(target.getUniqueId());
                     PlayerUtil.resetFireColor(target.getUniqueId());
                     cancel();
@@ -68,6 +76,7 @@ public class Amaterasu extends CustomItem {
             }
         }.runTaskTimer(AllStarsParty.instance, 0L, 5L);
 
+        Sasuke.playersChakra.put(player.getUniqueId(), ch - 70);
         cooldown.putPlayerInCooldown(player);
     }
 }

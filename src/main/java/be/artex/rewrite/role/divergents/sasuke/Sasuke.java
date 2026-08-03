@@ -1,29 +1,40 @@
 package be.artex.rewrite.role.divergents.sasuke;
 
+import be.artex.rewrite.AllStarsParty;
 import be.artex.rewrite.api.item.CustomItem;
 import be.artex.rewrite.api.role.Aura;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
 import be.artex.rewrite.registry.ItemRegistry;
+import be.artex.rewrite.util.PlayerUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Sasuke extends Role {
+    public static final HashMap<UUID, Integer> playersChakra = new HashMap<>();
+
     private final String DESCRIPTION =
             ChatColor.GRAY + " Vous êtes " + ChatColor.YELLOW + ChatColor.BOLD + "Sasuke\n" +
                     ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner avec les " + ChatColor.RED + "divergents" + ChatColor.WHITE + ".\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Passifs: \n" +
-                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse 1" + ChatColor.WHITE + "ainsi que " + ChatColor.GOLD + "resistance au feu" + ChatColor.WHITE + ".\n \n" +
+                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse 1" + ChatColor.WHITE + "ainsi que " + ChatColor.GOLD + "resistance au feu" + ChatColor.WHITE + ".\n" +
+                    ChatColor.WHITE + " Vous disposez de 100 unités de " + ChatColor.AQUA + "chakra" + ChatColor.WHITE + ". Chaque compétence activable vous en coûte un certain nombre. Vous gagnez 2 unités de " + ChatColor.AQUA + "chakra " + ChatColor.WHITE + "à chaque coup.\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Compétences activables: \n" +
-                    ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Amaterasu" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/1mn30s\n" +
+                    ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Amaterasu" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/20s" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "70 chakra/utilisation\n" +
                     ChatColor.WHITE + "     Vous infligez un" + ChatColor.GOLD + " feu non-éteignable " + ChatColor.WHITE + "au joueur ciblé pendant 8 secondes.\n" +
-                    ChatColor.DARK_GRAY + " [" + ChatColor.DARK_PURPLE + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_PURPLE + ChatColor.BOLD + " Rinnegan" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/1mn15s\n" +
+                    ChatColor.DARK_GRAY + " [" + ChatColor.DARK_PURPLE + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_PURPLE + ChatColor.BOLD + " Rinnegan" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/5s" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "45 chakra/utilisation\n" +
                     ChatColor.WHITE + "     Vous échangez de place avec le joueur ciblé.";
 
 
@@ -55,6 +66,30 @@ public class Sasuke extends Role {
     @Override
     public void whenAssigned(Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
+        playersChakra.put(player.getUniqueId(), 100);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (!playersChakra.containsKey(player.getUniqueId()) || playersChakra.get(player.getUniqueId()) == null) {
+                    cancel();
+                    playersChakra.remove(player.getUniqueId());
+                }
+
+                PlayerUtil.sendActionBar(player, ChatColor.GRAY + "» " + ChatColor.AQUA + playersChakra.get(player.getUniqueId()).toString() + "/100" + ChatColor.GRAY + " chakra" + " «");
+            }
+
+        }.runTaskTimer(AllStarsParty.instance, 0, 20);
+    }
+
+    @Override
+    public void onHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+        Integer ch = playersChakra.get(damager.getUniqueId());
+
+        if (ch + 2 >= 101)
+            return;
+
+        playersChakra.put(damager.getUniqueId(), ch + 2);
     }
 
     @Override
