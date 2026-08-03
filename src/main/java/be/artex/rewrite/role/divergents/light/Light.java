@@ -1,4 +1,4 @@
-package be.artex.rewrite.role.divergents;
+package be.artex.rewrite.role.divergents.light;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;

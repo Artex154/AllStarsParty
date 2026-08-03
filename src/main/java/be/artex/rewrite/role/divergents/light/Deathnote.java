@@ -1,4 +1,4 @@
-package be.artex.rewrite.role.divergents;
+package be.artex.rewrite.role.divergents.light;
 
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.rewrite.AllStarsParty;
@@ -15,7 +15,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

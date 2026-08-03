@@ -4,10 +4,9 @@ import be.artex.rewrite.api.HitCountHolder;
 import be.artex.rewrite.api.item.Cooldown;
 import be.artex.rewrite.api.role.RevivableRole;
 import be.artex.rewrite.commands.subCommands.SelfRevealSubCommand;
-import be.artex.rewrite.role.antagoniste.akaza.Akaza;
 import be.artex.rewrite.role.antagoniste.akaza.Boussole;
-import be.artex.rewrite.role.divergents.Deathnote;
-import be.artex.rewrite.role.divergents.Light;
+import be.artex.rewrite.role.divergents.light.Deathnote;
+import be.artex.rewrite.role.divergents.sasuke.Amaterasu;
 import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
 import be.artex.rewrite.role.protagonistes.mrjack.CostumesHolder;
 import be.artex.rewrite.role.protagonistes.mrjack.MrJack;
@@ -19,6 +18,7 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.google.common.collect.Lists;
 import com.lunarclient.apollo.Apollo;
+import com.lunarclient.apollo.module.coloredfire.ColoredFireModule;
 import com.lunarclient.apollo.module.glow.GlowModule;
 import com.lunarclient.apollo.module.nametag.Nametag;
 import com.lunarclient.apollo.module.nametag.NametagModule;
@@ -47,6 +47,8 @@ public class PlayerUtil {
             .getModule(GlowModule.class);
     private static final NametagModule nametagModule = Apollo.getModuleManager()
             .getModule(NametagModule.class);
+    private static final ColoredFireModule coloredFireModule = Apollo.getModuleManager()
+            .getModule(ColoredFireModule.class);
 
     public static void setGlobalNameColor(@NotNull Player player, @NotNull ChatColor color) {
         String teamName = "color_" + color.getChar();
@@ -114,6 +116,7 @@ public class PlayerUtil {
         Cooldown.clearAllCooldowns(player);
         resetLunarNametag(player);
         removeLunarGlow(player);
+        resetFireColor(player.getUniqueId());
 
         for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());
@@ -132,6 +135,7 @@ public class PlayerUtil {
         Boussole.playersWithCompassActive.remove(player.getUniqueId());
         Deathnote.playersAffectedByDeathNote.remove(player.getUniqueId());
         SelfRevealSubCommand.revealedPlayers.remove(player.getUniqueId());
+        Amaterasu.playersAffectedByAmaterasu.remove(player.getUniqueId());
     }
 
     public static void sendActionBar(@NotNull Player player, @NotNull String s) {
@@ -270,5 +274,16 @@ public class PlayerUtil {
     public static void setPlayerName(@NotNull Player player, @NotNull String s) {
         playersName.put(player.getUniqueId(), s);
         setLunarNametagForEveryone(player, s);
+    }
+
+    public static void setFireColor(@NotNull UUID burningPlayer, @NotNull Color color) {
+        coloredFireModule.overrideColoredFire(Recipients.ofEveryone(),
+                burningPlayer,
+                color
+        );
+    }
+
+    public static void resetFireColor(@NotNull UUID burningPlayer) {
+        coloredFireModule.resetColoredFire(Recipients.ofEveryone(), burningPlayer);
     }
 }
