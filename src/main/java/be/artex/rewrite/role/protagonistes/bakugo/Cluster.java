@@ -54,6 +54,8 @@ public class Cluster extends CustomItem {
             return;
         }
 
+        target.damage(0);
+
         player.setVelocity(new Vector(0, 3f, 0).normalize());
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () ->  {
