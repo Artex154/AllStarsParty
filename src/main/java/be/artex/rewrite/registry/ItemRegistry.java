@@ -7,6 +7,8 @@ import be.artex.rewrite.role.antagoniste.katarina.Shunpo;
 import be.artex.rewrite.role.divergents.light.Deathnote;
 import be.artex.rewrite.role.divergents.sasuke.Amaterasu;
 import be.artex.rewrite.role.divergents.sasuke.Rinnegan;
+import be.artex.rewrite.role.protagonistes.bakugo.Cluster;
+import be.artex.rewrite.role.protagonistes.bakugo.Propulsion;
 import be.artex.rewrite.role.protagonistes.gyomei.Kusarigama;
 import be.artex.rewrite.role.protagonistes.mrjack.Costumes;
 import be.artex.rewrite.role.solo.malenia.WaterfowlDance;
@@ -21,6 +23,8 @@ public class ItemRegistry {
     public static final CustomItem GYOMEI_KUSARIGAMA = new Kusarigama();
     public static final CustomItem SASUKE_AMATERASU = new Amaterasu();
     public static final CustomItem SASUKE_RINNEGAN = new Rinnegan();
+    public static final CustomItem BAKUGO_PROPULSION = new Propulsion();
+    public static final CustomItem BAKUGO_CLUSTER = new Cluster();
 
     public static void registerItems() {
         KATARINA_DAGUE.register();
@@ -32,5 +36,7 @@ public class ItemRegistry {
         GYOMEI_KUSARIGAMA.register();
         SASUKE_AMATERASU.register();
         SASUKE_RINNEGAN.register();
+        BAKUGO_PROPULSION.register();
+        BAKUGO_CLUSTER.register();
     }
 }

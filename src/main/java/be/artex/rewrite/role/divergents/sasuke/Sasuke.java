@@ -27,9 +27,9 @@ public class Sasuke extends Role {
 
     private final String DESCRIPTION =
             ChatColor.GRAY + " Vous êtes " + ChatColor.YELLOW + ChatColor.BOLD + "Sasuke\n" +
-                    ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner avec les " + ChatColor.RED + "divergents" + ChatColor.WHITE + ".\n \n" +
+                    ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner avec les " + ChatColor.YELLOW + "divergents" + ChatColor.WHITE + ".\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Passifs: \n" +
-                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse 1" + ChatColor.WHITE + "ainsi que " + ChatColor.GOLD + "resistance au feu" + ChatColor.WHITE + ".\n" +
+                    ChatColor.WHITE + " Vous possédez " + ChatColor.DARK_GRAY + "[" + ChatColor.YELLOW + "➤" + ChatColor.DARK_GRAY + "]" + ChatColor.YELLOW + " Vitesse 1 " + ChatColor.WHITE + "ainsi que " + ChatColor.GOLD + "resistance au feu" + ChatColor.WHITE + ".\n" +
                     ChatColor.WHITE + " Vous disposez de 100 unités de " + ChatColor.AQUA + "chakra" + ChatColor.WHITE + ". Chaque compétence activable vous en coûte un certain nombre. Vous gagnez 2 unités de " + ChatColor.AQUA + "chakra " + ChatColor.WHITE + "à chaque coup.\n \n" +
                     ChatColor.GRAY + ChatColor.BOLD + "» Compétences activables: \n" +
                     ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Amaterasu" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/20s" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "70 chakra/utilisation\n" +

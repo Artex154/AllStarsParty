@@ -34,9 +34,6 @@ public class GameManager {
 
         inGame = true;
 
-        for (Player player : players)
-            PlayerUtil.resetPlayerStates(player);
-
         Role.manager.startGame(players);
         alivePlayers.addAll(players);
     }

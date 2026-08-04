@@ -59,6 +59,6 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onLiquidFlow(BlockFromToEvent event) {
-        event.setCancelled(true);
+        //event.setCancelled(true);
     }
 }
