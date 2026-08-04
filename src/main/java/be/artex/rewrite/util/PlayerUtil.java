@@ -41,8 +41,8 @@ import java.awt.Color;
 import java.util.*;
 
 public class PlayerUtil {
-    private static final Map<UUID, ChatColor> playersColor = new HashMap<>();
-    private static final Map<UUID, String> playersName = new HashMap<>();
+    public static final Map<UUID, ChatColor> playersColor = new HashMap<>();
+    public static final Map<UUID, String> playersName = new HashMap<>();
     private static final ProtocolManager protocolManager =
             ProtocolLibrary.getProtocolManager();
     private static final GlowModule glowModule = Apollo.getModuleManager()
@@ -119,6 +119,7 @@ public class PlayerUtil {
         resetLunarNametag(player);
         removeLunarGlow(player);
         resetFireColor(player.getUniqueId());
+        player.setPlayerListName(player.getName());
 
         for (PotionEffect effect : player.getActivePotionEffects())
             player.removePotionEffect(effect.getType());

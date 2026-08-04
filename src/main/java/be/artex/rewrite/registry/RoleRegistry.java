@@ -21,12 +21,12 @@ public class RoleRegistry {
     public static final Role SASUKE = new Sasuke();
 
     public static void registerRoles() {
-        //KATARINA.register();
-        //MR_JACK.register();
+        KATARINA.register();
+        MR_JACK.register();
         //MALENIA.register();
-        //LGB.register();
-        //AKAZA.register();
-        //LIGHT.register();
+        LGB.register();
+        AKAZA.register();
+        LIGHT.register();
         GYOMEI.register();
         SASUKE.register();
     }

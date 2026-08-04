@@ -69,13 +69,6 @@ public class ForceStartSubCommand extends SubCommand {
         return null;
     }
 
-    public static void setupPlayer(Player player) {
-        PlayerUtil.resetPlayerStates(player);
-        player.setGameMode(GameMode.SURVIVAL);
-        player.teleport(WorldUtil.getRandomSpawnLocation().getLocation());
-        setupInventory(player.getInventory());
-    }
-
     private static void setupInventory(PlayerInventory inv) {
         inv.setHelmet(new ItemBuilder(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());
         inv.setChestplate(new ItemBuilder(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());

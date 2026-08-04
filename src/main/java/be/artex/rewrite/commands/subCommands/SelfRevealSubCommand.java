@@ -21,7 +21,7 @@ public class SelfRevealSubCommand extends SubCommand {
 
     @Override
     public String[] getArgument() {
-        return new String[]{"selfreaveal", "sr", "lightreveal", "lr"};
+        return new String[]{"selfreveal", "sr", "lightreveal", "lr"};
     }
 
     @Override

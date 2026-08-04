@@ -68,7 +68,6 @@ public class StartSubCommand extends SubCommand {
     }
 
     public static void setupPlayer(Player player) {
-        PlayerUtil.resetPlayerStates(player);
         player.setGameMode(GameMode.SURVIVAL);
         player.teleport(WorldUtil.getRandomSpawnLocation().getLocation());
         setupInventory(player.getInventory());

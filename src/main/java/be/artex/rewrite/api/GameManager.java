@@ -34,6 +34,9 @@ public class GameManager {
 
         inGame = true;
 
+        for (Player player : players)
+            PlayerUtil.resetPlayerStates(player);
+
         Role.manager.startGame(players);
         alivePlayers.addAll(players);
     }
@@ -50,13 +53,13 @@ public class GameManager {
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
             p.setGameMode(GameMode.ADVENTURE);
-
-            PlayerUtil.resetPlayerStates(p);
         }
 
         BlockListeners.PLACED_BLOCKS.forEach(b -> b.setType(Material.AIR));
         BlockListeners.PLACED_BLOCKS.clear();
         PlayerListeners.PLAYERS_KILL_AMOUNT.clear();
+        PlayerUtil.playersName.clear();
+        PlayerUtil.playersColor.clear();
     }
 
     public void removePlayer(@NotNull Player player) {

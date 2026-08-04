@@ -6,6 +6,7 @@ import be.artex.rewrite.registry.RoleRegistry;
 import be.artex.rewrite.scoreboard.ScoreboardManager;
 import be.artex.rewrite.api.role.Role;
 import be.artex.rewrite.api.role.Side;
+import be.artex.rewrite.util.PlayerUtil;
 import be.artex.rewrite.util.StatValues;
 import be.artex.rewrite.util.Stats;
 import be.artex.rewrite.world.WorldUtil;
@@ -33,6 +34,8 @@ public class PlayerListeners implements Listener {
         Role playerRole = roleManager.getPlayerRole(player.getUniqueId());
 
         event.setDeathMessage("");
+
+        PlayerUtil.resetPlayerStates(player);
 
         if (playerRole != null) {
             Bukkit.broadcastMessage(
