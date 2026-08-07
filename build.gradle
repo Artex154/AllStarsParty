@@ -30,7 +30,6 @@ dependencies {
     implementation 'fr.mrmicky:fastboard:1.2.0'
     implementation "net.kyori:adventure-api:4.17.0"
     implementation "net.kyori:adventure-text-serializer-legacy:4.17.0"
-    implementation("com.github.tr7zw.Item-NBT-API:item-nbt-api:2.12.0-RC1")
 }
 
 tasks {

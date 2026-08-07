@@ -3,7 +3,7 @@ package be.artex.role.rewrited.duo.jigoZen.zenitsu;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.AllStarsParty.api.message.Message;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
 import org.bukkit.Bukkit;

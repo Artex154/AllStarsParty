@@ -4,7 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Role;
 import be.artex.allStarsParty.api.Side;
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.AllStarsParty.api.message.Message;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.api.stats.Speed;
 import be.artex.allStarsParty.api.stats.Strength;
 import be.artex.allStarsParty.registry.ItemRegistry;

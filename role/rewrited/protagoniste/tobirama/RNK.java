@@ -2,7 +2,7 @@ package be.artex.role.rewrited.protagoniste.tobirama;
 
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.AllStarsParty.api.message.Message;
+import be.artex.allStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

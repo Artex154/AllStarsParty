@@ -4,7 +4,7 @@ import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.Cooldown;
 import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.AllStarsParty.api.message.Message;
+import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
