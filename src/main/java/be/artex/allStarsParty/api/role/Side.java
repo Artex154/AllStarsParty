@@ -9,19 +9,21 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Side {
-    PROTAGONISTES("du" + ChatColor.GREEN + " protagonistes", ChatColor.GREEN),
-    ANTAGONISTES("des" + ChatColor.RED + " antagonistes", ChatColor.RED),
-    DIVERGENTS("des" + ChatColor.YELLOW + " divergents", ChatColor.YELLOW),
-    MELENIA("de" + ChatColor.GOLD + " Melenia", ChatColor.GOLD),
-    LGB("du" + ChatColor.GOLD + " Loup-Garou Blanc", ChatColor.GOLD);
+    PROTAGONISTES("protagonistes", ChatColor.GREEN, SidePropriety.TEAM),
+    ANTAGONISTES("antagonistes", ChatColor.RED, SidePropriety.TEAM),
+    DIVERGENTS("divergents", ChatColor.YELLOW, SidePropriety.TEAM),
+    MELENIA("Melenia", ChatColor.GOLD, SidePropriety.ALONE),
+    LGB("Loup-Garou Blanc", ChatColor.GOLD, SidePropriety.LGB);
 
     private final ChatColor color;
     private final String name;
+    private final SidePropriety propriety;
     private final List<Player> players;
 
-    Side(@NotNull String name, @NotNull ChatColor color) {
+    Side(@NotNull String name, @NotNull ChatColor color, @NotNull SidePropriety propriety) {
         this.name = name;
         this.color = color;
+        this.propriety = propriety;
         this.players = new ArrayList<>();
     }
 
@@ -31,6 +33,10 @@ public enum Side {
 
     public @NotNull String getName() {
         return name;
+    }
+
+    public @NotNull SidePropriety getPropriety() {
+        return propriety;
     }
 
     public @NotNull List<Player> getPlayers() {

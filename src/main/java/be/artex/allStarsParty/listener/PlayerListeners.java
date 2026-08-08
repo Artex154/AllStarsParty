@@ -92,7 +92,7 @@ public class PlayerListeners implements Listener {
 
             AllStarsParty.gameManager.end();
 
-            Bukkit.broadcastMessage(Message.info("Victoire " + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
+            Bukkit.broadcastMessage(Message.info("Victoire " + firstSide.getPropriety().getDeterminer() + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
 
             event.getDrops().clear();
         } else {

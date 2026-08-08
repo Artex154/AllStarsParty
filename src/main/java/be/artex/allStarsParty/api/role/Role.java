@@ -5,6 +5,7 @@ import be.artex.allStarsParty.api.item.CustomItem;
 import be.artex.allStarsParty.util.PlayerUtil;
 import be.artex.allStarsParty.util.StatValues;
 import be.artex.allStarsParty.util.Stats;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -19,10 +20,11 @@ import java.util.stream.Collectors;
 
 public abstract class Role {
     public static final Role.Manager manager = Manager.get(AllStarsParty.instance);
+    private TextComponent desc = new TextComponent("<N/A>");
 
     public abstract @NotNull String getName();
+    public abstract @NotNull TextComponent descriptionInitialization();
     public abstract @NotNull Side getSide();
-    public abstract @NotNull String getDescription();
     public abstract @NotNull Aura getAura();
 
     public int getBonusStrength() {
@@ -79,6 +81,11 @@ public abstract class Role {
 
     public final void register() {
         manager.registeredRoles.add(this);
+        desc = descriptionInitialization();
+    }
+
+    public final @NotNull TextComponent getDescription() {
+        return desc;
     }
 
     public static class Manager {
@@ -172,7 +179,9 @@ public abstract class Role {
         public void assignRoleToPlayer(@NotNull Player player, @NotNull Role role) {
             setPlayerRole(player.getUniqueId(), role);
             PlayerUtil.setGlobalNameColor(player, role.getDisplayColor());
-            player.sendMessage(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n" + role.getDescription() + ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "\n                                                                                \n");
+            player.sendMessage(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "                                                                                \n");
+            player.spigot().sendMessage(role.getDescription());
+            player.sendMessage(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "                                                                                \n");
 
             for (CustomItem i : role.getCustomItems()) {
                 player.getInventory().addItem(i.getStack());

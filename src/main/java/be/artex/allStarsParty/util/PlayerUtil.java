@@ -18,6 +18,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.google.common.collect.Lists;
 import com.lunarclient.apollo.Apollo;
 import com.lunarclient.apollo.module.coloredfire.ColoredFireModule;
@@ -83,6 +84,12 @@ public class PlayerUtil {
 
             playersColor.put(player.getUniqueId(), color);
         }
+    }
+
+    public static boolean hasAbsorption(@NotNull Player player) {
+        return (Float) WrappedDataWatcher
+                .getEntityWatcher(player)
+                .getObject(11) > 0;
     }
 
     public static @Nullable Player getPlayerTargetEntity(@NotNull Player player, double maxDistance) {
@@ -290,5 +297,13 @@ public class PlayerUtil {
 
     public static void resetFireColor(@NotNull UUID burningPlayer) {
         coloredFireModule.resetColoredFire(Recipients.ofEveryone(), burningPlayer);
+    }
+
+    public static void inflictTrueDamage(@NotNull Player player, int damage) {
+        player.damage(0);
+        
+        if (player.getHealth() - damage <= 0)
+            player.setHealth(0);
+        else player.setHealth(player.getHealth() - damage);
     }
 }

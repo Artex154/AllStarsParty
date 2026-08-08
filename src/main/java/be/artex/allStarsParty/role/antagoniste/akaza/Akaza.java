@@ -6,10 +6,12 @@ import be.artex.allStarsParty.api.role.Aura;
 import be.artex.allStarsParty.api.role.Role;
 import be.artex.allStarsParty.api.role.Side;
 import be.artex.allStarsParty.util.PlayerUtil;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,13 +44,13 @@ public class Akaza extends Role {
     }
 
     @Override
-    public @NotNull Side getSide() {
-        return Side.ANTAGONISTES;
+    public @NotNull TextComponent descriptionInitialization() {
+        return new TextComponent(DESCRIPTION);
     }
 
     @Override
-    public @NotNull String getDescription() {
-        return DESCRIPTION;
+    public @NotNull Side getSide() {
+        return Side.ANTAGONISTES;
     }
 
     @Override

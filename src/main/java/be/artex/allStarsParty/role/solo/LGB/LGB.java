@@ -8,6 +8,7 @@ import be.artex.allStarsParty.api.role.Side;
 import be.artex.allStarsParty.listener.PlayerListeners;
 import be.artex.allStarsParty.util.StatValues;
 import be.artex.allStarsParty.util.Stats;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -41,8 +42,8 @@ public class LGB extends Role {
     }
 
     @Override
-    public @NotNull String getDescription() {
-        return DESCRIPTION;
+    public @NotNull TextComponent descriptionInitialization() {
+        return new TextComponent(DESCRIPTION);
     }
 
     @Override

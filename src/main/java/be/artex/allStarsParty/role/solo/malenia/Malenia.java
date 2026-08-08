@@ -10,6 +10,7 @@ import be.artex.allStarsParty.api.role.RevivableRole;
 import be.artex.allStarsParty.api.role.Side;
 import be.artex.allStarsParty.registry.ItemRegistry;
 import be.artex.allStarsParty.util.PlayerUtil;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -55,8 +56,8 @@ public class Malenia extends RevivableRole {
     }
 
     @Override
-    public @NotNull String getDescription() {
-        return DESCRIPTION;
+    public @NotNull TextComponent descriptionInitialization() {
+        return new TextComponent(DESCRIPTION);
     }
 
     @Override
