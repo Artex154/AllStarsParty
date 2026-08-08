@@ -4,7 +4,7 @@ import be.artex.allStarsParty.api.HitCountHolder;
 import be.artex.allStarsParty.api.item.Cooldown;
 import be.artex.allStarsParty.api.role.RevivableRole;
 import be.artex.allStarsParty.commands.subCommands.SelfRevealSubCommand;
-import be.artex.allStarsParty.role.antagoniste.akaza.Boussole;
+import be.artex.allStarsParty.role.antagoniste.akaza.LCAB;
 import be.artex.allStarsParty.role.divergents.light.Deathnote;
 import be.artex.allStarsParty.role.divergents.sasuke.Amaterasu;
 import be.artex.allStarsParty.role.divergents.sasuke.Sasuke;
@@ -142,7 +142,7 @@ public class PlayerUtil {
         Malenia.playersBleeding.remove(player.getUniqueId());
         Malenia.playersPercentage.remove(player.getUniqueId());
         Malenia.playersWithPutrefecation.remove(player.getUniqueId());
-        Boussole.playersWithCompassActive.remove(player.getUniqueId());
+        LCAB.playersThatHaveActivedIt.remove(player.getUniqueId());
         Deathnote.playersAffectedByDeathNote.remove(player.getUniqueId());
         SelfRevealSubCommand.revealedPlayers.remove(player.getUniqueId());
         Amaterasu.playersAffectedByAmaterasu.remove(player.getUniqueId());

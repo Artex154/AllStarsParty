@@ -108,7 +108,7 @@ public class DescriptionBuilder {
             effectStrB.append(ChatColor.YELLOW + "    Vitesse " + (role.getBonusSpeed() / 10));
 
         if (role.getBonusMaxHealth() != 0)
-            effectStrB.append(ChatColor.LIGHT_PURPLE + "    " + ((role.getBonusMaxHealth() + 20) / 2) + " coeur permanents  ");
+            effectStrB.append(ChatColor.LIGHT_PURPLE + "    " + ((role.getBonusMaxHealth() + 20) / 2) + " coeurs permanents  ");
 
         if (hasFireRes)
             effectStrB.append(ChatColor.GOLD + "    Résistance au feu");
@@ -117,7 +117,7 @@ public class DescriptionBuilder {
             return null;
 
         effectStrB.append("\n ");
-        effectStrB.insert(0, " \n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Effets" + ChatColor.DARK_GRAY + "]\n » " + ChatColor.WHITE + "Vous disposez de ces effets : \n");
+        effectStrB.insert(0, " \n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Effets" + ChatColor.DARK_GRAY + "]\n" + ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous disposez de ces effets : \n");
 
         return new HoverHolder(
                 ChatColor.DARK_GRAY + "  [" + ChatColor.GOLD + ChatColor.BOLD + "Effets" + ChatColor.DARK_GRAY + "]",

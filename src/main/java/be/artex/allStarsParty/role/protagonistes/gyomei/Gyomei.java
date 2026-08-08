@@ -39,7 +39,7 @@ public class Gyomei extends Role {
         HoverHolder MPHolder = new HoverHolder(
                 ChatColor.DARK_GRAY + "  [" + ChatColor.GOLD + ChatColor.BOLD + "Marque de pourfendeur" + ChatColor.DARK_GRAY + "]",
                 "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Marque de pourfendeur" + ChatColor.DARK_GRAY + "]" + "\n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Après avoir subi un total de " + ChatColor.UNDERLINE + "20 coups" + ChatColor.WHITE + ",\n vous écopez la marque de pourfendeur.\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Après avoir subi un total de " + ChatColor.UNDERLINE + "20 coups" + ChatColor.WHITE + " vous écopez la marque de pourfendeur.  \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous gagnez alors" + ChatColor.YELLOW + " 5% de vitesse" + ChatColor.WHITE + ".\n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous infligerez alors " + ChatColor.RED + "+20% de dégâts" + ChatColor.WHITE + " aux joueurs avec des " + ChatColor.YELLOW + "coeurs d'absorption" + ChatColor.WHITE + ". \n"
         );

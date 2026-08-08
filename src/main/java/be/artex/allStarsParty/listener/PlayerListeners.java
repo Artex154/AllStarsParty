@@ -39,7 +39,7 @@ public class PlayerListeners implements Listener {
 
         if (playerRole != null) {
             Bukkit.broadcastMessage(
-                    ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle était " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
+                    ChatColor.YELLOW + "" + ChatColor.BOLD + "\n All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.DARK_AQUA + player.getName() + ChatColor.WHITE + " est mort, son rôle était " + playerRole.getSide().getColor() + playerRole.getName() + ChatColor.WHITE + ".");
 
             playerRole.onDeath(event);
 
@@ -54,7 +54,7 @@ public class PlayerListeners implements Listener {
             amountOfKills++;
             PLAYERS_KILL_AMOUNT.put(killer, amountOfKills);
 
-            player.sendMessage(Message.info(ChatColor.DARK_AQUA + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
+            player.sendMessage(Message.info(ChatColor.YELLOW + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
 
             Role killerRole = Role.manager.getPlayerRole(killer.getUniqueId());
 
@@ -79,7 +79,7 @@ public class PlayerListeners implements Listener {
 
             AllStarsParty.gameManager.end();
 
-            Bukkit.broadcastMessage(Message.info("La partie s'est finit en nulle.") + "\n ");
+            Bukkit.broadcastMessage(Message.warn("La partie s'est finit en nulle.") + "\n ");
 
             event.getDrops().clear();
             return;

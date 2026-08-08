@@ -27,7 +27,7 @@ public class RoleRegistry {
         //MR_JACK.register();
         //MALENIA.register();
         //LGB.register();
-        //AKAZA.register();
+        AKAZA.register();
         //LIGHT.register();
         GYOMEI.register();
         //SASUKE.register();

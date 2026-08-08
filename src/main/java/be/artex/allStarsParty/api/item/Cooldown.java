@@ -62,14 +62,34 @@ public class Cooldown {
         if (isPlayerInCooldown(player))
             return;
 
+        long currentStartTime = System.currentTimeMillis();
+
         playerCooldowns.add(player);
-        cooldownStartTimes.put(player, System.currentTimeMillis());
+        cooldownStartTimes.put(player, currentStartTime);
 
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            if (!playerCooldowns.contains(player))
+            if (currentStartTime != cooldownStartTimes.get(player))
                 return;
 
             player.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + this.displayName + ChatColor.WHITE + " n'est plus en cooldown.");
+
+            playerCooldowns.remove(player);
+            cooldownStartTimes.remove(player);
+        }, cooldownTime);
+    }
+
+    public void putPlayerInCooldownWithoutEndMessage(Player player) {
+        if (isPlayerInCooldown(player))
+            return;
+
+        long currentStartTime = System.currentTimeMillis();
+
+        playerCooldowns.add(player);
+        cooldownStartTimes.put(player, currentStartTime);
+
+        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
+            if (currentStartTime != cooldownStartTimes.get(player))
+                return;
 
             playerCooldowns.remove(player);
             cooldownStartTimes.remove(player);
