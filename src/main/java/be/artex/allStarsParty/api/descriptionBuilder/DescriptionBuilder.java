@@ -1,11 +1,9 @@
 package be.artex.allStarsParty.api.descriptionBuilder;
 
-import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.role.Role;
 import be.artex.allStarsParty.api.role.Side;
 import be.artex.allStarsParty.api.role.SidePropriety;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.jspecify.annotations.Nullable;
 
@@ -19,25 +17,45 @@ public class DescriptionBuilder {
     private final List<HoverHolder> passifs = new ArrayList<>();
     private final List<HoverHolder> activables = new ArrayList<>();
 
+    /**
+     * Start of the builder.
+     * @param role the role used to generate most of the base informations: name, side, effects.
+     */
     public DescriptionBuilder(Role role) {
         this.role = role;
     }
 
+    /**
+     * @param has if yes or no, the role has fire resistance.
+     * @return the builder to continue the chain.
+     */
     public DescriptionBuilder hasFireRes(boolean has) {
         hasFireRes = has;
         return this;
     }
 
+    /**
+     * @param holders list of HoverHolders to add the list of passives.
+     * @return the builder to continue the chain.
+     */
     public DescriptionBuilder passifs(HoverHolder... holders) {
         Collections.addAll(passifs, holders);
         return this;
     }
 
+    /**
+     * @param holders list of HoverHolders to add the list of activable abilities.
+     * @return the builder to continue the chain.
+     */
     public DescriptionBuilder activables(HoverHolder... holders) {
         Collections.addAll(activables, holders);
         return this;
     }
 
+    /**
+     * Builds the description with all given information.
+     * @return the description.
+     */
     public TextComponent build() {
         TextComponent description = new TextComponent(" ");
         Side roleSide = role.getSide();

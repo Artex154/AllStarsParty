@@ -15,11 +15,20 @@ import java.util.Map;
 public abstract class CustomItem {
     public static final Manager manager = CustomItem.Manager.get(AllStarsParty.instance);
 
+    /**
+     * @return the ItemStack of the CustomItem.
+     */
     public abstract ItemStack getStack();
 
+    /**
+     * The code executed when a player interacts with the CustomItem.
+     */
     public void onInteract(PlayerInteractEvent event) {
     }
 
+    /**
+     * Registers the CustomItem.
+     */
     public final void register() {
         manager.REGISTERED_ITEMS.add(this);
     }
@@ -32,10 +41,19 @@ public abstract class CustomItem {
         private Manager() {
         }
 
+        /**
+         * @param plugin this takes a Plugin to make sure someone can't have 2 managers.
+         * @return the plugin's ItemManager
+         */
         public static @NotNull Manager get(@NotNull Plugin plugin) {
             return managers.computeIfAbsent(plugin, ignored -> new Manager());
         }
 
+        /**
+         * Finds the CustomItem only from an ItemStack.
+         * @param stack the ItemStack to find the CustomItem of.
+         * @return the found CustomItem. Null otherwise.
+         */
         public @Nullable CustomItem getItemFromStack(@NotNull ItemStack stack) {
             for (CustomItem item : REGISTERED_ITEMS) {
                 if (item.getStack().equals(stack))

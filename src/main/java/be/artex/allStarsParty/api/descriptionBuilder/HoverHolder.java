@@ -13,6 +13,10 @@ public class HoverHolder {
         this.hoverText = hoverText;
     }
 
+    /**
+     * Makes a TextComponent of the baseText with the HoverEvent.Action.SHOW_TEXT of hoverText.
+     * @return the TextComponent with the hoverText.
+     */
     public TextComponent toComponent() {
         TextComponent comp = new TextComponent(this.baseText);
         TextComponent hoverText = new TextComponent(this.hoverText);

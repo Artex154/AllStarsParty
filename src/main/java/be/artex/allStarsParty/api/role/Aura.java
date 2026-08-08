@@ -1,7 +1,12 @@
 package be.artex.allStarsParty.api.role;
 
 import org.bukkit.ChatColor;
+import be.artex.allStarsParty.role.antagoniste.akaza.Akaza;
 
+/**
+ * This is used for {@link Akaza}.
+ * Every role should have one.
+ */
 public enum Aura {
     AUCUNE(ChatColor.GRAY + "Aucune"),
     FAIBLE(ChatColor.GREEN + "Faible"),

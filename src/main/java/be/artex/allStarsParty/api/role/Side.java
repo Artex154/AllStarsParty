@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Every role has a team, a side to win with. This enum has all the sides.
+ */
 public enum Side {
     PROTAGONISTES("protagonistes", ChatColor.GREEN, SidePropriety.TEAM),
     ANTAGONISTES("antagonistes", ChatColor.RED, SidePropriety.TEAM),
