@@ -106,7 +106,7 @@ public class Gyomei extends Role {
 
     @Override
     public double bonusStrength(Player player, Player damager) {
-        if (playersWithMark.contains(damager.getUniqueId()) && PlayerUtil.hasAbsorption(player))
+        if (playersWithMark.contains(damager.getUniqueId()) && PlayerUtil.getAbsorption(player) > 0)
             return 20;
 
         return 0;

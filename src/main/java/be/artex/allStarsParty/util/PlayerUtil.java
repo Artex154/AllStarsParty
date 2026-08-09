@@ -86,10 +86,10 @@ public class PlayerUtil {
         }
     }
 
-    public static boolean hasAbsorption(@NotNull Player player) {
+    public static float getAbsorption(@NotNull Player player) {
         return (Float) WrappedDataWatcher
                 .getEntityWatcher(player)
-                .getObject(11) > 0;
+                .getObject(11);
     }
 
     public static @Nullable Player getPlayerTargetEntity(@NotNull Player player, double maxDistance) {

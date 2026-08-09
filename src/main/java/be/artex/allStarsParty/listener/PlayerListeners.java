@@ -79,7 +79,7 @@ public class PlayerListeners implements Listener {
 
             AllStarsParty.gameManager.end();
 
-            Bukkit.broadcastMessage(Message.warn("La partie s'est finit en nulle.") + "\n ");
+            Bukkit.broadcastMessage(Message.info("La partie s'est finit en nulle.") + "\n ");
 
             event.getDrops().clear();
             return;

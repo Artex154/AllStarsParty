@@ -1,5 +1,7 @@
 package be.artex.allStarsParty.role.divergents.light;
 
+import be.artex.allStarsParty.api.descriptionBuilder.DescriptionBuilder;
+import be.artex.allStarsParty.api.descriptionBuilder.HoverHolder;
 import be.artex.allStarsParty.api.message.Message;
 import be.artex.allStarsParty.AllStarsParty;
 import be.artex.allStarsParty.api.item.CustomItem;
@@ -20,15 +22,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Light extends Role {
-    private final String DESCRIPTION =
-            ChatColor.GRAY + " Vous êtes " + ChatColor.YELLOW + ChatColor.BOLD + "Light\n" +
-                    ChatColor.GRAY + " Objectif:" + ChatColor.WHITE + " Vous devez gagner avec les " + ChatColor.YELLOW + "divergents" + ChatColor.WHITE + ". Vous êtes un traitre chez les" + ChatColor.GREEN + " protagonistes" + ChatColor.WHITE + ".\n \n" +
-                    ChatColor.GRAY + ChatColor.BOLD + "» Passifs: \n" +
-                    ChatColor.WHITE + " Vous êtes un traitre chez les " + ChatColor.GREEN + "protagonistes" + ChatColor.WHITE + ". Vous pouvez révéler votre identité grâce à la commande " + ChatColor.GOLD + "/as selfreveal " + ChatColor.ITALIC + "(ou /as sr)" + ChatColor.WHITE + ". Vous gagnerez alors 3 " + ChatColor.YELLOW + "pommes d'or" + ChatColor.WHITE + ". De plus, vous pourrez aussi voir la vie des joueurs en pourcentage sous leur pseudo. " + ChatColor.GRAY +  ChatColor.ITALIC + "(Lunar Client requis : le mod 'nametags') \n \n" +
-                    ChatColor.GRAY + ChatColor.BOLD + "» Compétences activables: \n" +
-                    ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "✦" + ChatColor.DARK_GRAY + "]" + ChatColor.GOLD + ChatColor.BOLD + " Death Note" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "clic droit" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "1x/2mn\n" +
-                    ChatColor.WHITE + "     Vous enlevez " + ChatColor.LIGHT_PURPLE + "2❤ permanents" + ChatColor.WHITE + ". De plus, vous tuerez instantanément le joueur s'il est sous 20%. Ceci pour 20 secondes.";
-
     @Override
     public @NotNull String getName() {
         return "Light";
@@ -41,12 +34,43 @@ public class Light extends Role {
 
     @Override
     public @NotNull TextComponent descriptionInitialization() {
-        return new TextComponent(DESCRIPTION);
+        HoverHolder TIHolder = new HoverHolder(
+                ChatColor.DARK_GRAY + "  [" + ChatColor.GOLD + ChatColor.BOLD + "Traître inflitré" + ChatColor.DARK_GRAY + "]",
+                "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Traître infiltré" + ChatColor.DARK_GRAY + "]" + "\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Tout les joueurs vous voient comme un " + ChatColor.GREEN + "protagoniste" + ChatColor.WHITE + ".\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Les " + ChatColor.YELLOW + "divergents" + ChatColor.WHITE + " vous voient avec le suffix" + ChatColor.YELLOW + ChatColor.ITALIC + " Kira" + ChatColor.WHITE + ".\n"
+        );
+
+        HoverHolder SRHolder = new HoverHolder(
+                ChatColor.DARK_GRAY + "  [" + ChatColor.GOLD + ChatColor.BOLD + "/as selfreveal" + ChatColor.DARK_GRAY + "]",
+                "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "/as selfreveal (ou /as sr)" + ChatColor.DARK_GRAY + "]" + "\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous vous révellez en " + ChatColor.YELLOW + ChatColor.BOLD + "Kira" + ChatColor.WHITE + ", vous renommant.\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous gagnez alors " + ChatColor.YELLOW + "3 pommes dorées" + ChatColor.WHITE + ".\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "De plus, vous verez aussi la vie des joueurs sous leur pseudo. " + ChatColor.GRAY + ChatColor.ITALIC + "(Lunar Client requis)  \n"
+        );
+
+        HoverHolder DNHolder = new HoverHolder(
+                ChatColor.DARK_GRAY + "  [" + ChatColor.GOLD + ChatColor.BOLD + "Death Note" + ChatColor.DARK_GRAY + "]",
+                "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Death Note" + ChatColor.DARK_GRAY + "]" + "\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous enlevez " + ChatColor.LIGHT_PURPLE + "2 coueurs permanents" + ChatColor.WHITE + " au joueur ciblé. \n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "De plus, si le joueur passe sous 20% de vie, il est éxécuté.\n"
+        );
+
+        DescriptionBuilder descBuilder = new DescriptionBuilder(this)
+                .passifs(TIHolder)
+                .activables(SRHolder, DNHolder);
+
+        return descBuilder.build();
     }
 
     @Override
     public @NotNull Aura getAura() {
         return Aura.FAIBLE;
+    }
+
+    @Override
+    public int getBonusResistance() {
+        return 10;
     }
 
     @Override
@@ -59,7 +83,7 @@ public class Light extends Role {
         if (!SelfRevealSubCommand.revealedPlayers.contains(damager.getUniqueId()))
             return;
 
-        float healthPercentage = Math.round((player.getHealth() - event.getFinalDamage()) * 5);
+        float healthPercentage = Math.round((player.getHealth() - event.getFinalDamage() + PlayerUtil.getAbsorption(player)) * 5);
 
         PlayerUtil.setLunarNametagForAnotherPlayer(damager, player, ChatColor.GRAY + "» " + ChatColor.RED + healthPercentage + "% ❤" + ChatColor.GRAY + " «");
 
