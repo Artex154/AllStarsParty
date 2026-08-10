@@ -1,10 +1,10 @@
 package be.artex.role.old.DS.muichiro;
 
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.Cooldown;
-import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.registry.RoleRegistry;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.Cooldown;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.registry.RoleRegistry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;

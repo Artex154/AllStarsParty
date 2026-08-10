@@ -1,10 +1,10 @@
 package be.artex.role.rewrited.duo.jigoZen.jigoro;
 
-import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.api.message.Message;
-import be.artex.allStarsParty.manager.RoleManager;
-import be.artex.allStarsParty.registry.RoleRegistry;
+import be.artex.AllStarsParty.api.Role;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.api.message.Message;
+import be.artex.AllStarsParty.manager.RoleManager;
+import be.artex.AllStarsParty.registry.RoleRegistry;
 import be.artex.role.rewrited.duo.jigoZen.zenitsu.SleepState;
 import be.artex.role.rewrited.duo.jigoZen.zenitsu.Zenitsu;
 import org.bukkit.ChatColor;

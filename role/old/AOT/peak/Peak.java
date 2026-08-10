@@ -1,9 +1,9 @@
 package be.artex.role.old.AOT.peak;
 
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.registry.ItemRegistry;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.Role;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.registry.ItemRegistry;
 
 import java.util.ArrayList;
 import java.util.List;

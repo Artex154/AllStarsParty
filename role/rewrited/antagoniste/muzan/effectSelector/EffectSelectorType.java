@@ -1,8 +1,8 @@
 package be.artex.role.rewrited.antagoniste.muzan.effectSelector;
 
-import be.artex.allStarsParty.api.stats.Resistance;
-import be.artex.allStarsParty.api.stats.Speed;
-import be.artex.allStarsParty.api.stats.Strength;
+import be.artex.AllStarsParty.api.stats.Resistance;
+import be.artex.AllStarsParty.api.stats.Speed;
+import be.artex.AllStarsParty.api.stats.Strength;
 import org.bukkit.entity.Player;
 
 import java.util.function.Consumer;

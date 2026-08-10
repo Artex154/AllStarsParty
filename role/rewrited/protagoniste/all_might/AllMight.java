@@ -1,9 +1,9 @@
 package be.artex.role.rewrited.protagoniste.all_might;
 
-import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.registry.ItemRegistry;
+import be.artex.AllStarsParty.api.Role;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.registry.ItemRegistry;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 

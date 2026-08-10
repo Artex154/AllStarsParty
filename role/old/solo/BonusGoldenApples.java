@@ -1,7 +1,7 @@
 package be.artex.role.old.solo;
 
-import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
-import be.artex.allStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.AllStarsParty.api.items.ASPItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

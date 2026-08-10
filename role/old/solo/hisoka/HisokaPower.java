@@ -1,9 +1,9 @@
 package be.artex.role.old.solo.hisoka;
 
-import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.api.stats.Resistance;
-import be.artex.allStarsParty.api.stats.Speed;
-import be.artex.allStarsParty.api.stats.Strength;
+import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.stats.Resistance;
+import be.artex.AllStarsParty.api.stats.Speed;
+import be.artex.AllStarsParty.api.stats.Strength;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

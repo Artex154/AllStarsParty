@@ -1,0 +1,25 @@
+package be.artex.AllStarsParty.api.message;
+
+import org.bukkit.ChatColor;
+
+public class Message {
+    public static String info(String string) {
+        return ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + string;
+    }
+
+    public static String info(String string, ChatColor color) {
+        return color + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + string;
+    }
+
+    public static String warn(String string) {
+        return ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + string;
+    }
+
+    public static String error(String string) {
+        return ChatColor.DARK_RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + string;
+    }
+
+    public static String cooldownTimeLeft(long timeLeft) {
+        return info("Vous êtes encore en cooldown pour " + ChatColor.GOLD + timeLeft + " secondes" + ChatColor.WHITE + ".");
+    }
+}

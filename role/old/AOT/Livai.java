@@ -1,7 +1,7 @@
 package be.artex.role.old.AOT;
 
-import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.Side;
+import be.artex.AllStarsParty.api.Role;
+import be.artex.AllStarsParty.api.Side;
 
 public class Livai extends Role {
     @Override

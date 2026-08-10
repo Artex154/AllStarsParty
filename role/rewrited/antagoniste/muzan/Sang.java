@@ -1,10 +1,10 @@
 package be.artex.role.rewrited.antagoniste.muzan;
 
-import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
-import be.artex.allStarsParty.api.Cooldown;
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.message.Message;
+import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.AllStarsParty.api.Cooldown;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

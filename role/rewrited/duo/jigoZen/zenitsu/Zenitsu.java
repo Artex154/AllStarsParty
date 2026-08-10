@@ -1,14 +1,14 @@
 package be.artex.role.rewrited.duo.jigoZen.zenitsu;
 
-import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.api.Role;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.message.Message;
-import be.artex.allStarsParty.api.stats.Speed;
-import be.artex.allStarsParty.api.stats.Strength;
-import be.artex.allStarsParty.registry.ItemRegistry;
-import be.artex.allStarsParty.registry.RoleRegistry;
+import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.Role;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.message.Message;
+import be.artex.AllStarsParty.api.stats.Speed;
+import be.artex.AllStarsParty.api.stats.Strength;
+import be.artex.AllStarsParty.registry.ItemRegistry;
+import be.artex.AllStarsParty.registry.RoleRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

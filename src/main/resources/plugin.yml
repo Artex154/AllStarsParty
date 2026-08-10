@@ -1,6 +1,6 @@
 name: AllStarsParty
 version: '1.0-SNAPSHOT'
-main: be.artex.allStarsParty.AllStarsParty
+main: be.artex.AllStarsParty.AllStarsParty
 api-version: '1.8.8'
 depend:
   - ProtocolLib

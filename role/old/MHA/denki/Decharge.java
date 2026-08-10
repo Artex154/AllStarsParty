@@ -1,12 +1,12 @@
 package be.artex.role.old.MHA.denki;
 
-import be.artex.allStarsParty.AllStarsParty;
-import be.artex.allStarsParty.api.itemBuilder.ItemBuilder;
-import be.artex.allStarsParty.api.items.ASPItem;
-import be.artex.allStarsParty.api.Cooldown;
-import be.artex.allStarsParty.api.Side;
-import be.artex.allStarsParty.api.stats.Speed;
-import be.artex.allStarsParty.registry.RoleRegistry;
+import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
+import be.artex.AllStarsParty.api.items.ASPItem;
+import be.artex.AllStarsParty.api.Cooldown;
+import be.artex.AllStarsParty.api.Side;
+import be.artex.AllStarsParty.api.stats.Speed;
+import be.artex.AllStarsParty.registry.RoleRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
