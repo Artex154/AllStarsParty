@@ -18,7 +18,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;B
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.google.common.collect.Lists;
 import com.lunarclient.apollo.Apollo;
 import com.lunarclient.apollo.module.coloredfire.ColoredFireModule;
@@ -53,6 +53,41 @@ public class PlayerUtil {
     private static final ColoredFireModule coloredFireModule = Apollo.getModuleManager()
             .getModule(ColoredFireModule.class);
 
+    /**
+     * @param player the player to check the line of view.
+     * @param maxDistance the maximum distance.
+     * @return the first player in the line of view of the player
+     */
+    public static @Nullable Player getPlayerTargetEntity(@NotNull Player player, double maxDistance) {
+        Location eye = player.getEyeLocation();
+        Vector direction = eye.getDirection().normalize();
+        World world = player.getWorld();
+
+        double step = 0.2;
+
+        for (double d = 0; d <= maxDistance; d += step) {
+            Location point = eye.clone().add(direction.clone().multiply(d));
+
+            if (point.getBlock().getType().isSolid())
+                return null;
+
+            for (Entity entity : world.getNearbyEntities(point, 0.5, 0.5, 0.5)) {
+                if (entity.equals(player))
+                    continue;
+
+                if (entity instanceof Player)
+                    return (Player) entity;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Change the nametag & tablist color of a player.
+     * @param player the target to change the color of.
+     * @param color the color to change to.
+     */
     public static void setGlobalNameColor(@NotNull Player player, @NotNull ChatColor color) {
         String teamName = "color_" + color.getChar();
 
@@ -86,29 +121,114 @@ public class PlayerUtil {
         }
     }
 
-    public static @Nullable Player getPlayerTargetEntity(@NotNull Player player, double maxDistance) {
-        Location eye = player.getEyeLocation();
-        Vector direction = eye.getDirection().normalize();
-        World world = player.getWorld();
+    /**
+     * Add a suffix or prefix to the nametag of a player, only for a single other viewer.
+     * @param viewer the player that will see the changed nametag of the target.
+     * @param target the target that the viewer will see his nametag changed.
+     * @param prefix the prefix.
+     * @param suffix the suffix.
+     */
+    public static void modifyNameForOtherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String prefix, @NotNull String suffix) {
+        prefix = playersColor.get(target.getUniqueId()) + prefix;
 
-        double step = 0.2;
+        PacketContainer packet = ProtocolLibrary.getProtocolManager()
+                .createPacket(PacketType.Play.Server.SCOREBOARD_TEAM);
 
-        for (double d = 0; d <= maxDistance; d += step) {
-            Location point = eye.clone().add(direction.clone().multiply(d));
+        packet.getStrings()
+                .write(0, "fake_" + target.getEntityId());
 
-            if (point.getBlock().getType().isSolid())
-                return null;
+        packet.getIntegers()
+                .write(0, 2);
 
-            for (Entity entity : world.getNearbyEntities(point, 0.5, 0.5, 0.5)) {
-                if (entity.equals(player))
-                    continue;
+        packet.getStrings()
+                .write(2, prefix);
+        packet.getStrings()
+                .write(3, suffix);
 
-                if (entity instanceof Player)
-                    return (Player) entity;
-            }
-        }
+        packet.getSpecificModifier(Collection.class)
+                .write(0, Collections.singletonList(target.getName()));
 
-        return null;
+        ProtocolLibrary.getProtocolManager()
+                .sendServerPacket(viewer, packet);
+    }
+
+    /**
+     * Set a custom glowing using Lunar Client's Apollo, but only for another player.
+     * @param viewer the player that will see the target glowing.
+     * @param target the player that will be glowing for the viewer.
+     * @param color the color of the glowing.
+     */
+    public static void setLunarGlowForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull Color color) {
+        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
+                .getPlayer(viewer.getUniqueId());
+
+        if (!apolloViewer.isPresent())
+            return;
+
+        glowModule.overrideGlow(
+                Recipients.of(Collections.singletonList(apolloViewer.get())),
+                target.getUniqueId(),
+                color
+        );
+    }
+
+    /**
+     * Set a custom nametag using Lunar Client's Apollo, but only for another player.
+     * @param viewer the player that will see the target's custom nametag.
+     * @param target the player that will have the custom nametag for the viewer.
+     * @param content the content under the target's username.
+     */
+    public static void setLunarNametagForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String content) {
+        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
+                .getPlayer(viewer.getUniqueId());
+
+        if (!apolloViewer.isPresent())
+            return;
+
+        String playerName = playersName.get(target.getUniqueId());
+
+        nametagModule.overrideNametag(Recipients.of(Collections.singletonList(apolloViewer.get())), target.getUniqueId(), Nametag.builder()
+                .lines(Lists.newArrayList(
+                        Component.text()
+                                .content(content)
+                                .build(),
+                        Component.text()
+                                .content(playerName)
+                                .build()
+                ))
+                .build()
+        );
+    }
+
+    public static void setLunarNametagForEveryone(@NotNull Player target, @NotNull String content) {
+        nametagModule.overrideNametag(Recipients.ofEveryone(), target.getUniqueId(), Nametag.builder()
+                .lines(Lists.newArrayList(
+                        Component.text()
+                                .content(content)
+                                .build()
+                ))
+                .build()
+        );
+    }
+
+    public static void setPlayerName(@NotNull Player player, @NotNull String s) {
+        playersName.put(player.getUniqueId(), s);
+        setLunarNametagForEveryone(player, s);
+    }
+
+    public static void setFireColor(@NotNull UUID burningPlayer, @NotNull Color color) {
+        coloredFireModule.overrideColoredFire(Recipients.ofEveryone(),
+                burningPlayer,
+                color
+        );
+    }
+
+    public static void resetLunarNametag(@NotNull Player target) {
+        nametagModule.resetNametag(Recipients.ofEveryone(), target.getUniqueId());
+    }
+
+    public static void resetFireColor(@NotNull UUID burningPlayer) {
+        coloredFireModule.resetColoredFire(Recipients.ofEveryone(), burningPlayer);
     }
 
     public static void resetPlayerStates(@NotNull Player player) {
@@ -160,30 +280,6 @@ public class PlayerUtil {
                 .sendServerPacket(player, packet);
     }
 
-    public static void setNametagForOtherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String prefix, @NotNull String suffix) {
-        prefix = playersColor.get(target.getUniqueId()) + prefix;
-
-        PacketContainer packet = ProtocolLibrary.getProtocolManager()
-                .createPacket(PacketType.Play.Server.SCOREBOARD_TEAM);
-
-        packet.getStrings()
-                .write(0, "fake_" + target.getEntityId());
-
-        packet.getIntegers()
-                .write(0, 2);
-
-        packet.getStrings()
-                .write(2, prefix);
-        packet.getStrings()
-                .write(3, suffix);
-
-        packet.getSpecificModifier(Collection.class)
-                .write(0, Collections.singletonList(target.getName()));
-
-        ProtocolLibrary.getProtocolManager()
-                .sendServerPacket(viewer, packet);
-    }
-
     public static void sendTitle(@NotNull Player player, @NotNull String title, @NotNull String subtitle, int fadeIn, int stay, int fadeOut) {
         PacketContainer titlePacket =
                 protocolManager.createPacket(PacketType.Play.Server.TITLE);
@@ -220,80 +316,10 @@ public class PlayerUtil {
         protocolManager.sendServerPacket(player, timesPacket);
     }
 
-    public static void setLunarGlowForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull Color color) {
-        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
-                .getPlayer(viewer.getUniqueId());
-
-        if (!apolloViewer.isPresent())
-            return;
-
-        glowModule.overrideGlow(
-                Recipients.of(Collections.singletonList(apolloViewer.get())),
-                target.getUniqueId(),
-                color
-        );
-    }
-
     public static void removeLunarGlow(@NotNull Player player) {
         glowModule.resetGlow(Recipients.ofEveryone(), player.getUniqueId());
     }
 
-    public static void setLunarNametagForAnotherPlayer(@NotNull Player viewer, @NotNull Player target, @NotNull String content) {
-        Optional<ApolloPlayer> apolloViewer = Apollo.getPlayerManager()
-                .getPlayer(viewer.getUniqueId());
-
-        if (!apolloViewer.isPresent())
-            return;
-
-        String playerName = playersName.get(target.getUniqueId());
-
-        if (playerName == null) {
-            playerName = playersColor.get(target.getUniqueId()) + target.getName();
-        }
-
-        nametagModule.overrideNametag(Recipients.of(Collections.singletonList(apolloViewer.get())), target.getUniqueId(), Nametag.builder()
-                .lines(Lists.newArrayList(
-                        Component.text()
-                                .content(content)
-                                .build(),
-                        Component.text()
-                                .content(playerName)
-                                .build()
-                ))
-                .build()
-        );
-    }
-
-    public static void setLunarNametagForEveryone(@NotNull Player target, @NotNull String content) {
-        nametagModule.overrideNametag(Recipients.ofEveryone(), target.getUniqueId(), Nametag.builder()
-                .lines(Lists.newArrayList(
-                        Component.text()
-                                .content(content)
-                                .build()
-                ))
-                .build()
-        );
-    }
-
-    public static void resetLunarNametag(@NotNull Player target) {
-        nametagModule.resetNametag(Recipients.ofEveryone(), target.getUniqueId());
-    }
-
-    public static void setPlayerName(@NotNull Player player, @NotNull String s) {
-        playersName.put(player.getUniqueId(), s);
-        setLunarNametagForEveryone(player, s);
-    }
-
-    public static void setFireColor(@NotNull UUID burningPlayer, @NotNull Color color) {
-        coloredFireModule.overrideColoredFire(Recipients.ofEveryone(),
-                burningPlayer,
-                color
-        );
-    }
-
-    public static void resetFireColor(@NotNull UUID burningPlayer) {
-        coloredFireModule.resetColoredFire(Recipients.ofEveryone(), burningPlayer);
-    }
 
     public static void inflictTrueDamage(@NotNull Player player, int damage) {
         player.damage(0);

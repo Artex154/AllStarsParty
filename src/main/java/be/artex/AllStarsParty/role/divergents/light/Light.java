@@ -104,7 +104,7 @@ public class Light extends Role {
     public void whenAssigned(Player player) {
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
             for (Player pl : Side.DIVERGENTS.getPlayers())
-                PlayerUtil.setNametagForOtherPlayer(pl, player, ChatColor.YELLOW + "", ChatColor.ITALIC + " Kira");
+                PlayerUtil.modifyNameForOtherPlayer(pl, player, ChatColor.YELLOW + "", ChatColor.ITALIC + " Kira");
         }, 10);
     }
 }
