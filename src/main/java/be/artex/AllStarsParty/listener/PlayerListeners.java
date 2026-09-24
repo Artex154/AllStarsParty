@@ -108,16 +108,6 @@ public class PlayerListeners implements Listener {
     }
 
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent event) {
-        event.setRespawnLocation(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
-
-        if (AllStarsParty.gameManager.isInGame())
-            event.getPlayer().setGameMode(GameMode.SPECTATOR);
-        else
-            event.getPlayer().setGameMode(GameMode.ADVENTURE);
-    }
-
-    @EventHandler
     public void onPlayerDrop(PlayerDropItemEvent event) {
         switch (event.getItemDrop().getItemStack().getType()) {
             case DIAMOND_SWORD:

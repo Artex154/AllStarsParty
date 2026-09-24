@@ -7,6 +7,7 @@ import be.artex.AllStarsParty.listener.*;
 import be.artex.AllStarsParty.registry.ItemRegistry;
 import be.artex.AllStarsParty.registry.RoleRegistry;
 import be.artex.AllStarsParty.util.WorldUtil;
+import com.lunarclient.apollo.module.limb.BodyPart;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AllStarsParty extends JavaPlugin {
@@ -23,6 +24,7 @@ public class AllStarsParty extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new BlockListeners(), this);
         getServer().getPluginManager().registerEvents(new ItemListeners(), this);
+        getServer().getPluginManager().registerEvents(new PlayerRespawnEvent(), this);
 
         WorldUtil.setupSpawnArea();
         WorldUtil.setupWorldBorder();

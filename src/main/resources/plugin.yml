@@ -3,8 +3,8 @@ version: '1.0-SNAPSHOT'
 main: be.artex.AllStarsParty.AllStarsParty
 api-version: '1.8.8'
 depend:
-  - ProtocolLib
-  - Apollo-Bukkit
+  # - ProtocolLib
+  # - Apollo-Bukkit
 commands:
   as:
     usage: /as <sub-command>
