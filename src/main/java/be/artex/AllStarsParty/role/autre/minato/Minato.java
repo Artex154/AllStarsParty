@@ -47,7 +47,7 @@ public class Minato extends Role {
         HoverHolder RASHolder = new HoverHolder(
                 ChatColor.DARK_GRAY + " [" + ChatColor.BLUE + ChatColor.BOLD + "Rasengan" + ChatColor.DARK_GRAY + "]",
                 "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.BLUE + ChatColor.BOLD + "Rasengan" + ChatColor.DARK_GRAY + "]" + "\n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Lorsque vous tappez un joueur, vous lui " + ChatColor.RED + "infligerez 1❤" + ChatColor.WHITE + " et vous le repousserez         \n    d'une dizaine de blocs en arrière, en cassant les blocs sur le chemin.  \n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Lorsque vous tappez un joueur après avoir cliquer sur cet item, vous lui " + ChatColor.RED + "infligerez 1❤" + ChatColor.WHITE + " et vous le repousserez         \n    d'une dizaine de blocs en arrière, en cassant les blocs sur le chemin.  \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Le rasengan coute " + ChatColor.AQUA + "5000 unités de chakra.     \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Si vous êtes en " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + ", vous " + ChatColor.RED + "infligerez 1❤ supplémentaire" + ChatColor.WHITE + ".\n    De plus, le pouvoir coutera " + ChatColor.DARK_GREEN + "500 chakra d'ermite" + ChatColor.WHITE + " à la place de" + ChatColor.AQUA + " chakra normal" + ChatColor.WHITE + ".       \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Cooldown:" + ChatColor.YELLOW + " 30 secondes.\n  "
