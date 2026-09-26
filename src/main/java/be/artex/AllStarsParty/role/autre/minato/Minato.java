@@ -1,6 +1,5 @@
 package be.artex.AllStarsParty.role.autre.minato;
 
-import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.api.descriptionBuilder.HoverHolder;
 import be.artex.AllStarsParty.api.item.CustomItem;
 import be.artex.AllStarsParty.api.message.Message;
@@ -9,11 +8,10 @@ import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.api.role.Side;
 import be.artex.AllStarsParty.registry.ItemRegistry;
 import be.artex.AllStarsParty.util.PlayerUtil;
-import be.artex.AllStarsParty.util.Stats;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -24,6 +22,10 @@ import java.util.UUID;
 public class Minato extends Role {
     public static final HashMap<UUID, Integer> playersChakra = new HashMap<>();
     public static final HashMap<UUID, Integer> playersErmiteChakra = new HashMap<>();
+
+    public static long rasenganCooldownTicks = 0;
+
+    private boolean shouldTick = true;
 
     @Override
     public @NotNull String getName() {
@@ -82,8 +84,50 @@ public class Minato extends Role {
     }
 
     @Override
-    public void tick(Player player) {
+    public boolean shouldTick() {
+        return shouldTick;
+    }
 
+    @Override
+    public void tick(Player player) {
+        if (rasenganCooldownTicks < 10 && rasenganCooldownTicks > 0)
+            rasenganCooldownTicks = 0;
+        else if (rasenganCooldownTicks > 10)
+            rasenganCooldownTicks -= 10;
+
+        if (!playersChakra.containsKey(player.getUniqueId()) || playersChakra.get(player.getUniqueId()) == null) {
+            playersChakra.remove(player.getUniqueId());
+            shouldTick = false;
+            return;
+        }
+
+        if (!playersErmiteChakra.containsKey(player.getUniqueId()) || playersErmiteChakra.get(player.getUniqueId()) == null) {
+            playersErmiteChakra.remove(player.getUniqueId());
+            shouldTick = false;
+            return;
+        }
+
+        int ermiteChakra = playersErmiteChakra.get(player.getUniqueId());
+
+        if (Ermite.PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false) == true) {
+            if (ermiteChakra < 10) {
+                ermiteChakra = 0;
+                Ermite.disable(player);
+                player.sendMessage(Message.warn("Il ne vous reste plus de " + ChatColor.DARK_GREEN + "chakra d'ermite" + ChatColor.WHITE + "."));
+            } else {
+                ermiteChakra -= 10;
+            }
+        }
+
+        int chakra = playersChakra.get(player.getUniqueId()) + 50;
+
+        if (chakra >= 18000)
+            chakra = 18000;
+
+        playersChakra.put(player.getUniqueId(), chakra);
+        playersErmiteChakra.put(player.getUniqueId(), ermiteChakra);
+
+        PlayerUtil.sendActionBar(player, ChatColor.DARK_GRAY + "» " + ChatColor.AQUA + ChatColor.BOLD + chakra + ChatColor.GRAY + "/18000" + ChatColor.AQUA + " chakra " + ChatColor.DARK_GRAY + " ▏ " + ChatColor.DARK_GREEN + ChatColor.BOLD + ermiteChakra + ChatColor.GRAY + "/4000" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.DARK_GRAY + " «");
     }
 
     @Override
@@ -101,43 +145,12 @@ public class Minato extends Role {
         playersChakra.put(player.getUniqueId(), 18000);
         playersErmiteChakra.put(player.getUniqueId(), 4000);
 
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (!playersChakra.containsKey(player.getUniqueId()) || playersChakra.get(player.getUniqueId()) == null) {
-                    cancel();
-                    playersChakra.remove(player.getUniqueId());
-                    return;
-                }
+        rasenganCooldownTicks = 0;
+    }
 
-                if (!playersErmiteChakra.containsKey(player.getUniqueId()) || playersErmiteChakra.get(player.getUniqueId()) == null) {
-                    cancel();
-                    playersErmiteChakra.remove(player.getUniqueId());
-                    return;
-                }
-
-                int ermiteChakra = playersErmiteChakra.get(player.getUniqueId());
-
-                if (Ermite.PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false) == true) {
-                    if (ermiteChakra < 20) {
-                        ermiteChakra = 0;
-                        Ermite.disable(player);
-                        player.sendMessage(Message.warn("Il ne vous reste plus de " + ChatColor.DARK_GREEN + "chakra d'ermite" + ChatColor.WHITE + "."));
-                    } else {
-                        ermiteChakra -= 20;
-                    }
-                }
-
-                int chakra = playersChakra.get(player.getUniqueId()) + 100;
-
-                if (chakra >= 18000)
-                    chakra = 18000;
-
-                playersChakra.put(player.getUniqueId(), chakra);
-                playersErmiteChakra.put(player.getUniqueId(), ermiteChakra);
-
-                PlayerUtil.sendActionBar(player, ChatColor.DARK_GRAY + "» " + ChatColor.AQUA + ChatColor.BOLD + chakra + ChatColor.GRAY + "/18000" + ChatColor.AQUA + " chakra " + ChatColor.DARK_GRAY + " ▏ " + ChatColor.DARK_GREEN + ChatColor.BOLD + ermiteChakra + ChatColor.GRAY + "/4000" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.DARK_GRAY + " «");
-            }
-        }.runTaskTimer(AllStarsParty.instance, 0, 20);
+    @Override
+    public void onDeath(PlayerDeathEvent event) {
+        playersChakra.remove(event.getEntity().getUniqueId());
+        playersErmiteChakra.remove(event.getEntity().getUniqueId());
     }
 }

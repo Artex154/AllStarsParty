@@ -52,6 +52,11 @@ public class LGB extends Role {
     }
 
     @Override
+    public boolean shouldTick() {
+        return false;
+    }
+
+    @Override
     public void tick(Player player) {
 
     }

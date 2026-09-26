@@ -12,6 +12,8 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class GameManager {
     private static boolean inGame = false;
+    private static BukkitTask runnable = null;
 
     private static final List<Player> alivePlayers = new ArrayList<>();
     private static final List<Role> aliveRoles = new ArrayList<>();
@@ -61,11 +64,17 @@ public class GameManager {
             r.assignRoleToPlayer(p);
         }
 
-        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            Bukkit.getScheduler().runTaskTimer(AllStarsParty.instance, () -> {
+         runnable = new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (Player player : GameManager.alivePlayers) {
+                    Role role = Role.getPlayerRole(player);
 
-            }, 0L, 1L);
-        }, 1);
+                    if (role.shouldTick())
+                        role.tick(player);
+                }
+            }
+        }.runTaskTimer(AllStarsParty.instance, 0L, 10L);
 
         alivePlayers.addAll(players);
     }
@@ -78,6 +87,7 @@ public class GameManager {
 
         alivePlayers.clear();
         aliveRoles.clear();
+        runnable.cancel();
 
         for (Side side : Side.values())
             side.clearPlayers();

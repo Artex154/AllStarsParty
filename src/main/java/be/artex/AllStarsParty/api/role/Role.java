@@ -44,8 +44,14 @@ public abstract class Role {
     public abstract @NotNull Aura getAura();
 
     /**
-     * This is called every tick.
-     * @param player the plauer having the role.
+     * @return if the role should call {@link Role#tick(Player)} should be called every 10 ticks.
+     */
+    public abstract boolean shouldTick();
+
+    /**
+     * This is called every 10 ticks or every 0.5 seconds.
+     * @param player the player having the role.
+     * @
      */
     public abstract void tick(Player player);
 

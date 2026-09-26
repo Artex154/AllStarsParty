@@ -69,6 +69,11 @@ public class Light extends Role {
     }
 
     @Override
+    public boolean shouldTick() {
+        return false;
+    }
+
+    @Override
     public void tick(Player player) {
 
     }
