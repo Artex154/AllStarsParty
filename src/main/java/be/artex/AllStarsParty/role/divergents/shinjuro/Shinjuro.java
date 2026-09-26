@@ -4,6 +4,7 @@ import be.artex.AllStarsParty.api.role.Aura;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.api.role.Side;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class Shinjuro extends Role {
@@ -25,5 +26,10 @@ public class Shinjuro extends Role {
     @Override
     public @NotNull Aura getAura() {
         return Aura.MOYENNE;
+    }
+
+    @Override
+    public void tick(Player player) {
+
     }
 }

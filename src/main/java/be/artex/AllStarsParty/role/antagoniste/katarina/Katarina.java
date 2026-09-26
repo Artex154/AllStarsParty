@@ -53,6 +53,11 @@ public class Katarina extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public int getBonusSpeed() {
         return 10;
     }

@@ -32,7 +32,7 @@ public class RoleRegistry {
         //AKAZA.register();
         //LIGHT.register();
         //GYOMEI.register();
-        //SASUKE.register();
+        SASUKE.register();
         //BAKUGO.register();
         MINATO.register();
     }

@@ -1,15 +1,11 @@
 package be.artex.AllStarsParty.listener;
 
+import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.api.message.Message;
-import be.artex.AllStarsParty.AllStarsParty;
-import be.artex.AllStarsParty.registry.RoleRegistry;
 import be.artex.AllStarsParty.scoreboard.ScoreboardManager;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.api.role.Side;
 import be.artex.AllStarsParty.util.PlayerUtil;
-import be.artex.AllStarsParty.util.StatValues;
-import be.artex.AllStarsParty.util.Stats;
-import be.artex.AllStarsParty.util.WorldUtil;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,13 +13,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerListeners implements Listener {
-    private static final Role.Manager roleManager = Role.manager;
     public static final Map<Player, Integer> PLAYERS_KILL_AMOUNT = new HashMap<>();
 
     public static boolean hasLGBBonus = false;
@@ -31,10 +25,11 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        Role playerRole = roleManager.getPlayerRole(player.getUniqueId());
+        Role playerRole = Role.getPlayerRole(player);
 
         event.setDeathMessage("");
 
+        GameManager.getAlivePlayers().remove(player);
         PlayerUtil.resetPlayerStates(player);
 
         if (playerRole != null) {
@@ -44,7 +39,6 @@ public class PlayerListeners implements Listener {
 
             playerRole.onDeath(event);
 
-            Role.manager.removeAliveRole(playerRole);
             playerRole.getSide().removePlayer(player);
         }
 
@@ -57,16 +51,16 @@ public class PlayerListeners implements Listener {
 
             player.sendMessage(Message.info(ChatColor.YELLOW + killer.getName() + ChatColor.WHITE + " possèdait " + ChatColor.LIGHT_PURPLE + (Math.round(killer.getHealth()) / 2) + " coeurs" + ChatColor.WHITE + "."));
 
-            Role killerRole = Role.manager.getPlayerRole(killer.getUniqueId());
+            Role killerRole = Role.getPlayerRole(killer);
 
             if (killerRole != null)
                 killerRole.onKill(event);
         }
 
-        if (roleManager.getRolesAlive().isEmpty()) {
+        if (GameManager.getAlivePlayers().isEmpty()) {
             Bukkit.broadcastMessage(getKillLeaderBoard());
 
-            AllStarsParty.gameManager.end();
+            GameManager.end();
 
             Bukkit.broadcastMessage(Message.info("La partie s'est finit en nulle.", ChatColor.GOLD) + "\n ");
 
@@ -74,12 +68,12 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        Side firstSide = roleManager.getRolesAlive().get(0).getSide();
+        Side firstSide = Role.getPlayerRole(GameManager.getAlivePlayers().get(0)).getSide();
 
-        if (roleManager.isWonBy(firstSide, roleManager.getRolesAlive())) {
+        if (isWonBy(firstSide)) {
             Bukkit.broadcastMessage(getKillLeaderBoard());
 
-            AllStarsParty.gameManager.end();
+            GameManager.end();
 
             Bukkit.broadcastMessage(Message.info("Victoire " + firstSide.getPropriety().getDeterminer() + firstSide.getColor() + firstSide.getName() + ChatColor.WHITE + ".", ChatColor.GOLD) + "\n ");
 
@@ -147,7 +141,7 @@ public class PlayerListeners implements Listener {
                 .forEach(entry -> {
                     Player p = entry.getKey();
                     int kills = entry.getValue();
-                    Role playerRoleForKills = roleManager.getPlayerRole(p.getUniqueId());
+                    Role playerRoleForKills = Role.getPlayerRole(p);
                     String roleName = playerRoleForKills != null ? playerRoleForKills.getName() : "Inconnu";
                     String roleColor = playerRoleForKills != null ?
                             playerRoleForKills.getSide().getColor().toString() :
@@ -157,5 +151,11 @@ public class PlayerListeners implements Listener {
                 });
 
         return String.valueOf(killLeaderboard);
+    }
+
+    public static boolean isWonBy(Side side) {
+        return GameManager.getAlivePlayers().stream()
+                .map(Role::getPlayerRole)
+                .allMatch(role -> role.getSide() == side);
     }
 }

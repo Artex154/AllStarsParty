@@ -1,13 +1,16 @@
 package be.artex.AllStarsParty.commands.subCommands;
 
-import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
-import be.artex.AllStarsParty.scoreboard.ScoreboardManager;
+import be.artex.AllStarsParty.api.message.Message;
 import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.commands.SubCommand;
+import be.artex.AllStarsParty.scoreboard.ScoreboardManager;
 import be.artex.AllStarsParty.util.PlayerUtil;
 import be.artex.AllStarsParty.util.WorldUtil;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartSubCommand extends SubCommand {
-    private final GameManager gameManager = AllStarsParty.gameManager;
-
     @Override
     public String[] getArgument() {
         return new String[]{"start", "s"};
@@ -37,14 +38,14 @@ public class StartSubCommand extends SubCommand {
             playersToStartWith.remove(player);
         }
 
-        int maxPlayers = gameManager.getMaxPlayerCount();
+        int maxPlayers = GameManager.getMaxPlayerCount();
 
-        if (maxPlayers != playersToStartWith.size()) {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Vous n'avez pas le nombre de " + ChatColor.RED + "joueurs connectés" + ChatColor.WHITE + " nécessaire pour commencer la " + ChatColor.RED + "partie" + ChatColor.WHITE + "." + ChatColor.GRAY + " (" + playersToStartWith.size() + "/" + maxPlayers + ")");
+        if (playersToStartWith.size() > maxPlayers) {
+            sender.sendMessage(Message.error("Le nombre de rôles disponibles doit être supérieur au nombre de joueurs."));
             return;
         }
 
-        if (gameManager.isInGame()) {
+        if (GameManager.isInGame()) {
             sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.WHITE + "Une " + ChatColor.RED + "partie" + ChatColor.WHITE + " est déjà en cours.");
             return;
         }
@@ -55,7 +56,7 @@ public class StartSubCommand extends SubCommand {
         for (Player p : SpecSubCommand.playersInSpec)
             p.setGameMode(GameMode.SPECTATOR);
 
-        gameManager.start(playersToStartWith);
+        GameManager.start(playersToStartWith);
 
         ScoreboardManager.updateAllPlayerScoreboards();
     }
@@ -67,14 +68,14 @@ public class StartSubCommand extends SubCommand {
         else return null;
     }
 
-    public static void setupPlayer(Player player) {
+    private void setupPlayer(Player player) {
         PlayerUtil.resetPlayerStates(player);
         player.setGameMode(GameMode.SURVIVAL);
         player.teleport(WorldUtil.getRandomSpawnLocation());
         setupInventory(player.getInventory());
     }
 
-    private static void setupInventory(PlayerInventory inv) {
+    private void setupInventory(PlayerInventory inv) {
         inv.setHelmet(new ItemBuilder(Material.DIAMOND_HELMET).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());
         inv.setChestplate(new ItemBuilder(Material.DIAMOND_CHESTPLATE).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2).build());
         inv.setLeggings(new ItemBuilder(Material.IRON_LEGGINGS).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).build());
@@ -94,6 +95,5 @@ public class StartSubCommand extends SubCommand {
         inv.addItem(new ItemStack(Material.ARROW, 24));
         inv.addItem(new ItemStack(Material.DIAMOND_PICKAXE));
     }
-
 
 }

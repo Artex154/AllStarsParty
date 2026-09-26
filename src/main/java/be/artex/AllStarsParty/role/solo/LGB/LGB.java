@@ -52,6 +52,11 @@ public class LGB extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public ChatColor getDisplayColor() {
         return ChatColor.RED;
     }

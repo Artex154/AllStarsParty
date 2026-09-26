@@ -64,7 +64,7 @@ public class Dague extends CustomItem {
             Player p = (Player) entity;
             amountOfAffectedPlayers++;
 
-            Role role = Role.manager.getPlayerRole(p.getUniqueId());
+            Role role = Role.getPlayerRole(p);
 
             if (role == null)
                 continue;
@@ -72,9 +72,7 @@ public class Dague extends CustomItem {
             Side pSide = role.getSide();
 
             if (pSide == Side.ANTAGONISTES) {
-                if (p.getHealth() + 3 >= p.getMaxHealth())
-                    p.setHealth(p.getMaxHealth());
-                else p.setHealth(p.getHealth() + 3);
+                p.setHealth(Math.min(p.getHealth() + 3, p.getMaxHealth()));
 
                 p.sendMessage(Message.info("La lame de " + ChatColor.RED + "Katarina" + ChatColor.WHITE + " rebondit sur vous, elle vous régénère " + ChatColor.LIGHT_PURPLE + "1,5❤" + ChatColor.WHITE + "."));
             } else {

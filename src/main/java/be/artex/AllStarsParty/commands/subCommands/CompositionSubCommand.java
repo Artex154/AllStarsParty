@@ -17,9 +17,9 @@ public class CompositionSubCommand extends SubCommand {
 
         str.append(ChatColor.GOLD + " \n" + ChatColor.BOLD + "» Liste des rôles activés\n ");
 
-        Role.manager.getRegisteredRoles().forEach(r -> {
-            str.append(ChatColor.WHITE + "- " + r.getSide().getColor() + r.getName() + "\n ");
-        });
+        Role.getRegisteredRoles().forEach(r ->
+                str.append(ChatColor.WHITE + "- " + r.getSide().getColor() + r.getName() + "\n "
+        ));
 
         sender.sendMessage(String.valueOf(str));
     }

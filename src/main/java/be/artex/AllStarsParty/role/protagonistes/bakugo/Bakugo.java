@@ -55,6 +55,11 @@ public class Bakugo extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public void whenAssigned(Player player) {
         playersNitro.put(player.getUniqueId(), 5);
 

@@ -69,6 +69,11 @@ public class Light extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public int getBonusResistance() {
         return 10;
     }

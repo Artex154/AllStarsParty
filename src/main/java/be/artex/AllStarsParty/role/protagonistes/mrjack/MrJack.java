@@ -69,6 +69,11 @@ public class MrJack extends RevivableRole {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public int getBonusSpeed() {
         return 10;
     }

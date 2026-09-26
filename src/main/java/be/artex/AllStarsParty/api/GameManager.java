@@ -1,6 +1,8 @@
 package be.artex.AllStarsParty.api;
 
+import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.api.role.Role;
+import be.artex.AllStarsParty.api.role.Side;
 import be.artex.AllStarsParty.listener.BlockListeners;
 import be.artex.AllStarsParty.listener.PlayerListeners;
 import be.artex.AllStarsParty.util.PlayerUtil;
@@ -13,38 +15,72 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameManager {
     private static boolean inGame = false;
-    private static final List<Player> alivePlayers = new ArrayList<>();
 
-    public int getMaxPlayerCount() {
-        return Role.manager.getRegisteredRoles().size();
+    private static final List<Player> alivePlayers = new ArrayList<>();
+    private static final List<Role> aliveRoles = new ArrayList<>();
+
+    public static int getMaxPlayerCount() {
+        return Role.getRegisteredRoles().size();
     }
 
-    public boolean isInGame() {
+    public static boolean isInGame() {
         return inGame;
     }
 
-    public void start(List<Player> players) {
+    public static void start(List<Player> players) {
         if (inGame)
             return;
 
         inGame = true;
 
-        Role.manager.startGame(players);
+        List<Role> registeredRoles = Role.getRegisteredRoles();
+
+        aliveRoles.addAll(registeredRoles);
+
+        if (players.size() != registeredRoles.size()) {
+            Collections.shuffle(aliveRoles);
+
+            int i = aliveRoles.size() - players.size();
+
+            aliveRoles.subList(0, i).clear();
+        }
+
+        List<Role> registeredRolesCopy = new ArrayList<>(registeredRoles);
+
+        Collections.shuffle(registeredRolesCopy);
+
+        for (int i = 0; i < players.size(); i++) {
+            Player p = players.get(i);
+            Role r = registeredRolesCopy.get(i);
+
+            r.assignRoleToPlayer(p);
+        }
+
+        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
+            Bukkit.getScheduler().runTaskTimer(AllStarsParty.instance, () -> {
+
+            }, 0L, 1L);
+        }, 1);
+
         alivePlayers.addAll(players);
     }
 
-    public void end() {
+    public static void end() {
         if (!inGame)
             return;
 
         inGame = false;
 
-        Role.manager.finishGame();
         alivePlayers.clear();
+        aliveRoles.clear();
+
+        for (Side side : Side.values())
+            side.clearPlayers();
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
@@ -58,11 +94,12 @@ public class GameManager {
         PlayerUtil.playersColor.clear();
     }
 
-    public void removePlayer(@NotNull Player player) {
+    public static void removePlayer(@NotNull Player player) {
         alivePlayers.remove(player);
     }
 
-    public @NotNull List<Player> getAlivePlayers() {
+    public static @NotNull List<Player> getAlivePlayers() {
         return alivePlayers;
     }
+
 }

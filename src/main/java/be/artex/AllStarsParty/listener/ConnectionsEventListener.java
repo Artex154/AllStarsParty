@@ -1,7 +1,7 @@
 package be.artex.AllStarsParty.listener;
 
+import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.api.message.Message;
-import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.scoreboard.ScoreboardManager;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.api.role.Side;
@@ -23,7 +23,7 @@ public class ConnectionsEventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        event.setJoinMessage(ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a rejoint la partie." + ChatColor.GOLD + " (" + Bukkit.getOnlinePlayers().size() + "/" + Role.manager.getRegisteredRoles().size() + ")");
+        event.setJoinMessage(ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a rejoint la partie." + ChatColor.GOLD + " (" + Bukkit.getOnlinePlayers().size() + "/" + Role.getRegisteredRoles().size() + ")");
 
         FastBoard board = new FastBoard(player);
         board.updateTitle(ChatColor.GOLD + "" + ChatColor.BOLD + ChatColor.BOLD + " All Stars Party ");
@@ -33,7 +33,7 @@ public class ConnectionsEventListener implements Listener {
 
         player.setGameMode(GameMode.ADVENTURE);
 
-        if (AllStarsParty.gameManager.isInGame())
+        if (GameManager.isInGame())
             player.setGameMode(GameMode.SPECTATOR);
 
         player.teleport(new Location(WorldUtil.world, WorldUtil.CENTER_X, WorldUtil.CENTER_Y + 2, WorldUtil.CENTER_Z));
@@ -45,31 +45,29 @@ public class ConnectionsEventListener implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(
-                ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + Role.manager.getRegisteredRoles().size() + ")"
+                ChatColor.GOLD + "" + ChatColor.BOLD + " All Stars Party" + ChatColor.GRAY + " ▏ " + ChatColor.GOLD + player.getName() + ChatColor.WHITE + " a quitté la partie." +  ChatColor.GOLD + " (" +  (Bukkit.getOnlinePlayers().size() - 1) + "/" + Role.getRegisteredRoles().size() + ")"
         );
 
         ScoreboardManager.boards.remove(event.getPlayer().getUniqueId());
         ScoreboardManager.updateAllPlayerScoreboardsExcept(player);
 
-        Role playerRole = Role.manager.getPlayerRole(player.getUniqueId());
+        Role playerRole = Role.getPlayerRole(player);
 
         if (playerRole == null)
             return;
 
-        Role.manager.removePlayerRole(player.getUniqueId());
+        Role.removePlayerRole(player);
 
-        if (AllStarsParty.gameManager.isInGame()) {
-            Role.manager.removeAliveRole(playerRole);
-
-            if (Role.manager.getRolesAlive().isEmpty())  {
-                AllStarsParty.gameManager.end();
+        if (GameManager.isInGame()) {
+            if (GameManager.getAlivePlayers().isEmpty())  {
+                GameManager.end();
                 return;
             }
 
-            Side firstSide = Role.manager.getRolesAlive().get(0).getSide();
+            Side firstSide = Role.getPlayerRole(GameManager.getAlivePlayers().get(0)).getSide();
 
-            if (Role.manager.isWonBy(firstSide, Role.manager.getRolesAlive())) {
-                AllStarsParty.gameManager.end();
+            if (PlayerListeners.isWonBy(firstSide)) {
+                GameManager.end();
 
                 Bukkit.broadcastMessage(Message.info("Victoire " + firstSide.getName() + ChatColor.WHITE + ".") + "\n ");
 

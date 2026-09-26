@@ -25,7 +25,7 @@ public class SelfRevealSubCommand extends SubCommand {
 
     @Override
     public void whenCalled(Player sender) {
-        Role role = Role.manager.getPlayerRole(sender.getUniqueId());
+        Role role = Role.getPlayerRole(sender);
 
         if (role == null || !role.equals(RoleRegistry.LIGHT))
             return;
@@ -39,12 +39,12 @@ public class SelfRevealSubCommand extends SubCommand {
 
         sender.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 
-        Role.manager.getPlayersWithRole(RoleRegistry.AKAZA).forEach(akaza -> PlayerUtil.setLunarNametagForAnotherPlayer(Bukkit.getPlayer(akaza), sender, ChatColor.GRAY + "» Aura " + RoleRegistry.LIGHT.getAura().getName() + ChatColor.GRAY + " «"));
+        RoleRegistry.AKAZA.getPlayersWithRole().forEach(akaza -> PlayerUtil.setLunarNametagForAnotherPlayer(akaza, sender, ChatColor.GRAY + "» Aura " + RoleRegistry.LIGHT.getAura().getName() + ChatColor.GRAY + " «"));
     }
 
     @Override
     public String getDescription(Player sender) {
-        Role role = Role.manager.getPlayerRole(sender.getUniqueId());
+        Role role = Role.getPlayerRole(sender);
 
         if (role == null || !role.equals(RoleRegistry.LIGHT))
             return null;

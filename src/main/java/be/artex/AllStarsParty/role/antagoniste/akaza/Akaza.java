@@ -1,6 +1,7 @@
 package be.artex.AllStarsParty.role.antagoniste.akaza;
 
 import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.api.descriptionBuilder.DescriptionBuilder;
 import be.artex.AllStarsParty.api.descriptionBuilder.HoverHolder;
 import be.artex.AllStarsParty.api.item.CustomItem;
@@ -102,6 +103,11 @@ public class Akaza extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public int getBonusStrength() {
         return 10;
     }
@@ -109,8 +115,8 @@ public class Akaza extends Role {
     @Override
     public void whenAssigned(Player player) {
         Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
-            for (Player pl : AllStarsParty.gameManager.getAlivePlayers()) {
-                Role plRole = Role.manager.getPlayerRole(pl.getUniqueId());
+            for (Player pl : GameManager.getAlivePlayers()) {
+                Role plRole = Role.getPlayerRole(pl);
 
                 PlayerUtil.setLunarNametagForAnotherPlayer(player, pl, ChatColor.GRAY + "» Aura " + plRole.getAura().getName() + ChatColor.GRAY + " «");
             }
@@ -145,7 +151,7 @@ public class Akaza extends Role {
 
     @Override
     public double bonusStrength(Player player, Player damager) {
-        Role plRole = Role.manager.getPlayerRole(damager.getUniqueId());
+        Role plRole = Role.getPlayerRole(damager);
 
         if (plRole == null)
             return 0;

@@ -33,6 +33,6 @@ public class Rasengan extends CustomItem {
             return;
         }
 
-        Cooldown cooldown = Cooldown.getCooldown("rasengan"R)
+        Cooldown cooldown = Cooldown.getCooldown("rasengan", 10L);
     }
 }

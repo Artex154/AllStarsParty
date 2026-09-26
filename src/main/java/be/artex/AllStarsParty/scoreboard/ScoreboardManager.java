@@ -1,6 +1,6 @@
 package be.artex.AllStarsParty.scoreboard;
 
-import be.artex.AllStarsParty.AllStarsParty;
+import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.listener.PlayerListeners;
 import fr.mrmicky.fastboard.FastBoard;
@@ -30,7 +30,7 @@ public class ScoreboardManager {
     }
 
     private static @NotNull String getRoleNameFromPlayer(@NotNull Player player) {
-        Role role = Role.manager.getPlayerRole(player.getUniqueId());
+        Role role = Role.getPlayerRole(player);
 
         if (role == null)
             return "Aucun";
@@ -39,10 +39,10 @@ public class ScoreboardManager {
     }
 
     private static @NotNull String getPlayerCount() {
-        if (AllStarsParty.gameManager.isInGame())
-            return String.valueOf(Role.manager.getRolesAlive().size());
+        if (GameManager.isInGame())
+            return String.valueOf(GameManager.getAlivePlayers().size());
 
-        return Bukkit.getOnlinePlayers().size() + "/" + AllStarsParty.gameManager.getMaxPlayerCount();
+        return Bukkit.getOnlinePlayers().size() + "/" + GameManager.getMaxPlayerCount();
     }
 
     private static int getAmountOfKills(@NotNull Player player) {

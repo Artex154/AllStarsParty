@@ -71,6 +71,11 @@ public class Gyomei extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public int getBonusMaxHealth() {
         return 4;
     }

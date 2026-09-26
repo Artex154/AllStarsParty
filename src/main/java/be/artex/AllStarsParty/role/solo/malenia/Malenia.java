@@ -66,6 +66,11 @@ public class Malenia extends RevivableRole {
     }
 
     @Override
+    public void tick(Player player) {
+
+    }
+
+    @Override
     public void whenAssigned(Player player) {
         player.getInventory().setItem(0, SWORD.clone());
     }

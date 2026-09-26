@@ -7,7 +7,6 @@ import be.artex.AllStarsParty.listener.*;
 import be.artex.AllStarsParty.registry.ItemRegistry;
 import be.artex.AllStarsParty.registry.RoleRegistry;
 import be.artex.AllStarsParty.util.WorldUtil;
-import com.lunarclient.apollo.module.limb.BodyPart;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AllStarsParty extends JavaPlugin {
@@ -39,7 +38,6 @@ public class AllStarsParty extends JavaPlugin {
         new EffectSubCommand().register();
         new SpecSubCommand().register();
         new StartSubCommand().register();
-        new ForceStartSubCommand().register();
         new SelfRevealSubCommand().register();
 
         getCommand("as").setExecutor(new ASCommand());

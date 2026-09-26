@@ -1,7 +1,7 @@
 package be.artex.AllStarsParty.commands.subCommands;
 
+import be.artex.AllStarsParty.api.GameManager;
 import be.artex.AllStarsParty.api.message.Message;
-import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.commands.SubCommand;
 import org.bukkit.entity.Player;
 
@@ -18,7 +18,7 @@ public class SpecSubCommand extends SubCommand {
 
     @Override
     public void whenCalled(Player sender) {
-        if (AllStarsParty.gameManager.isInGame()) {
+        if (GameManager.isInGame()) {
             sender.sendMessage(Message.error("Vous ne pouvez pas éxecuter cette commande alors qu'une partie est en cours."));
             return;
         }

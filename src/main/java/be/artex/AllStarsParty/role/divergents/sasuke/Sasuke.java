@@ -58,6 +58,10 @@ public class Sasuke extends Role {
     }
 
     @Override
+    public void tick(Player player) {
+    }
+
+    @Override
     public int getBonusSpeed() {
         return 10;
     }
@@ -73,6 +77,7 @@ public class Sasuke extends Role {
                 if (!playersChakra.containsKey(player.getUniqueId()) || playersChakra.get(player.getUniqueId()) == null) {
                     cancel();
                     playersChakra.remove(player.getUniqueId());
+                    return;
                 }
 
                 PlayerUtil.sendActionBar(player, ChatColor.GRAY + "» " + ChatColor.AQUA + playersChakra.get(player.getUniqueId()).toString() + "/100" + ChatColor.GRAY + " chakra" + " «");
