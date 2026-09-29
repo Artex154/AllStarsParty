@@ -15,15 +15,14 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class Minato extends Role {
-    public static final HashMap<UUID, Integer> playersChakra = new HashMap<>();
-    public static final HashMap<UUID, Integer> playersErmiteChakra = new HashMap<>();
+    public boolean isRasenganOn = false;
+    public long rasenganCooldownTicks = 0;
 
-    public static long rasenganCooldownTicks = 0;
+    public long chakra = 18000;
+    public long ermiteChakra = 4000;
 
     private boolean shouldTick = true;
 
@@ -84,6 +83,11 @@ public class Minato extends Role {
     }
 
     @Override
+    public @NotNull String getID() {
+        return "minato";
+    }
+
+    @Override
     public boolean shouldTick() {
         return shouldTick;
     }
@@ -95,20 +99,6 @@ public class Minato extends Role {
         else if (rasenganCooldownTicks > 10)
             rasenganCooldownTicks -= 10;
 
-        if (!playersChakra.containsKey(player.getUniqueId()) || playersChakra.get(player.getUniqueId()) == null) {
-            playersChakra.remove(player.getUniqueId());
-            shouldTick = false;
-            return;
-        }
-
-        if (!playersErmiteChakra.containsKey(player.getUniqueId()) || playersErmiteChakra.get(player.getUniqueId()) == null) {
-            playersErmiteChakra.remove(player.getUniqueId());
-            shouldTick = false;
-            return;
-        }
-
-        int ermiteChakra = playersErmiteChakra.get(player.getUniqueId());
-
         if (Ermite.PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false) == true) {
             if (ermiteChakra < 10) {
                 ermiteChakra = 0;
@@ -119,13 +109,10 @@ public class Minato extends Role {
             }
         }
 
-        int chakra = playersChakra.get(player.getUniqueId()) + 50;
+        chakra += 50;
 
         if (chakra >= 18000)
             chakra = 18000;
-
-        playersChakra.put(player.getUniqueId(), chakra);
-        playersErmiteChakra.put(player.getUniqueId(), ermiteChakra);
 
         PlayerUtil.sendActionBar(player, ChatColor.DARK_GRAY + "» " + ChatColor.AQUA + ChatColor.BOLD + chakra + ChatColor.GRAY + "/18000" + ChatColor.AQUA + " chakra " + ChatColor.DARK_GRAY + " ▏ " + ChatColor.DARK_GREEN + ChatColor.BOLD + ermiteChakra + ChatColor.GRAY + "/4000" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.DARK_GRAY + " «");
     }
@@ -141,16 +128,7 @@ public class Minato extends Role {
     }
 
     @Override
-    public void whenAssigned(Player player) {
-        playersChakra.put(player.getUniqueId(), 18000);
-        playersErmiteChakra.put(player.getUniqueId(), 4000);
-
-        rasenganCooldownTicks = 0;
-    }
-
-    @Override
     public void onDeath(PlayerDeathEvent event) {
-        playersChakra.remove(event.getEntity().getUniqueId());
-        playersErmiteChakra.remove(event.getEntity().getUniqueId());
+        shouldTick = false;
     }
 }

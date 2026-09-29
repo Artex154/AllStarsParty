@@ -13,17 +13,6 @@ import be.artex.AllStarsParty.role.solo.LGB.LGB;
 import be.artex.AllStarsParty.role.solo.malenia.Malenia;
 
 public class RoleRegistry {
-    public static final Role KATARINA = new Katarina();
-    public static final Role MR_JACK = new MrJack();
-    public static final Role MALENIA = new Malenia();
-    public static final Role LGB = new LGB();
-    public static final Role AKAZA = new Akaza();
-    public static final Role LIGHT = new Light();
-    public static final Role GYOMEI = new Gyomei();
-    public static final Role SASUKE = new Sasuke();
-    public static final Role BAKUGO = new Bakugo();
-    public static final Role MINATO = new Minato();
-
     public static void registerRoles() {
         //KATARINA.register();
         //MR_JACK.register();
@@ -32,8 +21,8 @@ public class RoleRegistry {
         //AKAZA.register();
         //LIGHT.register();
         //GYOMEI.register();
-        SASUKE.register();
+        Role.register(Minato.class);
         //BAKUGO.register();
-        MINATO.register();
+        Role.register(Minato.class);
     }
 }

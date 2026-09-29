@@ -2,6 +2,7 @@ package be.artex.AllStarsParty.role.autre.minato;
 
 import be.artex.AllStarsParty.api.item.CustomItem;
 import be.artex.AllStarsParty.api.message.Message;
+import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.util.StatValues;
 import be.artex.AllStarsParty.util.Stats;
 import org.bukkit.ChatColor;
@@ -25,16 +26,20 @@ public class Ermite extends CustomItem {
     @Override
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+        Role role = Role.getPlayerRole(player);
 
-        System.out.println("a");
+        if (!(role instanceof Minato))
+            return;
+
+        Minato r = (Minato) role;
 
         boolean isActivated = PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false);
 
-        if (isActivated) {
+        if (r.isRasenganOn) {
             disable(player);
             player.sendMessage(Message.info("Vous avez " + ChatColor.RED + "désactivé " + ChatColor.WHITE + "le " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + "."));
         } else {
-            if (Minato.playersErmiteChakra.getOrDefault(player.getUniqueId(), 4000) < 20) {
+            if (r.ermiteChakra < 20) {
                 player.sendMessage(Message.error("Il ne vous reste plus assez de " + ChatColor.DARK_GREEN + "chakra d'ermite" + ChatColor.WHITE + "."));
                 return;
             }

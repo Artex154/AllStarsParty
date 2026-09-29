@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class Role {
-    private static final List<Role> REGISTERED_ROLES = new ArrayList<>();
+    private static final List<Class<? extends Role>> REGISTERED_ROLES = new ArrayList<>();
     private static final Map<Player, Role> PLAYERS_ROLE = new HashMap<>();
 
     private TextComponent desc = new TextComponent("<N/A>");
@@ -42,6 +42,11 @@ public abstract class Role {
      * @return the strongness of the role's aura.
      */
     public abstract @NotNull Aura getAura();
+
+    /**
+     * @return the role's identifier.
+     */
+    public abstract @NotNull String getID();
 
     /**
      * @return if the role should call {@link Role#tick(Player)} should be called every 10 ticks.
@@ -80,6 +85,15 @@ public abstract class Role {
      * @return the role's base health buff.
      */
     public int getBonusMaxHealth() {
+        return 0;
+    }
+
+    /**
+     * @param player the player.
+     * @param user the user, the player with the role.
+     * @return the bonus damage based on the player and user.
+     */
+    public double bonusStrength(Player player, Player user) {
         return 0;
     }
 
@@ -146,15 +160,6 @@ public abstract class Role {
     }
 
     /**
-     * @param player the player.
-     * @param user the user, the player with the role.
-     * @return the bonus damage based on the player and user.
-     */
-    public double bonusStrength(Player player, Player user) {
-        return 0;
-    }
-
-    /**
      * @return the role's description.
      */
     public final @NotNull TextComponent getDescription() {
@@ -164,9 +169,8 @@ public abstract class Role {
     /**
      * Registers the role.
      */
-    public final void register() {
-        REGISTERED_ROLES.add(this);
-        desc = descriptionInitialization();
+    public static void register(Class<? extends Role> r) {
+        REGISTERED_ROLES.add(r);
     }
 
     /**
@@ -175,7 +179,7 @@ public abstract class Role {
     public final Set<Player> getPlayersWithRole() {
         return PLAYERS_ROLE.entrySet()
                 .stream()
-                .filter(entry -> Objects.equals(entry.getValue(), this))
+                .filter(entry -> Objects.equals(entry.getValue().getID(), this.getID()))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
     }
@@ -184,7 +188,15 @@ public abstract class Role {
      * @return the list of registered roles.
      */
     public static @NotNull @Unmodifiable List<Role> getRegisteredRoles() {
-        return Collections.unmodifiableList(REGISTERED_ROLES);
+        return REGISTERED_ROLES.stream()
+                .map(roleClass -> {
+                    try {
+                        return roleClass.getDeclaredConstructor().newInstance();
+                    } catch (ReflectiveOperationException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
     /**

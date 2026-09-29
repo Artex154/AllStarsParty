@@ -1,6 +1,5 @@
 package be.artex.AllStarsParty.role.autre.minato;
 
-import be.artex.AllStarsParty.api.item.Cooldown;
 import be.artex.AllStarsParty.api.item.CustomItem;
 import be.artex.AllStarsParty.api.message.Message;
 import org.bukkit.ChatColor;
@@ -11,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class Rasengan extends CustomItem {
@@ -32,7 +30,5 @@ public class Rasengan extends CustomItem {
             player.sendMessage(Message.info("Le " + ChatColor.BLUE + "rasengan" + ChatColor.WHITE + " est déjà activé."));
             return;
         }
-
-        if (Min)
     }
 }

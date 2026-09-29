@@ -62,6 +62,8 @@ public class GameManager {
             Role r = registeredRolesCopy.get(i);
 
             r.assignRoleToPlayer(p);
+
+            Role.setPlayerRole(p, r);
         }
 
          runnable = new BukkitRunnable() {

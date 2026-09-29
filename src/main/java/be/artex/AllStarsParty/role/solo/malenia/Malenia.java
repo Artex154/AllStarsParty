@@ -66,6 +66,11 @@ public class Malenia extends RevivableRole {
     }
 
     @Override
+    public @NotNull String getID() {
+        return "";
+    }
+
+    @Override
     public boolean shouldTick() {
         return false;
     }

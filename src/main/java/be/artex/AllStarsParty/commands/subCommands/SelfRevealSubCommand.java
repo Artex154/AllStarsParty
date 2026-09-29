@@ -4,6 +4,8 @@ import be.artex.AllStarsParty.api.message.Message;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.commands.SubCommand;
 import be.artex.AllStarsParty.registry.RoleRegistry;
+import be.artex.AllStarsParty.role.antagoniste.akaza.Akaza;
+import be.artex.AllStarsParty.role.divergents.light.Light;
 import be.artex.AllStarsParty.util.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,7 +29,7 @@ public class SelfRevealSubCommand extends SubCommand {
     public void whenCalled(Player sender) {
         Role role = Role.getPlayerRole(sender);
 
-        if (role == null || !role.equals(RoleRegistry.LIGHT))
+        if (role == null || !role.getID().equals(new Light().getID()))
             return;
 
         PlayerUtil.setPlayerName(sender, ChatColor.YELLOW + "" + ChatColor.BOLD + "Kira");
@@ -39,14 +41,14 @@ public class SelfRevealSubCommand extends SubCommand {
 
         sender.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 
-        RoleRegistry.AKAZA.getPlayersWithRole().forEach(akaza -> PlayerUtil.setLunarNametagForAnotherPlayer(akaza, sender, ChatColor.GRAY + "» Aura " + RoleRegistry.LIGHT.getAura().getName() + ChatColor.GRAY + " «"));
+        new Akaza().getPlayersWithRole().forEach(akaza -> PlayerUtil.setLunarNametagForAnotherPlayer(akaza, sender, ChatColor.GRAY + "» Aura " + new Light().getName() + ChatColor.GRAY + " «"));
     }
 
     @Override
     public String getDescription(Player sender) {
         Role role = Role.getPlayerRole(sender);
 
-        if (role == null || !role.equals(RoleRegistry.LIGHT))
+        if (role == null || !role.getID().equals(new Light().getID()))
             return null;
 
         return "Permet de se reveal en tant que kira.";

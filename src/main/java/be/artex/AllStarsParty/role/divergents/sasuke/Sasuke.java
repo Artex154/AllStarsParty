@@ -58,6 +58,11 @@ public class Sasuke extends Role {
     }
 
     @Override
+    public @NotNull String getID() {
+        return "";
+    }
+
+    @Override
     public boolean shouldTick() {
         return false;
     }
