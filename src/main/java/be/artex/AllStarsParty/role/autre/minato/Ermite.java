@@ -11,12 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 public class Ermite extends CustomItem {
     private final ItemStack STACK = new ItemStack(Material.BLAZE_ROD);
-    public static HashMap<UUID, Boolean> PLAYERS_ACTIVATED = new HashMap<>();
 
     @Override
     public ItemStack getStack() {
@@ -33,10 +29,8 @@ public class Ermite extends CustomItem {
 
         Minato r = (Minato) role;
 
-        boolean isActivated = PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false);
-
-        if (r.isRasenganOn) {
-            disable(player);
+        if (r.isInErmite) {
+            disable(player, r);
             player.sendMessage(Message.info("Vous avez " + ChatColor.RED + "désactivé " + ChatColor.WHITE + "le " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + "."));
         } else {
             if (r.ermiteChakra < 20) {
@@ -44,28 +38,26 @@ public class Ermite extends CustomItem {
                 return;
             }
 
-            enable(player);
+            enable(player, r);
             player.sendMessage(Message.info("Vous avez " + ChatColor.GREEN + "activé " + ChatColor.WHITE + "le " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + "."));
         }
-
-        PLAYERS_ACTIVATED.put(player.getUniqueId(), !isActivated);
     }
 
-    public static void enable(Player player) {
+    public static void enable(Player player, Minato minato) {
         Stats stats = Stats.get(player.getUniqueId());
 
         stats.addBonus(StatValues.STRENGTH, 7.5f);
         stats.addBonus(StatValues.SPEED, 10f);
 
-        PLAYERS_ACTIVATED.put(player.getUniqueId(), true);
+        minato.isInErmite = true;
     }
 
-    public static void disable(Player player) {
+    public static void disable(Player player, Minato minato) {
         Stats stats = Stats.get(player.getUniqueId());
 
         stats.addBonus(StatValues.STRENGTH, -7.5f);
         stats.addBonus(StatValues.SPEED, -10f);
 
-        PLAYERS_ACTIVATED.put(player.getUniqueId(), false);
+        minato.isInErmite = false;
     }
 }

@@ -6,6 +6,7 @@ import be.artex.AllStarsParty.role.antagoniste.akaza.LCAB;
 import be.artex.AllStarsParty.role.antagoniste.katarina.Dague;
 import be.artex.AllStarsParty.role.antagoniste.katarina.Shunpo;
 import be.artex.AllStarsParty.role.autre.minato.Ermite;
+import be.artex.AllStarsParty.role.autre.minato.rasengan.Rasengan;
 import be.artex.AllStarsParty.role.divergents.light.Deathnote;
 import be.artex.AllStarsParty.role.divergents.sasuke.Amaterasu;
 import be.artex.AllStarsParty.role.divergents.sasuke.Rinnegan;
@@ -29,6 +30,7 @@ public class ItemRegistry {
     public static final CustomItem BAKUGO_PROPULSION = new Propulsion();
     public static final CustomItem BAKUGO_CLUSTER = new Cluster();
     public static final CustomItem MINATO_ERMITE = new Ermite();
+    public static final CustomItem MINATO_RASENGAN = new Rasengan();
 
     public static void registerItems() {
         KATARINA_DAGUE.register();
@@ -44,5 +46,6 @@ public class ItemRegistry {
         BAKUGO_PROPULSION.register();
         BAKUGO_CLUSTER.register();
         MINATO_ERMITE.register();
+        MINATO_RASENGAN.register();
     }
 }

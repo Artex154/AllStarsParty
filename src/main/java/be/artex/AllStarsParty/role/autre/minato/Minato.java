@@ -7,22 +7,28 @@ import be.artex.AllStarsParty.api.role.Aura;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.api.role.Side;
 import be.artex.AllStarsParty.registry.ItemRegistry;
+import be.artex.AllStarsParty.role.autre.minato.rasengan.RasenganState;
 import be.artex.AllStarsParty.util.PlayerUtil;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Minato extends Role {
-    public boolean isRasenganOn = false;
+    public RasenganState rasenganState = RasenganState.NONE;
     public long rasenganCooldownTicks = 0;
 
     public long chakra = 18000;
     public long ermiteChakra = 4000;
+
+    public boolean isInErmite = false;
 
     private boolean shouldTick = true;
 
@@ -48,7 +54,7 @@ public class Minato extends Role {
         HoverHolder RASHolder = new HoverHolder(
                 ChatColor.DARK_GRAY + " [" + ChatColor.BLUE + ChatColor.BOLD + "Rasengan" + ChatColor.DARK_GRAY + "]",
                 "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.BLUE + ChatColor.BOLD + "Rasengan" + ChatColor.DARK_GRAY + "]" + "\n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Lorsque vous tappez un joueur après avoir cliquer sur cet item, vous lui " + ChatColor.RED + "infligerez 1❤" + ChatColor.WHITE + " et vous le repousserez         \n    d'une dizaine de blocs en arrière, en cassant les blocs sur le chemin.  \n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Lorsque vous tappez un joueur après avoir cliquer sur cet item, vous lui " + ChatColor.RED + "infligerez 1,5❤" + ChatColor.WHITE + " (brut, non-additionnés aux dégâts de base), et vous le repousserez         \n    d'une dizaine de blocs en arrière, en cassant les blocs sur le chemin.  \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Le rasengan coute " + ChatColor.AQUA + "5000 unités de chakra.     \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Si vous êtes en " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + ", vous " + ChatColor.RED + "infligerez 1❤ supplémentaire" + ChatColor.WHITE + ".\n    De plus, le pouvoir coutera " + ChatColor.DARK_GREEN + "500 chakra d'ermite" + ChatColor.WHITE + " à la place de" + ChatColor.AQUA + " chakra normal" + ChatColor.WHITE + ".       \n" +
                         ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Cooldown:" + ChatColor.YELLOW + " 30 secondes.\n  "
@@ -94,15 +100,15 @@ public class Minato extends Role {
 
     @Override
     public void tick(Player player) {
-        if (rasenganCooldownTicks < 10 && rasenganCooldownTicks > 0)
+        if (rasenganCooldownTicks <= 10 && rasenganCooldownTicks > 0)
             rasenganCooldownTicks = 0;
         else if (rasenganCooldownTicks > 10)
             rasenganCooldownTicks -= 10;
 
-        if (Ermite.PLAYERS_ACTIVATED.getOrDefault(player.getUniqueId(), false) == true) {
+        if (isInErmite) {
             if (ermiteChakra < 10) {
                 ermiteChakra = 0;
-                Ermite.disable(player);
+                Ermite.disable(player, this);
                 player.sendMessage(Message.warn("Il ne vous reste plus de " + ChatColor.DARK_GREEN + "chakra d'ermite" + ChatColor.WHITE + "."));
             } else {
                 ermiteChakra -= 10;
@@ -124,11 +130,38 @@ public class Minato extends Role {
 
     @Override
     public List<CustomItem> getCustomItems() {
-        return Collections.singletonList(ItemRegistry.MINATO_ERMITE);
+        List<CustomItem> customItems = new ArrayList<>();
+
+        customItems.add(ItemRegistry.MINATO_ERMITE);
+        customItems.add(ItemRegistry.MINATO_RASENGAN);
+
+        return customItems;
     }
 
     @Override
     public void onDeath(PlayerDeathEvent event) {
         shouldTick = false;
+    }
+
+    @Override
+    public void onHit(Player player, Player damager, double damage, EntityDamageByEntityEvent event) {
+        if (rasenganState == RasenganState.NONE)
+            return;
+
+        event.setDamage(0);
+        rasenganCooldownTicks = 600;
+        player.getWorld().playSound(player.getLocation(), Sound.CREEPER_HISS, 1f, 1f);
+
+        int dti = 3;
+
+        if (rasenganState == RasenganState.NORMAL)
+            player.sendMessage(Message.info("Vous subissez le " + ChatColor.BLUE + ChatColor.BOLD + "rasengan" + ChatColor.WHITE + " de " + ChatColor.YELLOW + "Minato" + ChatColor.WHITE + ". Il vous inflige " + ChatColor.RED + "1,5❤" + ChatColor.WHITE + "."));
+        else {
+            player.sendMessage(Message.info("Vous subissez le " + ChatColor.BLUE + ChatColor.BOLD + "rasengan géant" + ChatColor.WHITE + " de " + ChatColor.YELLOW + "Minato" + ChatColor.WHITE + ". Il vous inflige " + ChatColor.RED + "2,5❤" + ChatColor.WHITE + "."));
+            dti += 2;
+        }
+
+        PlayerUtil.inflictTrueDamage(player, dti);
+        rasenganState = RasenganState.NONE;
     }
 }

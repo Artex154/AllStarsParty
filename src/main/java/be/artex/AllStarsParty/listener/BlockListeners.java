@@ -37,6 +37,7 @@ public class BlockListeners implements Listener {
         }
 
         switch (event.getBlock().getType()) {
+            case DIAMOND_BLOCK:
             case BARRIER:
                 event.setCancelled(true);
                 return;
