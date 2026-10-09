@@ -1,6 +1,7 @@
 package be.artex.AllStarsParty.api.item;
 
 import be.artex.AllStarsParty.AllStarsParty;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -22,8 +23,16 @@ public abstract class CustomItem {
 
     /**
      * The code executed when a player interacts with the CustomItem.
+     * @param event the event.
      */
     public void onInteract(PlayerInteractEvent event) {
+    }
+
+    /**
+     * The code executed when a player shoots with the CustomItem.
+     * @param event the event.
+     */
+    public void onShoot(EntityShootBowEvent event) {
     }
 
     /**

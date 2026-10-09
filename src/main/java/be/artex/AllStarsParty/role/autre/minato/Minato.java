@@ -12,22 +12,23 @@ import be.artex.AllStarsParty.util.PlayerUtil;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Minato extends Role {
     public RasenganState rasenganState = RasenganState.NONE;
     public long rasenganCooldownTicks = 0;
 
+    public Arrow arrow = null;
+
     public long chakra = 18000;
     public long ermiteChakra = 4000;
-
     public boolean isInErmite = false;
 
     private boolean shouldTick = true;
@@ -134,6 +135,7 @@ public class Minato extends Role {
 
         customItems.add(ItemRegistry.MINATO_ERMITE);
         customItems.add(ItemRegistry.MINATO_RASENGAN);
+        customItems.add(ItemRegistry.MINATO_RAIJIN);
 
         return customItems;
     }

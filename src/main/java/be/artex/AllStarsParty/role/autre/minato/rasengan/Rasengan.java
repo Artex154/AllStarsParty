@@ -22,7 +22,6 @@ public class Rasengan extends CustomItem {
     @Override
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-
         Role role = Role.getPlayerRole(player);
 
         if (!(role instanceof Minato)) {
