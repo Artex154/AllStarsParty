@@ -23,9 +23,12 @@ import com.google.common.collect.Lists;
 import com.lunarclient.apollo.Apollo;
 import com.lunarclient.apollo.module.coloredfire.ColoredFireModule;
 import com.lunarclient.apollo.module.glow.GlowModule;
+import com.lunarclient.apollo.module.hologram.Hologram;
+import com.lunarclient.apollo.module.hologram.HologramModule;
 import com.lunarclient.apollo.module.nametag.Nametag;
 import com.lunarclient.apollo.module.nametag.NametagModule;
 import com.lunarclient.apollo.player.ApolloPlayer;
+import com.lunarclient.apollo.recipients.ForwardingRecipients;
 import com.lunarclient.apollo.recipients.Recipients;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
@@ -185,7 +188,7 @@ public class PlayerUtil {
         if (!apolloViewer.isPresent())
             return;
 
-        String playerName = playersName.get(target.getUniqueId());
+        String playerName = playersColor.get(target.getUniqueId()) + playersName.get(target.getUniqueId());
 
         nametagModule.overrideNametag(Recipients.of(Collections.singletonList(apolloViewer.get())), target.getUniqueId(), Nametag.builder()
                 .lines(Lists.newArrayList(
@@ -319,7 +322,6 @@ public class PlayerUtil {
     public static void removeLunarGlow(@NotNull Player player) {
         glowModule.resetGlow(Recipients.ofEveryone(), player.getUniqueId());
     }
-
 
     public static void inflictTrueDamage(@NotNull Player player, int damage) {
         player.damage(0);

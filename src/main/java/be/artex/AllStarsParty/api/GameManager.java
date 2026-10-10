@@ -7,6 +7,9 @@ import be.artex.AllStarsParty.listener.BlockListeners;
 import be.artex.AllStarsParty.listener.PlayerListeners;
 import be.artex.AllStarsParty.util.PlayerUtil;
 import be.artex.AllStarsParty.util.WorldUtil;
+import com.lunarclient.apollo.Apollo;
+import com.lunarclient.apollo.module.hologram.HologramModule;
+import com.lunarclient.apollo.recipients.Recipients;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -104,6 +107,8 @@ public class GameManager {
         PlayerListeners.PLAYERS_KILL_AMOUNT.clear();
         PlayerUtil.playersName.clear();
         PlayerUtil.playersColor.clear();
+
+        Apollo.getModuleManager().getModule(HologramModule.class).resetHolograms(Recipients.ofEveryone());
     }
 
     public static void removePlayer(@NotNull Player player) {

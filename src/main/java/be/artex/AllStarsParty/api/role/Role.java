@@ -250,5 +250,6 @@ public abstract class Role {
         this.whenAssigned(player);
 
         PlayerUtil.sendTitle(player, ChatColor.DARK_GRAY + "» " + this.getSide().getColor() + this.getName() + ChatColor.DARK_GRAY + " «", "", 20, 60, 20);
+        PlayerUtil.playersName.put(player.getUniqueId(), player.getName());
     }
 }

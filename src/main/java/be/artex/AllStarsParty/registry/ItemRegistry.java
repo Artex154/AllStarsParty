@@ -6,7 +6,7 @@ import be.artex.AllStarsParty.role.antagoniste.akaza.LCAB;
 import be.artex.AllStarsParty.role.antagoniste.katarina.Dague;
 import be.artex.AllStarsParty.role.antagoniste.katarina.Shunpo;
 import be.artex.AllStarsParty.role.autre.minato.Ermite;
-import be.artex.AllStarsParty.role.autre.minato.RaijinKunai;
+import be.artex.AllStarsParty.role.autre.minato.raijinKunai.RaijinKunai;
 import be.artex.AllStarsParty.role.autre.minato.rasengan.Rasengan;
 import be.artex.AllStarsParty.role.divergents.light.Deathnote;
 import be.artex.AllStarsParty.role.divergents.sasuke.Amaterasu;
