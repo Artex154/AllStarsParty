@@ -1,18 +1,20 @@
 package be.artex.AllStarsParty.role.autre.minato.rasengan;
 
 import be.artex.AllStarsParty.api.item.CustomItem;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.AllStarsParty.api.message.Message;
 import be.artex.AllStarsParty.api.role.Role;
-import be.artex.AllStarsParty.role.autre.minato.Ermite;
 import be.artex.AllStarsParty.role.autre.minato.Minato;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 public class Rasengan extends CustomItem {
-    private final ItemStack STACK = new ItemStack(Material.DIAMOND_BLOCK);
+    private final ItemStack STACK = new ItemBuilder(Material.DIAMOND_BLOCK).name(ChatColor.BLUE + "" + ChatColor.BOLD + "Rasengan").addEnchant(Enchantment.DURABILITY, 1).itemFlags(ItemFlag.HIDE_ENCHANTS).build();
 
     @Override
     public ItemStack getStack() {

@@ -61,21 +61,7 @@ public class RaijinKunai extends CustomItem {
             Player pl = PlayerUtil.getPlayerTargetEntity(player, 50);
 
             if (pl != null) {
-                if (r.isInErmite) {
-                    if (r.ermiteChakra < 200) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.WHITE + "."));
-                        return;
-                    }
-
-                    r.ermiteChakra -= 200;
-                } else {
-                    if (r.chakra < 2000) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.AQUA + " chakra" + ChatColor.WHITE + "."));
-                        return;
-                    }
-
-                    r.chakra -= 2000;
-                }
+                r.consumeChakra(2000, 200, player);
 
                 for (RaijinKunaiHolder mark : r.marks) {
                     if (mark.getPlayer() == null)
@@ -111,21 +97,7 @@ public class RaijinKunai extends CustomItem {
             Block block = player.getTargetBlock((Set<Material>) null, 50);
 
             if (block != null) {
-                if (r.isInErmite) {
-                    if (r.ermiteChakra < 200) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.WHITE + "."));
-                        return;
-                    }
-
-                    r.ermiteChakra -= 200;
-                } else {
-                    if (r.chakra < 2000) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.AQUA + " chakra" + ChatColor.WHITE + "."));
-                        return;
-                    }
-
-                    r.chakra -= 2000;
-                }
+                r.consumeChakra(2000, 200, player);
 
                 for (RaijinKunaiHolder mark : r.marks) {
                     if (mark.getBlock() == null)
@@ -161,69 +133,37 @@ public class RaijinKunai extends CustomItem {
             }
 
             player.sendMessage(Message.info("Vous ne visez aucun bloc / joueur"));
-        } else {
-            Player pl = PlayerUtil.getPlayerTargetEntity(player, 50);
 
-            if (pl != null) {
-                RaijinKunaiHolder holder = r.getMarkHolder(pl);
+            return;
+        }
 
-                if (holder == null) {
-                    player.sendMessage(Message.info("Ce joueur ne dispose pas de" + ChatColor.YELLOW + " sceau" + ChatColor.WHITE + "."));
-                    return;
-                }
+        Player pl = PlayerUtil.getPlayerTargetEntity(player, 50);
 
-                if (r.isInErmite) {
-                    if (r.ermiteChakra < 150) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.WHITE + "."));
-                        return;
-                    }
+        if (pl != null) {
+            RaijinKunaiHolder holder = r.getMarkHolder(pl);
 
-                    r.ermiteChakra -= 150;
-                } else {
-                    if (r.chakra < 1500) {
-                        player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.AQUA + " chakra" + ChatColor.WHITE + "."));
-                        return;
-                    }
-
-                    r.chakra -= 1500;
-                }
-
-                player.teleport(pl);
-                player.getWorld().playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1f, 1f);
-                player.sendMessage(Message.info("Vous vous téléportez sur votre " + ChatColor.YELLOW + ChatColor.BOLD + holder.getMarkCount() + "e sceau" + ChatColor.WHITE + ", celui sur " + ChatColor.YELLOW + pl.getName() + ChatColor.WHITE + "."));
-
+            if (holder == null) {
+                player.sendMessage(Message.info("Ce joueur ne dispose pas de" + ChatColor.YELLOW + " sceau" + ChatColor.WHITE + "."));
                 return;
             }
 
-            Block block = player.getTargetBlock((Set<Material>) null, 50);
+            r.consumeChakra(1500, 150, player);
+            teleport(player, pl.getLocation(), holder.getMarkCount());
 
-            for (RaijinKunaiHolder holder : r.marks) {
-                if (holder.getBlock() == null)
-                    continue;
+            return;
+        }
 
-                if (holder.getBlock().getWorld().equals(block.getWorld()) && holder.getBlock().getLocation().distance(block.getLocation()) <= 3.0) {
-                    if (r.isInErmite) {
-                        if (r.ermiteChakra < 150) {
-                            player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.WHITE + "."));
-                            return;
-                        }
+        Block block = player.getTargetBlock((Set<Material>) null, 50);
 
-                        r.ermiteChakra -= 150;
-                    } else {
-                        if (r.chakra < 1500) {
-                            player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.AQUA + " chakra" + ChatColor.WHITE + "."));
-                            return;
-                        }
+        for (RaijinKunaiHolder holder : r.marks) {
+            if (holder.getBlock() == null)
+                continue;
 
-                        r.chakra -= 1500;
-                    }
+            if (holder.getBlock().getWorld().equals(block.getWorld()) && holder.getBlock().getLocation().distance(block.getLocation()) <= 3.0) {
+                r.consumeChakra(1500, 150, player);
+                teleport(player, block.getLocation().add(0.5, 1, 0.5), holder.getMarkCount());
 
-                    player.teleport(block.getLocation().add(0, 1, 0));
-                    player.getWorld().playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1f, 1f);
-                    player.sendMessage(Message.info("Vous vous téléportez sur votre " + ChatColor.YELLOW + ChatColor.BOLD + holder.getMarkCount() + "e sceau" + ChatColor.WHITE + "."));
-
-                    return;
-                }
+                return;
             }
         }
     }
@@ -285,5 +225,11 @@ public class RaijinKunai extends CustomItem {
         String id = "minato_" + player.getName().toLowerCase() + "_" + markCount;
 
         hologramModule.removeHologram(recipients, id);
+    }
+
+    private void teleport(Player player, Location location, int markCount) {
+        player.teleport(location);
+        player.getWorld().playSound(location, Sound.ENDERMAN_TELEPORT, 1f, 1f);
+        player.sendMessage(Message.info("Vous vous téléportez sur votre " + ChatColor.YELLOW + ChatColor.BOLD + markCount + "e sceau" + ChatColor.WHITE + "."));
     }
 }

@@ -1,18 +1,21 @@
 package be.artex.AllStarsParty.role.autre.minato;
 
 import be.artex.AllStarsParty.api.item.CustomItem;
+import be.artex.AllStarsParty.api.itemBuilder.ItemBuilder;
 import be.artex.AllStarsParty.api.message.Message;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.util.StatValues;
 import be.artex.AllStarsParty.util.Stats;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 public class Ermite extends CustomItem {
-    private final ItemStack STACK = new ItemStack(Material.BLAZE_ROD);
+    private final ItemStack STACK = new ItemBuilder(Material.BLAZE_ROD).name(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Mode ermite").addEnchant(Enchantment.DURABILITY, 1).itemFlags(ItemFlag.HIDE_ENCHANTS).build();;
 
     @Override
     public ItemStack getStack() {

@@ -13,7 +13,6 @@ import be.artex.AllStarsParty.util.PlayerUtil;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -69,25 +68,28 @@ public class Minato extends Role {
         HoverHolder RAIHolder = new HoverHolder(
                 ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + ChatColor.BOLD + "Raijin no Kunai" + ChatColor.DARK_GRAY + "]",
                 "\n" + ChatColor.DARK_GRAY + "   [" + ChatColor.GOLD + ChatColor.BOLD + "Raijin no Kunai" + ChatColor.DARK_GRAY + "]" + "\n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous tirez une flèche automatiquement à l'aide d'un clic droit " + ChatColor.RED + "infligerez 1,5❤" + ChatColor.WHITE + " (brut, non-additionnés aux dégâts de base), et vous le repousserez         \n    d'une dizaine de blocs en arrière, en cassant les blocs sur le chemin.  \n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Le rasengan coute " + ChatColor.AQUA + "5000 unités de chakra.     \n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Si vous êtes en " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + ", vous " + ChatColor.RED + "infligerez 1❤ supplémentaire" + ChatColor.WHITE + ".\n    De plus, le pouvoir coutera " + ChatColor.DARK_GREEN + "500 chakra d'ermite" + ChatColor.WHITE + " à la place de" + ChatColor.AQUA + " chakra normal" + ChatColor.WHITE + ".       \n" +
-                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Cooldown:" + ChatColor.YELLOW + " 30 secondes.\n  "
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Avec un " + ChatColor.UNDERLINE + "clic gauche" + ChatColor.WHITE + ", en visant un " + ChatColor.YELLOW + ChatColor.BOLD + "joueur" + ChatColor.WHITE + ", vous le " + ChatColor.YELLOW + "marquerez" + ChatColor.WHITE + " de votre " + ChatColor.YELLOW + "sceau" + ChatColor.WHITE + ".\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "De même en visant un " + ChatColor.YELLOW + ChatColor.BOLD + "bloc" + ChatColor.WHITE + ".\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Vous disposez de " + ChatColor.YELLOW + ChatColor.BOLD + "3 sceaux" + ChatColor.WHITE + ".\n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Poser un " + ChatColor.YELLOW + "sceau" + ChatColor.WHITE + " vous coute " + ChatColor.AQUA + "2000 chakra" + ChatColor.WHITE + " ou " + ChatColor.DARK_GREEN + "200 chakra d'ermite" + ChatColor.WHITE + " si en " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + ".          \n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Avec un " + ChatColor.UNDERLINE + "clic droit" + ChatColor.WHITE + " cependant, en visant un " + ChatColor.YELLOW + ChatColor.BOLD + "joueur" + ChatColor.WHITE + " ou " + ChatColor.YELLOW + ChatColor.BOLD + "bloc" + ChatColor.WHITE + " ayant " + ChatColor.YELLOW + "sceau" + ChatColor.WHITE + ", vous vous téléporterez dessus.       \n" +
+                        ChatColor.DARK_GRAY + " » " + ChatColor.WHITE + "Cette " + ChatColor.YELLOW + "téléportation" + ChatColor.WHITE + " vous coute " + ChatColor.AQUA + "1500 chakra" + ChatColor.WHITE + " ou " + ChatColor.DARK_GREEN + "150 chakra d'ermite" + ChatColor.WHITE + " si en " + ChatColor.DARK_GREEN + "mode ermite" + ChatColor.WHITE + ", encore une fois.          \n"
+
         );
 
         TextComponent component = new TextComponent(ChatColor.GRAY + " Vous êtes " + ChatColor.YELLOW + ChatColor.BOLD + "Minato");
         component.addExtra("\n " + ChatColor.GRAY + "Vous devez " + ChatColor.WHITE + "gagner avec le clan " + ChatColor.YELLOW + "Uzumaki" + ChatColor.WHITE + ".");
         component.addExtra("\n ");
         component.addExtra("\n     " + ChatColor.YELLOW + ChatColor.BOLD + "PASSIFS: ");
-        component.addExtra("\n " + ChatColor.GRAY + " »" + ChatColor.WHITE + " Vous disposez de " + ChatColor.YELLOW + "speed 0,5" + ChatColor.WHITE + ".");
-        component.addExtra("\n " + ChatColor.GRAY + " »" + ChatColor.WHITE + " Vous disposez de " + ChatColor.AQUA + "18 000 unités de chakra" + ChatColor.WHITE + ". Vous en régénérez " + ChatColor.AQUA + "100" + ChatColor.WHITE + " toutes les secondes.");
+        component.addExtra("\n " + ChatColor.DARK_GRAY + " »" + ChatColor.WHITE + " Vous disposez de " + ChatColor.YELLOW + "speed 0,5" + ChatColor.WHITE + ".");
+        component.addExtra("\n " + ChatColor.DARK_GRAY + " »" + ChatColor.WHITE + " Vous disposez de " + ChatColor.AQUA + "18 000 unités de chakra" + ChatColor.WHITE + ". Vous en régénérez " + ChatColor.AQUA + "100" + ChatColor.WHITE + " toutes les secondes.");
         component.addExtra("\n ");
         component.addExtra("\n     " + ChatColor.YELLOW + ChatColor.BOLD + "CAPACITES: ");
-        component.addExtra("\n" + ChatColor.GRAY + "  »");
+        component.addExtra("\n" + ChatColor.DARK_GRAY + "  »");
         component.addExtra(ERHolder.toComponent());
-        component.addExtra("\n" + ChatColor.GRAY + "  »");
+        component.addExtra("\n" + ChatColor.DARK_GRAY + "  »");
         component.addExtra(RASHolder.toComponent());
-        component.addExtra("\n" + ChatColor.GRAY + "  »");
+        component.addExtra("\n" + ChatColor.DARK_GRAY + "  »");
         component.addExtra(RAIHolder.toComponent());
 
         return component;
@@ -194,24 +196,21 @@ public class Minato extends Role {
         return null;
     }
 
-    @Nullable
-    public RaijinKunaiHolder getMarkHolder(@NotNull Block block) {
-        for (RaijinKunaiHolder holder : marks) {
-            if (holder.getBlock() == null)
-                continue;
+    public void consumeChakra(int chakra, int ermiteChakra, Player player) {
+        if (this.isInErmite) {
+            if (this.ermiteChakra < ermiteChakra) {
+                player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.DARK_GREEN + " chakra d'ermite" + ChatColor.WHITE + "."));
+                return;
+            }
 
-            if (holder.getBlock().equals(block))
-                return holder;
+            this.ermiteChakra -= ermiteChakra;
         }
 
-        return null;
-    }
+        if (this.chakra < chakra) {
+            player.sendMessage(Message.info("Il ne vous reste pas assez de" + ChatColor.AQUA + " chakra" + ChatColor.WHITE + "."));
+            return;
+        }
 
-    public void setMark(@NotNull RaijinKunaiHolder newMark) {
-        marks.removeIf(mark ->
-                mark.getMarkCount() == newMark.getMarkCount()
-        );
-
-        marks.add(newMark);
+        this.chakra -= chakra;
     }
 }

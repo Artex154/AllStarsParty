@@ -20,7 +20,7 @@ public abstract class Role {
     private static final List<Class<? extends Role>> REGISTERED_ROLES = new ArrayList<>();
     private static final Map<Player, Role> PLAYERS_ROLE = new HashMap<>();
 
-    private TextComponent desc = new TextComponent("<N/A>");
+    private TextComponent desc = null;
 
     /**
      * @return the role's name.
@@ -163,6 +163,9 @@ public abstract class Role {
      * @return the role's description.
      */
     public final @NotNull TextComponent getDescription() {
+        if (desc == null)
+            desc = descriptionInitialization();
+
         return desc;
     }
 
