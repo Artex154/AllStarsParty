@@ -12,7 +12,8 @@ import be.artex.AllStarsParty.listener.PlayerListeners;
 public enum SidePropriety {
     TEAM("avec les ", "des "),
     ALONE(ChatColor.GOLD + "seul", "de "),
-    LGB(ChatColor.GOLD + "seul", "du ");
+    LGB(ChatColor.GOLD + "seul", "du "),
+    CLAN("avec le clan ", "du clan ");
 
     private final String objective;
     private final String determiner;

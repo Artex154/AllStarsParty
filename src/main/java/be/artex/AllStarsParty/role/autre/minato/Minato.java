@@ -97,7 +97,7 @@ public class Minato extends Role {
 
     @Override
     public @NotNull Side getSide() {
-        return Side.PROTAGONISTES;
+        return Side.UZUMAKI;
     }
 
     @Override

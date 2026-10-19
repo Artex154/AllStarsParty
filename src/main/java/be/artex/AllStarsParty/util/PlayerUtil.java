@@ -1,5 +1,6 @@
 package be.artex.AllStarsParty.util;
 
+import be.artex.AllStarsParty.AllStarsParty;
 import be.artex.AllStarsParty.api.HitCountHolder;
 import be.artex.AllStarsParty.api.item.Cooldown;
 import be.artex.AllStarsParty.api.role.RevivableRole;
@@ -32,9 +33,9 @@ import com.lunarclient.apollo.recipients.ForwardingRecipients;
 import com.lunarclient.apollo.recipients.Recipients;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
@@ -55,6 +56,8 @@ public class PlayerUtil {
             .getModule(NametagModule.class);
     private static final ColoredFireModule coloredFireModule = Apollo.getModuleManager()
             .getModule(ColoredFireModule.class);
+
+    public static final List<Player> stunnedPlayers = new ArrayList<>();
 
     /**
      * @param player the player to check the line of view.
@@ -329,5 +332,20 @@ public class PlayerUtil {
         if (player.getHealth() - damage <= 0)
             player.setHealth(0);
         else player.setHealth(player.getHealth() - damage);
+    }
+
+    public static void stunPlayer(@NotNull Player target, long ticks) {
+        ArmorStand h = (ArmorStand) target.getWorld().spawnEntity(target.getLocation().clone().subtract(0, 1, 0), EntityType.ARMOR_STAND);
+        h.setPassenger(target);
+        h.setVisible(false);
+        h.setGravity(false);
+        h.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 254, false, false));
+        stunnedPlayers.add(target);
+
+        Bukkit.getScheduler().runTaskLater(AllStarsParty.instance, () -> {
+            h.setHealth(0);
+            stunnedPlayers.remove(target);
+        }, ticks);
+
     }
 }

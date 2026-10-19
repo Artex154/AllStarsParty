@@ -8,6 +8,8 @@ import be.artex.AllStarsParty.role.antagoniste.katarina.Shunpo;
 import be.artex.AllStarsParty.role.autre.minato.Ermite;
 import be.artex.AllStarsParty.role.autre.minato.raijinKunai.RaijinKunai;
 import be.artex.AllStarsParty.role.autre.minato.rasengan.Rasengan;
+import be.artex.AllStarsParty.role.autre.sasuke.susanoo.Susanoo;
+import be.artex.AllStarsParty.role.autre.sasuke.susanoo.SusanooBow;
 import be.artex.AllStarsParty.role.divergents.light.Deathnote;
 import be.artex.AllStarsParty.role.divergents.sasuke.Amaterasu;
 import be.artex.AllStarsParty.role.divergents.sasuke.Rinnegan;
@@ -33,6 +35,8 @@ public class ItemRegistry {
     public static final CustomItem MINATO_ERMITE = new Ermite();
     public static final CustomItem MINATO_RASENGAN = new Rasengan();
     public static final CustomItem MINATO_RAIJIN = new RaijinKunai();
+    public static final CustomItem SASUKE_SUSANOO = new Susanoo();
+    public static final CustomItem SASUKE_SUSANOO_BOW = new SusanooBow();
 
     public static void registerItems() {
         KATARINA_DAGUE.register();
@@ -50,5 +54,7 @@ public class ItemRegistry {
         MINATO_ERMITE.register();
         MINATO_RASENGAN.register();
         MINATO_RAIJIN.register();
+        SASUKE_SUSANOO.register();
+        SASUKE_SUSANOO_BOW.register();
     }
 }

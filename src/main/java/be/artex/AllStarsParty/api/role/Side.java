@@ -16,7 +16,9 @@ public enum Side {
     ANTAGONISTES("antagonistes", ChatColor.RED, SidePropriety.TEAM),
     DIVERGENTS("divergents", ChatColor.YELLOW, SidePropriety.TEAM),
     MELENIA("Melenia", ChatColor.GOLD, SidePropriety.ALONE),
-    LGB("Loup-Garou Blanc", ChatColor.GOLD, SidePropriety.LGB);
+    LGB("Loup-Garou Blanc", ChatColor.GOLD, SidePropriety.LGB),
+    UZUMAKI("Uzumaki", ChatColor.YELLOW, SidePropriety.CLAN),
+    UCHIHA("Uchiha", ChatColor.RED, SidePropriety.CLAN);
 
     private final ChatColor color;
     private final String name;

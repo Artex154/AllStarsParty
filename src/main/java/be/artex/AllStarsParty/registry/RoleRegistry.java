@@ -3,6 +3,7 @@ package be.artex.AllStarsParty.registry;
 import be.artex.AllStarsParty.api.role.Role;
 import be.artex.AllStarsParty.role.antagoniste.akaza.Akaza;
 import be.artex.AllStarsParty.role.autre.minato.Minato;
+import be.artex.AllStarsParty.role.autre.sasuke.SSasuke;
 import be.artex.AllStarsParty.role.divergents.light.Light;
 import be.artex.AllStarsParty.role.divergents.sasuke.Sasuke;
 import be.artex.AllStarsParty.role.protagonistes.bakugo.Bakugo;
@@ -21,8 +22,8 @@ public class RoleRegistry {
         //AKAZA.register();
         //LIGHT.register();
         //GYOMEI.register();
-        Role.register(Minato.class);
+        Role.register(SSasuke.class);
         //BAKUGO.register();
-        Role.register(Minato.class);
+        Role.register(SSasuke.class);
     }
 }
